@@ -1,4 +1,3 @@
-
 package prog2.model;
 
 import java.time.LocalDate;
