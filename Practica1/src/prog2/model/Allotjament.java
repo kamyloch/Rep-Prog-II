@@ -37,6 +37,7 @@ public class Allotjament implements InAllotjament{
     public String getNom() {
         return nom;
     }
+
     public long getEstadaMinima(Temp temp) {
         return temp == Temp.BAIXA?estadaMinima:estadaMaxima;
     }
@@ -45,6 +46,7 @@ public class Allotjament implements InAllotjament{
         return Id;
     }
 
+    //Mètodes
     public boolean correcteFuncionament() {
         return false; /////D
     }

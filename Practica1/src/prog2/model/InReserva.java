@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface InReserva {
 
-    public Allotjament getAllotjament_();
+    public Allotjament getAllotjament();
 
     public Client getClient();
 
@@ -12,7 +12,7 @@ public interface InReserva {
 
     public LocalDate getDataSortida();
 
-    public void setAllotjament_(Allotjament allotjament_);
+    public void setAllotjament(Allotjament allotjament_);
 
     public void setClient(Client client_);
 
