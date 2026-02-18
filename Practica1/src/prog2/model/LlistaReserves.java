@@ -1,24 +1,23 @@
 package prog2.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class LlistaReserves implements InLlistaReserves {
-    private int numReserves;
-    private int reservesFetes;
-    public Reserva[]  reserves;
+    public ArrayList <Reserva>  reserves;
 
 
-
-    public LlistaReserves(int numReserves) {
-        this.numReserves = numReserves;
-        this.reserves = new Reserva[numReserves];
-        this.reservesFetes = 0;
+    //Constructor
+    public LlistaReserves() {
+        this.reserves = new ArrayList <Reserva>();
     }
 
+    //Getters
     public int getNumReserves() {
-        return numReserves;
+        return reserves.size();
     }
 
+    //Mètodes
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida){
         int entradaInt = entrada.getMonthValue()*100 + entrada.getDayOfMonth();
         int sortidaInt = sortida.getMonthValue()*100 + sortida.getDayOfMonth();
@@ -30,12 +29,10 @@ public class LlistaReserves implements InLlistaReserves {
 
         LocalDate maxima = entrada.plusDays(allotjament.getEstadaMinima(tempReserva)+1);
 
-        boolean valid = entrada.isAfter(sortida) && sortida.isBefore(maxima) && (reservesFetes < numReserves);
+        boolean valid = entrada.isAfter(sortida) && sortida.isBefore(maxima);
 
         if (valid){
-            Reserva r = new Reserva(allotjament,client,entrada, sortida);
-            this.reserves[reservesFetes] = r;
-            reservesFetes++;
+            this.reserves.add(new Reserva(allotjament,client,entrada, sortida));
         }
         else throw new IllegalArgumentException("Comprova dates i disponibilitat");
 
