@@ -58,6 +58,9 @@ class Parcela extends Allotjament{
     public boolean getConnexio(){
         return connexio;
     }
+    //Setters
+    public void setMida( float mida_){ mida=mida_;}
+    public void setConnexio( boolean connexio_){ connexio=connexio_;}
 }
 
 abstract class Casa extends Allotjament{
@@ -82,6 +85,10 @@ abstract class Casa extends Allotjament{
     public int getCapacitat(){
         return capacitat;
     }
+    //Setters
+    public void setMida(String mida_){ mida=mida_;}
+    public void setNumHabit(int numHabit_){numHabit=numHabit_;}
+    public void setCapacitat( int capacitat_){ capacitat=capacitat_;}
 }
 class Bungalow extends Casa {
     private boolean televisio;
@@ -98,4 +105,51 @@ class Bungalow extends Casa {
     public int getPlacesParquing (){
         return placesParquing;
     }
+    //Setters
+    public void setPlacesParquing(int placesParquing_){placesParquing=placesParquing_;}
+}
+class BungalowPremium extends Bungalow{
+    private String codiWifi;
+    //NO SE SI PONER ALGUN ATRIBUTO MAS PQ LLENÇOLS I TOVALLOLES CREO QUE NO SE USAN
+    //Constructor
+    public BungalowPremium(String nom_, String Id_, String mida_, int numHabit_, int capacitat_, int places_, String codiWifi_){
+        super(nom_, Id_, mida_, numHabit_, capacitat_,places_);
+        codiWifi=codiWifi_;
+    }
+    //Getters
+    public String getCodiWifi(){ return codiWifi; }
+    //Setters
+    public void setCodiWifi(String codiWifi_){ codiWifi=codiWifi_;}
+}
+
+class Glamping extends Casa{
+    private String material;
+    private boolean casaGossos;
+
+    //Constructor
+    public Glamping(String nom_,String Id_,String mida_,int numHabit_, int capacitat_, String material_,boolean casaGossos_){
+        super(nom_, Id_, mida_, numHabit_, capacitat_);
+        material=material_;
+        casaGossos=casaGossos_;
+    }
+    //Getters
+    public String getMaterial(){ return material; }
+    public boolean getCasaGossos(){ return casaGossos; }
+
+    //Setters
+    public void setMaterial(String material_){ material=material_; }
+    public void setCasaGossos(boolean casaGossos_){casaGossos=casaGossos_;}
+}
+
+class MobilHome extends Casa{
+    private boolean terrassaAmbBarbacoa;
+    //Constructor
+    public MobilHome(String nom_,String Id_,String mida_,int numHabit_, int capacitat_,boolean terrassaAmbBarbacoa_){
+        super(nom_, Id_, mida_, numHabit_, capacitat_);
+        terrassaAmbBarbacoa=terrassaAmbBarbacoa_;
+    }
+    //Getters
+    public boolean getTerrassaAmbBarbacoa(){ return terrassaAmbBarbacoa;}
+    //Setters
+    public void setTerrassaAmbBarbacoa(boolean terrassaAmbBarbacoa_){ terrassaAmbBarbacoa=terrassaAmbBarbacoa_; }
 }
