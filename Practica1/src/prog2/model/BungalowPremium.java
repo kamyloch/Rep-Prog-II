@@ -12,7 +12,16 @@ public class BungalowPremium extends Bungalow{
     //Getters
     public String getCodiWifi(){ return codiWifi; }
     public boolean getLlencolsTovalloles(){ return llencolsTovalloles;}
+
     //Setters
     public void setCodiWifi(String codiWifi_){ codiWifi=codiWifi_;}
     public void setLlencolsTovalloles(boolean LlencolsTovalloles_){ llencolsTovalloles=LlencolsTovalloles_; }
+
+    //Mètodes
+
+    @Override
+    public boolean correcteFuncionament() {
+        boolean correcteWifi = 8 <= codiWifi.length() && codiWifi.length() <= 16;
+        return super.correcteFuncionament() && correcteWifi;
+    }
 }
