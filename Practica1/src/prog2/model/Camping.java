@@ -71,4 +71,10 @@ public class Camping implements InCamping{
 
        llistaReserves.afegirReserva(a,c,dataEntrada, dataSortida);
     }
+
+    @Override
+    public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
+        llistaAllotjaments.add(new Bungalow(nom_,idAllotjament_,mida,habitacions,placesPersones,placesParquing,terrassa,tv,aireFred));
+    }
+
 }
