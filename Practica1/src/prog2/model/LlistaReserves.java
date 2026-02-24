@@ -27,9 +27,9 @@ public class LlistaReserves implements InLlistaReserves {
                                 InAllotjament.Temp.ALTA:
                                 InAllotjament.Temp.BAIXA;
 
-        LocalDate maxima = entrada.plusDays(allotjament.getEstadaMinima(tempReserva)+1);
+        LocalDate minima = entrada.plusDays(allotjament.getEstadaMinima(tempReserva)+1);
 
-        boolean valid = entrada.isAfter(sortida) && sortida.isBefore(maxima);
+        boolean valid = entrada.isAfter(sortida) && sortida.isAfter(minima);
 
         if (valid){
             this.reserves.add(new Reserva(allotjament,client,entrada, sortida));

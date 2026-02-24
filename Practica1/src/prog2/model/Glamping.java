@@ -1,0 +1,20 @@
+package prog2.model;
+
+class Glamping extends Casa{
+    private String material;
+    private boolean casaGossos;
+
+    //Constructor
+    public Glamping(String nom_,String Id_,String mida_,int numHabit_, int capacitat_, String material_,boolean casaGossos_){
+        super(nom_, Id_, mida_, numHabit_, capacitat_);
+        material=material_;
+        casaGossos=casaGossos_;
+    }
+    //Getters
+    public String getMaterial(){ return material; }
+    public boolean getCasaGossos(){ return casaGossos; }
+
+    //Setters
+    public void setMaterial(String material_){ material=material_; }
+    public void setCasaGossos(boolean casaGossos_){casaGossos=casaGossos_;}
+}
