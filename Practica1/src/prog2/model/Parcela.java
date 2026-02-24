@@ -13,12 +13,12 @@ public class Parcela extends Allotjament{
     public float getMida(){
         return mida;
     }
-    public boolean getConnexio(){
+    public boolean isConnexioElectrica(){
         return connexio;
     }
     //Setters
     public void setMida( float mida_){ mida=mida_;}
-    public void setConnexio( boolean connexio_){ connexio=connexio_;}
+    public void setConnexioElectrica( boolean connexio_){ connexio=connexio_;}
 
     public boolean correcteFuncionament(){return connexio;}
 }

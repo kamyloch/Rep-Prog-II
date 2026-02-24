@@ -42,6 +42,11 @@ public class Camping implements InCamping{
     public  int getNumClients(){
         return llistaClients.size();
     }
+    public static InAllotjament.Temp getTemporada(LocalDate data){
+        int dataInt = data.getMonthValue()*100 + data.getDayOfMonth();
+        boolean isAlta = (320 < dataInt) && (dataInt < 921);
+        return  isAlta? InAllotjament.Temp.ALTA : InAllotjament.Temp.BAIXA;
+    } //Porque pide Static????
 
     //Setters
     public void setNom(String nom) {
