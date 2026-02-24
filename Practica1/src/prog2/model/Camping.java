@@ -1,8 +1,5 @@
 package prog2.model;
 
-import prog2.vista.ExcepcioReserva;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Camping implements InCamping{
@@ -56,25 +53,4 @@ public class Camping implements InCamping{
     public void afegirParcela(String nom_, String idAllotjament_, float metres, boolean connexioElectrica){
         llistaAllotjaments.add(new Parcela(nom_,idAllotjament_,metres,connexioElectrica));
     }
-    public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        int i=0;
-        while(i<getNumClients() && !(llistaClients.get(i).getDni().equals(dni_))){i++;}
-        if(i==getNumClients())
-            throw new ExcepcioReserva("No existeix aquest client");
-        Client c =  llistaClients.get(i);
-
-       i=0;
-       while(i<getNumAllotjaments() && !(llistaAllotjaments.get(i).getId().equals(id_))){i++;}
-       if(i==getNumAllotjaments())
-           throw new ExcepcioReserva("No existeix aquest allotjament");
-       Allotjament a = llistaAllotjaments.get(i);
-
-       llistaReserves.afegirReserva(a,c,dataEntrada, dataSortida);
-    }
-
-    @Override
-    public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
-        llistaAllotjaments.add(new Bungalow(nom_,idAllotjament_,mida,habitacions,placesPersones,placesParquing,terrassa,tv,aireFred));
-    }
-
 }
