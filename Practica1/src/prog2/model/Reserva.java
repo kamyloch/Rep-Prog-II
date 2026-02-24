@@ -1,6 +1,7 @@
 package prog2.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Reserva implements InReserva {
     private Allotjament allotjament;
@@ -41,5 +42,15 @@ public class Reserva implements InReserva {
     }
     public LocalDate getDataSortida() {
         return dataSortida;
+    }
+    public long getEstada(){
+        return ChronoUnit.DAYS.between(dataEntrada,dataSortida);
+    }
+
+    //Metodes
+    public String toString (){
+        return "Client: " + client.getNom() + " ("+ client.getDni()+")\n"+
+                "Allotjament: " + allotjament.getNom() + " ("+ allotjament.getId()+")\n"+
+                "Estada: " + dataEntrada.toString() + " a " +dataSortida.toString() + " ("+ getEstada()+" dies)";
     }
 }

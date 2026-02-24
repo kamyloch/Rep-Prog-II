@@ -2,7 +2,8 @@
 package prog2.vista;
 
 import prog2.model.Camping;
-
+import java.time.LocalDate;
+import java.util.Locale;
 
 /**
  * Classe per gestionar els allotjaments del Càmping del Mar.
@@ -65,7 +66,7 @@ public class GestorCamping {
         idAllotjament = "102B";
         String mida = "Mitjana";
 
-        int habitacions =2;
+        int habitacions = 2;
         int placesPersones = 6;
         int placesParquing = 1;
         boolean terrassa = true;
@@ -194,35 +195,61 @@ public class GestorCamping {
         // amb la data d'entrada 20 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
 
         // Declarar les variables de tipus String idAllotjament i dni.
-        // Per completar
+        String dni;
+        String id;
 
         // Assigna els valors corresponents.
-        // Per completar
+        dni = "12345678X";
+        id = "100P";
 
         // Crear una LocalDate per definir la data de la reserva.
-        // Per completar
+        LocalDate entrada = LocalDate.of(2026,2,20);
+        LocalDate sortida = LocalDate.of(2026,2,28);
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
-        // Per completar
+        try {
+            camping.afegirReserva(id,dni,entrada,sortida);
+            System.out.println("Reserva 1 feta!");
+        }catch (ExcepcioReserva e){
+            System.out.println("Error: "+e.getMessage());
+        }
         
         // 2. Afegeix una reserva pel client amb DNI "78659101A" de l'allotjament amb identificador "100P"
         // amb la data d'entrada 25 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
 
         // Assigna els nous valors a les variables
-        // Per completar
+        dni = "78659101A";
+        id = "100P";
+        entrada = LocalDate.of(2026,2,25);
+        sortida = LocalDate.of(2026,2,28);
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
-        // Per completar
+        try {
+            camping.afegirReserva(id,dni,entrada,sortida);
+            System.out.println("Reserva 2 feta!");
+        }catch (ExcepcioReserva e){
+            System.out.println("Error: "+e.getMessage());
+        }
            
         // 3. Afegeix una reserva pel client amb DNI "789101A" de l'allotjament amb identificador "300Z"
         // amb la data d'entrada 25 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
 
         // Assigna els nous valors a les variables.    
-        // Per completar
+        dni = "789101A";
+        id = "300Z";
+        entrada = LocalDate.of(2026,2,25);
+        sortida = LocalDate.of(2026,2,28);
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
-        // Per completar
-        
+        try {
+            camping.afegirReserva(id,dni,entrada,sortida);
+            System.out.println("Reserva 3 feta!");
+        }catch (ExcepcioReserva e){
+            System.out.println("Error: "+e.getMessage());
+        }
+
+        System.out.println(camping.getLlistaReserves().toString());
+
     }
     
 }
