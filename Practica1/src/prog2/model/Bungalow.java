@@ -23,4 +23,10 @@ public class Bungalow extends Casa {
     public void setTelevisio(boolean televisio_){televisio=televisio_;}
     public void setAireFred(boolean aireFred_){aireFred=aireFred_;}
     public void setPlacesParquing(int placesParquing_){placesParquing=placesParquing_;}
+
+    //Mètodes
+    @Override
+    public boolean correcteFuncionament() {
+        return aireFred;
+    }
 }
