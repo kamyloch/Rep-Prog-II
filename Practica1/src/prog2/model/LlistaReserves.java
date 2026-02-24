@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioReserva;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class LlistaReserves implements InLlistaReserves {
     }
 
     //Mètodes
-    public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida){
+    public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida) throws ExcepcioReserva{
         int entradaInt = entrada.getMonthValue()*100 + entrada.getDayOfMonth();
         int sortidaInt = sortida.getMonthValue()*100 + sortida.getDayOfMonth();
         boolean isAlta = (320 < entradaInt) && (sortidaInt < 921);
@@ -34,7 +36,7 @@ public class LlistaReserves implements InLlistaReserves {
         if (valid){
             this.reserves.add(new Reserva(allotjament,client,entrada, sortida));
         }
-        else throw new IllegalArgumentException("Comprova dates i disponibilitat");
+        else throw new ExcepcioReserva("Comprova dates i disponibilitat");
 
     }
 }

@@ -2,12 +2,12 @@ package prog2.model;
 
 public class Client implements InClient {
     private String nom;
-    private String getDni;
+    private String dni;
 
     //Constructor
-    public Client(String nom, String getDni) {
+    public Client(String nom, String dni) {
         this.nom = nom;
-        this.getDni = getDni;
+        this.dni = dni;
     }
 
     //Setters
@@ -15,7 +15,7 @@ public class Client implements InClient {
         this.nom = nom;
     }
     public void setDni(String dni) {
-        this.getDni = dni;
+        this.dni= dni;
     }
 
     //Getters
@@ -23,6 +23,6 @@ public class Client implements InClient {
         return nom;
     }
     public String getDni() {
-        return getDni;
+        return dni;
     }
 }
