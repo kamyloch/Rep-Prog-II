@@ -11,10 +11,4 @@ public interface InClient {
     public void setDni(String dni);
 
 
-}/*
-public int calculAllotjamentsOperatius() {
-    int op = 0;
-    for (int i = 0; i<getNumAllotjaments(); i++)
-        if (llistaAllotjaments.get(i).correcteFuncionament()) op++;
-    return op;
-}*/
+}

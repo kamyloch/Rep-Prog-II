@@ -57,24 +57,18 @@ public class Camping implements InCamping{
         llistaAllotjaments.add(new Parcela(nom_,idAllotjament_,metres,connexioElectrica));
     }
 
-
-
-    @Override
     public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
         llistaAllotjaments.add(new Bungalow(nom_,idAllotjament_,mida,habitacions,placesPersones,placesParquing, terrassa, tv, aireFred));
     }
 
-    @Override
     public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
         llistaAllotjaments.add(new BungalowPremium(nom_,idAllotjament_,mida,habitacions,placesPersones,placesParquing,terrassa,tv,aireFred,serveisExtra,codiWifi));
     }
 
-    @Override
     public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
         llistaAllotjaments.add(new Glamping(nom_,idAllotjament_,mida,habitacions,placesPersones,material,casaMascota));
     }
 
-    @Override
     public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
         llistaAllotjaments.add(new MobilHome(nom_,idAllotjament_,mida,habitacions,placesPersones,terrassaBarbacoa));
     }
@@ -93,5 +87,25 @@ public class Camping implements InCamping{
         Allotjament a = llistaAllotjaments.get(i);
 
         llistaReserves.afegirReserva(a,c,dataEntrada, dataSortida);
+    }
+    public int calculAllotjamentsOperatius() {
+        int op = 0;
+        for (int i = 0; i<getNumAllotjaments(); i++)
+            if (llistaAllotjaments.get(i).correcteFuncionament()) op++;
+        return op;
+    }
+
+    public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
+        Allotjament minA = new Parcela("0", "0", 0, false);
+        long min = Long.MAX_VALUE;
+
+        for (int i = 0; i < getNumAllotjaments(); i++) {
+            Allotjament act = llistaAllotjaments.get(i);
+            if (act.getEstadaMinima(temp) < min) {
+                minA = act;
+                min = act.getEstadaMinima(temp);
+            }
+        }
+        return minA;
     }
 }
