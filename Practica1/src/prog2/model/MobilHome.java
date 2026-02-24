@@ -11,4 +11,6 @@ public class MobilHome extends Casa{
     public boolean getTerrassaAmbBarbacoa(){ return terrassaAmbBarbacoa;}
     //Setters
     public void setTerrassaAmbBarbacoa(boolean terrassaAmbBarbacoa_){ terrassaAmbBarbacoa=terrassaAmbBarbacoa_; }
+
+    public boolean correcteFuncionament(){return terrassaAmbBarbacoa;}
 }
