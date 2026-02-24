@@ -12,3 +12,9 @@ public interface InClient {
 
 
 }
+public int calculAllotjamentsOperatius() {
+    int op = 0;
+    for (int i = 0; i<getNumAllotjaments(); i++)
+        if (llistaAllotjaments.get(i).correcteFuncionament()) op++;
+    return op;
+}
