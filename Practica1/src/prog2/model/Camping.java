@@ -97,7 +97,7 @@ public class Camping implements InCamping{
         return op;
     }
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
-        Allotjament minA = new Parcela("0", "0", 0, false);
+        Allotjament minA = null;
         long min = Long.MAX_VALUE;
 
         for (int i = 0; i < getNumAllotjaments(); i++) {
