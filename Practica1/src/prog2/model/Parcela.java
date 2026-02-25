@@ -8,6 +8,7 @@ public class Parcela extends Allotjament{
         super(nom_, Id_);
         mida = mida_;
         connexio = connexio_;
+        setEstadaMinima(4,2); // Esto es asi????
     }
     //Getters
     public float getMida(){
@@ -16,9 +17,11 @@ public class Parcela extends Allotjament{
     public boolean isConnexioElectrica(){
         return connexio;
     }
+
     //Setters
     public void setMida( float mida_){ mida=mida_;}
     public void setConnexioElectrica( boolean connexio_){ connexio=connexio_;}
 
+    //Metodes
     public boolean correcteFuncionament(){return connexio;}
 }

@@ -13,6 +13,7 @@ public class Bungalow extends Casa {
         televisio = televisio_;
         placesParquing = places_;
         terrassa=terrassa_;
+        setEstadaMinima(7,4);
     }
 
     //Getters

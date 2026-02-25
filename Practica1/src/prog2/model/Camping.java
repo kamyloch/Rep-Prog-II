@@ -78,13 +78,13 @@ public class Camping implements InCamping{
         int i=0;
         while(i<getNumClients() && !(llistaClients.get(i).getDni().equals(dni_))){i++;}
         if(i==getNumClients())
-            throw new ExcepcioReserva("No existeix aquest client");
+            throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
         Client c =  llistaClients.get(i);
 
         i=0;
         while(i<getNumAllotjaments() && !(llistaAllotjaments.get(i).getId().equals(id_))){i++;}
         if(i==getNumAllotjaments())
-            throw new ExcepcioReserva("No existeix aquest allotjament");
+            throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
         Allotjament a = llistaAllotjaments.get(i);
 
         llistaReserves.afegirReserva(a,c,dataEntrada, dataSortida);

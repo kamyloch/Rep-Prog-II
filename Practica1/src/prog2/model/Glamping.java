@@ -9,6 +9,7 @@ class Glamping extends Casa{
         super(nom_, Id_, mida_, numHabit_, capacitat_);
         material=material_;
         casaMascotes=casaMascotes_;
+        setEstadaMinima(3,3);
     }
     //Getters
     public String getMaterial(){ return material; }

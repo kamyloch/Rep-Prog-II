@@ -42,4 +42,10 @@ public abstract class Allotjament implements InAllotjament{
 
     //Mètodes
     public abstract boolean correcteFuncionament();
+    public String toString(){
+        return "Nom="+getNom()+
+                ", Id="+getId()+
+                ", estada mínima en temp ALTA: " + getEstadaMinima(Temp.ALTA)+
+                ", estada mínima en temp BAIXA: " +getEstadaMinima(Temp.BAIXA) + ".";
+    }
 }

@@ -59,7 +59,7 @@ public class LlistaReserves implements InLlistaReserves {
         //Afegeix reserva
         if (minima <= estada)
             reserves.add(new Reserva(allotjament,client,entrada, sortida));
-        else throw new ExcepcioReserva("Es vol estar per " + estada + " dias " + "pero le mínim es " + minima + " dias" );
+        else throw new ExcepcioReserva("Es vol estar per " + estada + " dias " + "pero la estada mínima es " + minima + " dias" );
 
     }
     public String toString(){
