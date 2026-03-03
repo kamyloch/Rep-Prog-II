@@ -30,7 +30,9 @@ class Glamping extends Casa{
     //Mètodes
     @Override
     public boolean correcteFuncionament(){
-        //Condició Única
-        return casaMascotes;
+        boolean funciona=false;
+        if(casaMascotes==true)
+            funciona=true;
+        return funciona;
     }
 }

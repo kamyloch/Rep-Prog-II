@@ -21,7 +21,10 @@ public class MobilHome extends Casa{
     //Mètodes
     @Override
     public boolean correcteFuncionament(){
-        //Condició Única
-        return terrassaAmbBarbacoa;
+        boolean funciona=false;
+        if(terrassaAmbBarbacoa==true)
+            funciona=true;
+        return funciona;
+
     }
 }

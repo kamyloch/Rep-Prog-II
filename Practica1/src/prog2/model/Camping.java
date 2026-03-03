@@ -46,28 +46,14 @@ public class Camping implements InCamping{
         return llistaClients.size();
     }
     public static Temp getTemporada(LocalDate data){
-        int mes = data.getMonthValue(); //Mes serán miles i centenes
-        int dia = data.getDayOfMonth(); //Día serán decenes i unitats
-        /*int dataInt = mes*100 + dia;    //Une ambos datos en uno
-
-        //Si dataInt pertany a (320,921) és alta
-        //És a dir, entre (Maig20, Set21) interval obert
-        boolean isAlta = (320 < dataInt) && (dataInt < 921);
-
-        return  isAlta? ALTA : BAIXA;*/
-
-        if((mes==5 && dia>=20 ) || mes==6 || mes==7 || mes==8 || (mes==9 && dia<=21)){
-            return ALTA
-        }else{
-            return BAIXA
-        }
-
+        int mes = data.getMonthValue();
+        int dia = data.getDayOfMonth();
+        if((mes==5 && dia>=20 ) || mes==6 || mes==7 || mes==8 || (mes==9 && dia<=21)) return ALTA;
+        else return BAIXA;
     }
 
     //Setters
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) { this.nom = nom;}
 
     //Afegir Allotjaments
     public void afegirClient(String nom_, String dni_){
@@ -125,10 +111,13 @@ public class Camping implements InCamping{
     }
     public int calculAllotjamentsOperatius() {
         int operatius = 0;
-        //Es pot fer amb iterator
-        for (Allotjament a : llistaAllotjaments)
-            if (a.correcteFuncionament())
+        Iterator<Allotjament> it = llistaAllotjaments.iterator();
+        while(it.hasNext()){
+            Allotjament allotjament= it.next();
+            if(allotjament.correcteFuncionament())
                 operatius++;
+        }
+
         return operatius;
     }
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {

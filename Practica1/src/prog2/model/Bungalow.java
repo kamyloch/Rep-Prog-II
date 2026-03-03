@@ -30,7 +30,9 @@ public class Bungalow extends Casa {
     //Mètodes
     @Override
     public boolean correcteFuncionament() {
-        //Condició Única
-        return aireFred;
+        boolean funciona=false;
+        if(aireFred==true)
+            funciona=true;
+        return funciona;
     }
 }
