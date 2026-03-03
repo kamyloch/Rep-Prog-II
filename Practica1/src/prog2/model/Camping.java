@@ -48,13 +48,20 @@ public class Camping implements InCamping{
     public static Temp getTemporada(LocalDate data){
         int mes = data.getMonthValue(); //Mes serán miles i centenes
         int dia = data.getDayOfMonth(); //Día serán decenes i unitats
-        int dataInt = mes*100 + dia;    //Une ambos datos en uno
+        /*int dataInt = mes*100 + dia;    //Une ambos datos en uno
 
         //Si dataInt pertany a (320,921) és alta
         //És a dir, entre (Maig20, Set21) interval obert
         boolean isAlta = (320 < dataInt) && (dataInt < 921);
 
-        return  isAlta? ALTA : BAIXA;
+        return  isAlta? ALTA : BAIXA;*/
+
+        if((mes==5 && dia>=20 ) || mes==6 || mes==7 || mes==8 || (mes==9 && dia<=21)){
+            return ALTA
+        }else{
+            return BAIXA
+        }
+
     }
 
     //Setters
@@ -87,9 +94,9 @@ public class Camping implements InCamping{
         Iterator<Allotjament> it = llistaAllotjaments.iterator();
 
         while(it.hasNext()){
-            Allotjament act = it.next();
-            if (act.getId().equals(id))  //Criteri Id
-                return act;
+            Allotjament actual = it.next();
+            if (actual.getId().equals(id))  //Criteri Id
+                return actual;
         }
         return null;
     }
@@ -97,9 +104,9 @@ public class Camping implements InCamping{
         Iterator<Client> it = llistaClients.iterator();
 
         while(it.hasNext()){
-            Client act = it.next();
-            if (act.getDni().equals(dni))   //Criteri DNI
-                return act;
+            Client actual = it.next();
+            if (actual.getDni().equals(dni))   //Criteri DNI
+                return actual;
         }
         return null;
     }
@@ -125,17 +132,17 @@ public class Camping implements InCamping{
         return operatius;
     }
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
-        Allotjament minA = null;
+        Allotjament minAllotjament = null;
         long min = Long.MAX_VALUE;
         Iterator<Allotjament> it = llistaAllotjaments.iterator();
 
         while(it.hasNext()) {
             Allotjament actual = it.next();
             if (actual.getEstadaMinima(temp) < min) {
-                minA = actual;
+                minAllotjament = actual;
                 min = actual.getEstadaMinima(temp);
             }
         }
-        return minA;
+        return minAllotjament;
     }
 }

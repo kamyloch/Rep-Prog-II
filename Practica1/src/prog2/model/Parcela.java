@@ -28,7 +28,7 @@ public class Parcela extends Allotjament{
     //Mètodes
     @Override
     public boolean correcteFuncionament(){
-        //Condició Única
+        //condició unica
         return connexio;
     }
 }
