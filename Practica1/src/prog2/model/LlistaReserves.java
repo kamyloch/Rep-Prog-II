@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LlistaReserves implements InLlistaReserves {
-    public ArrayList <Reserva>  reserves;
+    private ArrayList <Reserva>  reserves;
 
 
     //Constructor
