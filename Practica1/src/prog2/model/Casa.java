@@ -7,7 +7,7 @@ public abstract class Casa extends Allotjament{
 
     //Constructor
     public Casa (String nom_, String Id_, String mida_, int numHabit_, int capacitat_) {
-        super(nom_, Id_);
+        super(nom_, Id_,0,0);
         mida = mida_;
         numHabit = numHabit_;
         capacitat = capacitat_;

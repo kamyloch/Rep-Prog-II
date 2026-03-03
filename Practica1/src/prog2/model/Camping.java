@@ -98,11 +98,11 @@ public class Camping implements InCamping{
 
     //Afegir reserva
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        Client client = buscarClient(id_);
+        Client client = buscarClient(dni_);
         if (client== null)
             throw new ExcepcioReserva("El client ("+ dni_ +") no existeix!");
 
-        Allotjament allotjament = buscarAllotjament(dni_);
+        Allotjament allotjament = buscarAllotjament(id_);
         if (allotjament == null)
             throw new ExcepcioReserva("El allotjament ("+ id_ +") no existeix!");
 

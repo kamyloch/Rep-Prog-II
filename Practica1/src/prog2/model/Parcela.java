@@ -5,10 +5,9 @@ public class Parcela extends Allotjament{
     private boolean connexio;
 
     public Parcela (String nom_, String Id_, float mida_, boolean connexio_){
-        super(nom_, Id_);
+        super(nom_, Id_,2,4);
         mida = mida_;
         connexio = connexio_;
-        setEstadaMinima(4,2); // Esto es asi????
     }
     //Getters
     public float getMida(){

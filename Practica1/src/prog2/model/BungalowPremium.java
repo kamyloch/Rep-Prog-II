@@ -8,6 +8,7 @@ public class BungalowPremium extends Bungalow{
         super(nom_, Id_, mida_, numHabit_, capacitat_,places_,terrassa_,televisio_,aireFred_);
         codiWifi=codiWifi_;
         llencolsTovalloles=llencolsTovalloles_;
+        setEstadaMinima(7,4);
     }
     //Getters
     public String getCodiWifi(){ return codiWifi; }

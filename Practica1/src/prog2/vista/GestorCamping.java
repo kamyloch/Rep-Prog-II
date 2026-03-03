@@ -205,6 +205,7 @@ public class GestorCamping {
         // Crear una LocalDate per definir la data de la reserva.
         LocalDate entrada = LocalDate.of(2026,2,20);
         LocalDate sortida = LocalDate.of(2026,2,28);
+        System.out.println(camping.getLlistaClients().toString());
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
         try {

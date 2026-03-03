@@ -5,6 +5,7 @@ import prog2.vista.ExcepcioReserva;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LlistaReserves implements InLlistaReserves {
     public ArrayList <Reserva>  reserves;
@@ -21,45 +22,40 @@ public class LlistaReserves implements InLlistaReserves {
     }
 
     //Mètodes
-    private boolean isWithin(LocalDate a, LocalDate x, LocalDate b){
-        a = a.minusDays(1);
-        b = b.plusDays(1);
-        return a.isBefore(x) && x.isBefore(b);
-    }
-    public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida) throws ExcepcioReserva{
-        //Busca reserves en la estada volguda
-        for (int i = 0 ; i < getNumReserves();i++){
-            Reserva actR = reserves.get(i);
-            Allotjament actA =actR.getAllotjament(); //Este es solo por abreviar
-            LocalDate entra = actR.getDataEntrada();
-            LocalDate surt = actR.getDataSortida();
-
-            //Busquem algun solapament en reserves
-            boolean trobat = allotjament.getId().equals(actA.getId()) &&
-                    (isWithin(entra,entrada,surt) || isWithin(entra,sortida,surt));
-            if (trobat)
-                throw new ExcepcioReserva(
-                        "L’allotjament amb identificador " + actA.getId() +
-                        " no està disponible a la data demanada " + entrada.toString() + " a " +sortida.toString()  +
-                        " pel client " + actR.getClient().getNom() + " amb DNI: " + actR.getClient().getDni());
+    private boolean allotjamentDisponible (Allotjament allotjament, LocalDate entrada, LocalDate sortida){
+        Iterator<Reserva> it = reserves.iterator();
+        boolean valid = true;
+        while (it.hasNext() && valid) {
+            Reserva reserva = it.next();
+            Allotjament act = reserva.getAllotjament();
+            if (act.equals(allotjament))
+                valid = (entrada.isAfter(reserva.getDataSortida()) || sortida.isBefore(reserva.getDataEntrada()));
         }
+        return valid;
+    }
+    private boolean isEstadaMinima(Allotjament allotjament, LocalDate entrada, LocalDate sortida){
+        InAllotjament.Temp tempReserva = Camping.getTemporada(entrada);
 
-
-
-        //Calcula temporada
-        int entradaInt = entrada.getMonthValue()*100 + entrada.getDayOfMonth();
-        int sortidaInt = sortida.getMonthValue()*100 + sortida.getDayOfMonth();
-        boolean isAlta = (320 < entradaInt) && (sortidaInt < 921);
-        InAllotjament.Temp tempReserva =  (isAlta)? InAllotjament.Temp.ALTA: InAllotjament.Temp.BAIXA;
-
-        //Calcula estada minima
         long estada = ChronoUnit.DAYS.between(entrada, sortida);
         long minima = allotjament.getEstadaMinima(tempReserva);
 
-        //Afegeix reserva
-        if (minima <= estada)
-            reserves.add(new Reserva(allotjament,client,entrada, sortida));
-        else throw new ExcepcioReserva("Es vol estar per " + estada + " dias " + "pero la estada mínima es " + minima + " dias" );
+        boolean isEstadaMinima = minima <= estada;
+
+        return isEstadaMinima;
+    }
+
+
+    public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida) throws ExcepcioReserva{
+        if (entrada.isAfter(sortida))
+            throw new ExcepcioReserva("Entrada i sortida incorrecta (una després de l'altre)");
+
+        if (isEstadaMinima(allotjament, entrada, sortida)){
+            if(allotjamentDisponible(allotjament, entrada, sortida))
+                reserves.add(new Reserva(allotjament,client,entrada, sortida));
+            else
+                throw new ExcepcioReserva("L’allotjament amb identificador " + allotjament.getId() + " no està disponible a la data demanada " + entrada.toString() + " a " +sortida.toString()  + " pel client " + client.getNom() + " amb DNI: " + client.getDni());
+        }else
+            throw new ExcepcioReserva("Les dates sol·licitades pel client " + client.getNom() + " amb DNI: " + client.getDni() + " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId());
 
     }
     public String toString(){
