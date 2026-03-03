@@ -4,6 +4,7 @@ import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Camping implements InCamping{
     private String nom;
@@ -73,21 +74,39 @@ public class Camping implements InCamping{
         llistaAllotjaments.add(new MobilHome(nom_,idAllotjament_,mida,habitacions,placesPersones,terrassaBarbacoa));
     }
 
+    //Cercas
+    private Allotjament buscarAllotjament(String id){
+        Iterator<Allotjament> it = llistaAllotjaments.iterator();
+
+        while(it.hasNext()){
+            Allotjament act = it.next();
+            if (act.getId().equals(id))
+                return act;
+        }
+        return null;
+    }
+    private Client buscarClient(String dni){
+        Iterator<Client> it = llistaClients.iterator();
+
+        while(it.hasNext()){
+            Client act = it.next();
+            if (act.getDni().equals(dni))
+                return act;
+        }
+        return null;
+    }
+
     //Afegir reserva
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        int i=0;
-        while(i<getNumClients() && !(llistaClients.get(i).getDni().equals(dni_))){i++;}
-        if(i==getNumClients())
-            throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
-        Client c =  llistaClients.get(i);
+        Client client = buscarClient(id_);
+        if (client== null)
+            throw new ExcepcioReserva("El client ("+ dni_ +") no existeix");
 
-        i=0;
-        while(i<getNumAllotjaments() && !(llistaAllotjaments.get(i).getId().equals(id_))){i++;}
-        if(i==getNumAllotjaments())
-            throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
-        Allotjament a = llistaAllotjaments.get(i);
+        Allotjament allotjament = buscarAllotjament(dni_);
+        if (allotjament == null)
+            throw new ExcepcioReserva("El allotjament ("+ id_ +") no existeix");
 
-        llistaReserves.afegirReserva(a,c,dataEntrada, dataSortida);
+        llistaReserves.afegirReserva(allotjament,client,dataEntrada, dataSortida);
     }
 
     public int calculAllotjamentsOperatius() {
