@@ -7,11 +7,10 @@ public abstract class Allotjament implements InAllotjament{
     private long estadaBaixa;
 
     //Constructor
-
-    public Allotjament(String nom, String Id,long baixa ,long alta) {
+    public Allotjament(String nom, String Id,long alta,long baixa) {
         this.nom = nom;
         this.Id = Id;
-        setEstadaMinima(baixa,alta);
+        setEstadaMinima(alta,baixa);
     }
 
     //Setters
@@ -31,7 +30,12 @@ public abstract class Allotjament implements InAllotjament{
         return nom;
     }
     public long getEstadaMinima(Temp temp) {
-        return temp == Temp.BAIXA? estadaBaixa:estadaAlta;
+        long sortida = 0;
+        switch (temp){
+            case BAIXA -> sortida = estadaBaixa;
+            case ALTA -> sortida = estadaAlta;
+        }
+        return sortida;
     }
     public String getId() {
         return Id;

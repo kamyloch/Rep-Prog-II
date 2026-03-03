@@ -6,12 +6,22 @@ public class MobilHome extends Casa{
     public MobilHome(String nom_,String Id_,String mida_,int numHabit_, int capacitat_,boolean terrassaAmbBarbacoa_){
         super(nom_, Id_, mida_, numHabit_, capacitat_);
         terrassaAmbBarbacoa=terrassaAmbBarbacoa_;
-        setEstadaMinima(5,3);
+        setEstadaMinima(5,3); //Estada segons el material
+        //Com que casa havia posat (0,0), doncs ho fem ara
     }
     //Getters
-    public boolean getTerrassaAmbBarbacoa(){ return terrassaAmbBarbacoa;}
+    public boolean getTerrassaAmbBarbacoa(){
+        return terrassaAmbBarbacoa;
+    }
     //Setters
-    public void setTerrassaAmbBarbacoa(boolean terrassaAmbBarbacoa_){ terrassaAmbBarbacoa=terrassaAmbBarbacoa_; }
+    public void setTerrassaAmbBarbacoa(boolean terrassaAmbBarbacoa_){
+        terrassaAmbBarbacoa=terrassaAmbBarbacoa_;
+    }
 
-    public boolean correcteFuncionament(){return terrassaAmbBarbacoa;}
+    //Mètodes
+    @Override
+    public boolean correcteFuncionament(){
+        //Condició Única
+        return terrassaAmbBarbacoa;
+    }
 }

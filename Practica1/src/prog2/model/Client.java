@@ -26,7 +26,7 @@ public class Client implements InClient {
         return dni;
     }
 
-    //Metodes
+    //Mètodes
     public String toString(){
         return getNom() + " amb DNI: " + getDni() + ". ";
     }

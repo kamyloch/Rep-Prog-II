@@ -249,7 +249,7 @@ public class GestorCamping {
             System.out.println("Error: "+e.getMessage());
         }
 
-        System.out.println(camping.getLlistaReserves().toString());
+        System.out.println(camping.getLlistaReserves());
 
     }
     

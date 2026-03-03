@@ -9,15 +9,28 @@ class Glamping extends Casa{
         super(nom_, Id_, mida_, numHabit_, capacitat_);
         material=material_;
         casaMascotes=casaMascotes_;
-        setEstadaMinima(3,3);
+        setEstadaMinima(3,3); //Estada segons el material
     }
     //Getters
-    public String getMaterial(){ return material; }
-    public boolean getCasaMascotes(){ return casaMascotes; }
+    public String getMaterial(){
+        return material;
+    }
+    public boolean getCasaMascotes(){
+        return casaMascotes;
+    }
 
     //Setters
-    public void setMaterial(String material_){ material=material_; }
-    public void setCasaGossos(boolean casaMascotes_){casaMascotes=casaMascotes_;}
+    public void setMaterial(String material_){
+        material=material_;
+    }
+    public void setCasaGossos(boolean casaMascotes_){
+        casaMascotes=casaMascotes_;
+    }
 
-    public boolean correcteFuncionament(){return casaMascotes;}
+    //Mètodes
+    @Override
+    public boolean correcteFuncionament(){
+        //Condició Única
+        return casaMascotes;
+    }
 }

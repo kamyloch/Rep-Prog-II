@@ -1,49 +1,58 @@
-1.Clases
-    Allotjament:
-        Es abstracta, amb nom, id, i estades mínimes (alta,baixa) té com subclases 2 grans subclases (Casa i Parcela)
-    Casa:
-        Es abstracta, amb la majoria de Allotjament en ella, té mida (String) numero de habitacions, capacitat,  i dins te la majoria de Allotjaments
-    Parcela:
-        No es abstracta, te mida (double) i conexió, es pot reservar!
-    Bungalow:
-        Hereda de casa, però a més té TV, AC, places de parquing i terrassa
-    Bungalow Premium:
-        Hereda de Bungalow però té extres inclosos llenços i tovalloles i wifi
-    Glamping:
-        Hereda de casa, amb material i casa de mascotes
-    Mobil-Home:
-        Un altre casa que pot tenir terrassa amb barbacoa
-        
-    
-    Client:
-        Guarda tota la info de un client (nom, dni)
-    Reserva:
-        Porta data de entrada, sortida, en un Allotjament i amb un client
-    LlistaReservas:
-        Gestiona les reseves, por afegir a la Llista
-    
-    Camping:
-        La més important, te llista de reserves, clients, allotjaments i a mes gestiona totes les llistes amb maestria... detecta que no hi hagin errors 
-    
-        
-2 Diagrama
+1. Classes
+Allotjament:
+És abstracta, amb nom, id i estades mínimes (alta, baixa). Té com a subclasses dues grans subclasses (Casa i Parcel·la).
 
-3 Atributs de Reserva
-    Allotjament: Perque és el allotjament que es reserva (crucial)
-    Client: Ens diu qui ha fet la reserva
-    DataEntrada i DataSortida: Junts fan el termini de la reserva (evita solapaments) 
-        
-4 CorrecteFuncionament
-    Es fa a Allotjament però com que cadascú té criteris diferents, les classes es poden instanciar i aquestes ho implementen
+Casa:
+És abstracta, amb la majoria d’Allotjaments dins seu. Té mida (String), número d'habitacions, capacitat, i dins té la majoria d’allotjaments.
 
-5 toString
-    S'ha implementat en allotjament, i en client per conèixer i imprimir informació per consola, es fa en la classe abstracta allotjament per a qui tots el puguin fer servir
-6 Public - Private
-    Tots els Atributs son Private per manenir la encapsulació, fent el codi més segur i llegible, en canvi la majoria de metodes son publics per fer els objectes fets funcionals
-    
-7 AfegirReserva en Camping?
-    No, té sentit perque si fem allotjaments (que no es pot perque es abtracte) i clients nous per a cada reserva, llavors si el mateix client vol fer mes d'una reserva es crearan dos clients iguals en la memòria i si creem un allotjament és possible que en realitat no existeixi. També cada allotjament es crearà disponible encara que no ho estigui.
-    
-8 Proves
-    
-        
+Parcel·la:
+No és abstracta, té mida (double) i connexió. Es pot reservar!
+
+Bungalow:
+Hereta de Casa, però a més té TV, AC, places de pàrquing i terrassa.
+
+Bungalow Premium:
+Hereta de Bungalow, però té extres inclosos: llençols, tovalloles i wifi.
+
+Glamping:
+Hereta de Casa, amb material i casa per a mascotes.
+
+Mobil-Home:
+Una altra casa que pot tenir terrassa amb barbacoa.
+
+Client:
+Guarda tota la informació d’un client (nom, DNI).
+
+Reserva:
+Porta data d’entrada i sortida, en un Allotjament i amb un client.
+
+LlistaReserves:
+Gestiona les reserves, pot afegir-les a la llista.
+
+Camping:
+La més important, té llista de reserves, clients i allotjaments, i a més gestiona totes les llistes amb mestria... detecta que no hi hagi errors.
+
+2. Diagrama (diagrama.png)
+
+3. Atributs de Reserva
+Allotjament: Perquè és l'allotjament que es reserva (crucial).
+Client: Ens diu qui ha fet la reserva.
+DataEntrada i DataSortida: Junts fan el termini de la reserva (evita solapaments).
+
+4. CorrecteFuncionament
+Es fa a Allotjament, però com que cadascú té criteris diferents, les classes es poden instanciar i aquestes ho implementen; en altres paraules, es fa un polimorfisme, fent que cada subclasse implementi la seva pròpia lògica.
+
+5. toString
+S’ha implementat en Allotjament i en Client per conèixer i imprimir informació per consola. Es fa en la classe abstracta Allotjament perquè tots el puguin fer servir.
+
+6. Public - Private
+Tots els atributs són private per mantenir l’encapsulació, fent el codi més segur i llegible; en canvi, la majoria de mètodes són públics per fer els objectes funcionals.
+
+7. AfegirReserva en Camping?
+No té sentit perquè si fem allotjaments (que no es pot perquè és abstracta) i clients nous per a cada reserva, llavors, si el mateix client vol fer més d’una reserva, es crearan dos clients iguals en la memòria, i si creem un allotjament és possible que en realitat no existeixi. També cada allotjament es crearà disponible encara que no ho estigui.
+
+8. Proves
+Hem corregit especialment els toString per coincidir amb els tests, fixar correctament les estades mínimes per temporada en tots els allotjaments i afegir el throw al constructor de reserves.
+
+9. Observacions
+Hem vist que a l’inici semblava massa difícil en ser el primer projecte “gran” orientat a objectes (sintaxi i altres coses), però a mesura que anàvem omplint les funcionalitats que demanava l’enunciat, hem pogut anar cada cop amb més confiança.

@@ -8,7 +8,7 @@ public class BungalowPremium extends Bungalow{
         super(nom_, Id_, mida_, numHabit_, capacitat_,places_,terrassa_,televisio_,aireFred_);
         codiWifi=codiWifi_;
         llencolsTovalloles=llencolsTovalloles_;
-        setEstadaMinima(7,4);
+        setEstadaMinima(7,4); //Estada segons el material (És la mateixa que el normal)
     }
     //Getters
     public String getCodiWifi(){ return codiWifi; }
@@ -19,10 +19,14 @@ public class BungalowPremium extends Bungalow{
     public void setLlencolsTovalloles(boolean LlencolsTovalloles_){ llencolsTovalloles=LlencolsTovalloles_; }
 
     //Mètodes
-
     @Override
     public boolean correcteFuncionament() {
-        boolean correcteWifi = 8 <= codiWifi.length() && codiWifi.length() <= 16;
-        return super.correcteFuncionament() && correcteWifi;
+        int wifiSize = codiWifi.length();
+        boolean correcteWifi = true;
+        //Condicions
+        correcteWifi &= 8 <= wifiSize;
+        correcteWifi &= wifiSize <= 16;
+        correcteWifi &= super.correcteFuncionament();
+        return correcteWifi;
     }
 }

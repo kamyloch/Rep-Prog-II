@@ -13,7 +13,7 @@ public class Bungalow extends Casa {
         televisio = televisio_;
         placesParquing = places_;
         terrassa=terrassa_;
-        setEstadaMinima(7,4);
+        setEstadaMinima(7,4); //Estada segons el material
     }
 
     //Getters
@@ -30,6 +30,7 @@ public class Bungalow extends Casa {
     //Mètodes
     @Override
     public boolean correcteFuncionament() {
+        //Condició Única
         return aireFred;
     }
 }

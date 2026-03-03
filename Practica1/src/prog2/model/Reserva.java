@@ -50,7 +50,7 @@ public class Reserva implements InReserva {
         return ChronoUnit.DAYS.between(dataEntrada,dataSortida);
     }
 
-    //Metodes
+    //Mètodes
     public String toString (){
         return "Client: " + client.getNom() + " ("+ client.getDni()+")\n"+
                 "Allotjament: " + allotjament.getNom() + " ("+ allotjament.getId()+")\n"+

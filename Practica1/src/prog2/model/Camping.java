@@ -5,6 +5,8 @@ import prog2.vista.ExcepcioReserva;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import static prog2.model.InAllotjament.Temp;   //Enum de Temporada
+import static prog2.model.InAllotjament.Temp.*; //Contingut del Enum
 
 public class Camping implements InCamping{
     private String nom;
@@ -43,11 +45,17 @@ public class Camping implements InCamping{
     public  int getNumClients(){
         return llistaClients.size();
     }
-    public static InAllotjament.Temp getTemporada(LocalDate data){
-        int dataInt = data.getMonthValue()*100 + data.getDayOfMonth();
+    public static Temp getTemporada(LocalDate data){
+        int mes = data.getMonthValue(); //Mes serán miles i centenes
+        int dia = data.getDayOfMonth(); //Día serán decenes i unitats
+        int dataInt = mes*100 + dia;    //Une ambos datos en uno
+
+        //Si dataInt pertany a (320,921) és alta
+        //És a dir, entre (Maig20, Set21) interval obert
         boolean isAlta = (320 < dataInt) && (dataInt < 921);
-        return  isAlta? InAllotjament.Temp.ALTA : InAllotjament.Temp.BAIXA;
-    } //Porque pide Static????
+
+        return  isAlta? ALTA : BAIXA;
+    }
 
     //Setters
     public void setNom(String nom) {
@@ -80,7 +88,7 @@ public class Camping implements InCamping{
 
         while(it.hasNext()){
             Allotjament act = it.next();
-            if (act.getId().equals(id))
+            if (act.getId().equals(id))  //Criteri Id
                 return act;
         }
         return null;
@@ -90,40 +98,42 @@ public class Camping implements InCamping{
 
         while(it.hasNext()){
             Client act = it.next();
-            if (act.getDni().equals(dni))
+            if (act.getDni().equals(dni))   //Criteri DNI
                 return act;
         }
         return null;
     }
 
-    //Afegir reserva
+    //Mètodes
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         Client client = buscarClient(dni_);
         if (client== null)
-            throw new ExcepcioReserva("El client ("+ dni_ +") no existeix!");
+            throw new ExcepcioReserva("El client amb DNI "+ dni_ +" no existeix");
 
         Allotjament allotjament = buscarAllotjament(id_);
         if (allotjament == null)
-            throw new ExcepcioReserva("El allotjament ("+ id_ +") no existeix!");
+            throw new ExcepcioReserva("L'allotjament amb id "+ id_ +" no existeix");
 
         llistaReserves.afegirReserva(allotjament,client,dataEntrada, dataSortida);
     }
-
     public int calculAllotjamentsOperatius() {
-        int op = 0;
-        for (int i = 0; i<getNumAllotjaments(); i++)
-            if (llistaAllotjaments.get(i).correcteFuncionament()) op++;
-        return op;
+        int operatius = 0;
+        //Es pot fer amb iterator
+        for (Allotjament a : llistaAllotjaments)
+            if (a.correcteFuncionament())
+                operatius++;
+        return operatius;
     }
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
         Allotjament minA = null;
         long min = Long.MAX_VALUE;
+        Iterator<Allotjament> it = llistaAllotjaments.iterator();
 
-        for (int i = 0; i < getNumAllotjaments(); i++) {
-            Allotjament act = llistaAllotjaments.get(i);
-            if (act.getEstadaMinima(temp) < min) {
-                minA = act;
-                min = act.getEstadaMinima(temp);
+        while(it.hasNext()) {
+            Allotjament actual = it.next();
+            if (actual.getEstadaMinima(temp) < min) {
+                minA = actual;
+                min = actual.getEstadaMinima(temp);
             }
         }
         return minA;

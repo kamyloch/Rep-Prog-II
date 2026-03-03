@@ -5,7 +5,7 @@ public class Parcela extends Allotjament{
     private boolean connexio;
 
     public Parcela (String nom_, String Id_, float mida_, boolean connexio_){
-        super(nom_, Id_,2,4);
+        super(nom_, Id_,4,2); //Estada segons el material
         mida = mida_;
         connexio = connexio_;
     }
@@ -18,9 +18,17 @@ public class Parcela extends Allotjament{
     }
 
     //Setters
-    public void setMida( float mida_){ mida=mida_;}
-    public void setConnexioElectrica( boolean connexio_){ connexio=connexio_;}
+    public void setMida( float mida_){
+        mida=mida_;
+    }
+    public void setConnexioElectrica( boolean connexio_){
+        connexio=connexio_;
+    }
 
-    //Metodes
-    public boolean correcteFuncionament(){return connexio;}
+    //Mètodes
+    @Override
+    public boolean correcteFuncionament(){
+        //Condició Única
+        return connexio;
+    }
 }
