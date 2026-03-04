@@ -22,10 +22,10 @@ public class BungalowPremium extends Bungalow{
     @Override
     public boolean correcteFuncionament() {
         int wifiSize = codiWifi.length();
-        boolean correcteWifi = true;
+        boolean correcteWifi = false;
         //Condicions
-        correcteWifi &= 8 <= wifiSize;
-        correcteWifi &= wifiSize <= 16;
+        if (8 <= wifiSize && wifiSize <= 16)
+            correcteWifi=true;
         correcteWifi &= super.correcteFuncionament();
         return correcteWifi;
     }
