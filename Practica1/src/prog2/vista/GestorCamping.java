@@ -1,7 +1,10 @@
 
 package prog2.vista;
 
+import prog2.model.Allotjament;
 import prog2.model.Camping;
+import prog2.model.InAllotjament;
+
 import java.time.LocalDate;
 import java.util.Locale;
 
@@ -35,7 +38,7 @@ public class GestorCamping {
         //--------------------------------------------------------------------------------------------------
         // Per completar
         System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: ");
-        System.out.println(campingMar.getAllotjamentEstadaMesCurta(Temp.ALTA).toString());
+        System.out.println(campingMar.getAllotjamentEstadaMesCurta(InAllotjament.Temp.ALTA).toString());
        
     }
 

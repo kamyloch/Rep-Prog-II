@@ -48,7 +48,7 @@ public class Camping implements InCamping{
     public static Temp getTemporada(LocalDate data){
         int mes = data.getMonthValue();
         int dia = data.getDayOfMonth();
-        if((mes==5 && dia>=20 ) || mes==6 || mes==7 || mes==8 || (mes==9 && dia<=21)) return ALTA;
+        if((mes==3 && dia>=21 ) || mes==4 || mes==5 || mes==6 || mes==7 || mes==8 || (mes==9 && dia<=20)) return ALTA;
         else return BAIXA;
     }
 
