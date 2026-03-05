@@ -23,6 +23,7 @@ public class Camping implements InCamping{
         this.llistaAllotjaments = new ArrayList<Allotjament>();
     }
 
+    /** Es pot retornar qualsevol dada de camping si cal*/
     //Getters
     public String getNom() {
         return nom;
@@ -52,10 +53,13 @@ public class Camping implements InCamping{
         else return BAIXA;
     }
 
+    /** Només hi ha un setter perquè els altres serien dolents per l'encapsulament*/
     //Setters
     public void setNom(String nom) { this.nom = nom;}
 
     //Afegir Allotjaments
+    /** De tots aquests constructors, en tenim 1
+     * per cadascuna de les subclasses d'allotjament**/
     public void afegirClient(String nom_, String dni_){
         llistaClients.add(new Client(nom_,dni_));
     }
@@ -75,7 +79,10 @@ public class Camping implements InCamping{
         llistaAllotjaments.add(new MobilHome(nom_,idAllotjament_,mida,habitacions,placesPersones,terrassaBarbacoa));
     }
 
-    //Cercas
+    //Cerques
+    /** Aquestes cerques amb iterators
+     *  són totes dues privades en ser
+     *  utilitzades per aclarir el codi **/
     private Allotjament buscarAllotjament(String id){
         Iterator<Allotjament> it = llistaAllotjaments.iterator();
 
@@ -98,6 +105,9 @@ public class Camping implements InCamping{
     }
 
     //Mètodes
+    /** Afegim la reserva si i només
+     * si existeixen client i allotjament
+     * (afegirReserva de l'objecte "Llista Reservas comprova disponibilitat")**/
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         Client client = buscarClient(dni_);
         if (client== null)
@@ -109,6 +119,9 @@ public class Camping implements InCamping{
 
         llistaReserves.afegirReserva(allotjament,client,dataEntrada, dataSortida);
     }
+
+    //Recorreguts
+    /** Amb iterators per comptar els operatius**/
     public int calculAllotjamentsOperatius() {
         int operatius = 0;
         Iterator<Allotjament> it = llistaAllotjaments.iterator();
@@ -120,6 +133,7 @@ public class Camping implements InCamping{
 
         return operatius;
     }
+    /**Un altre recorregut que troba l'allotjament amb menys estada minima**/
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
         Allotjament minAllotjament = null;
         long min = Long.MAX_VALUE;

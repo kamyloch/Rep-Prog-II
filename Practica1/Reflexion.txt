@@ -1,70 +1,65 @@
 1. Classes
-Allotjament:
-És abstracta, amb nom, id i estades mínimes (alta, baixa). Té com a subclasses dues grans subclasses (Casa i Parcel·la).
+    Allotjament:
+        És abstracta, amb nom, id i estades mínimes (alta, baixa). Té com a subclasses dues grans subclasses (Casa i Parcel·la).
 
-Casa:
-És abstracta, amb la majoria d’Allotjaments dins seu. Té mida (String), número d'habitacions, capacitat, i dins té la majoria d’allotjaments.
+    Casa:
+    És abstracta, amb la majoria d’Allotjaments dins seu. Té mida (String), número d'habitacions, capacitat, i dins té la majoria d’allotjaments.
 
-Parcel·la:
-No és abstracta, té mida (double) i connexió. Es pot reservar!
+    Parcel·la:
+        No és abstracta, té mida (double) i connexió. Es pot reservar!
 
-Bungalow:
-Hereta de Casa, però a més té TV, AC, places de pàrquing i terrassa.
+    Bungalow:
+        Hereta de Casa, però a més té TV, AC, places de pàrquing i terrassa.
 
-Bungalow Premium:
-Hereta de Bungalow, però té extres inclosos: llençols, tovalloles i wifi.
+    Bungalow Premium:
+        Hereta de Bungalow, però té extres inclosos: llençols, tovalloles i wifi.
 
-Glamping:
-Hereta de Casa, amb material i casa per a mascotes.
+    Glamping:
+        Hereta de Casa, amb material i casa per a mascotes.
 
-Mobil-Home:
-Una altra casa que pot tenir terrassa amb barbacoa.
+    Mobil-Home:
+        Una altra casa que pot tenir terrassa amb barbacoa.
 
-Client:
-Guarda tota la informació d’un client (nom, DNI).
+    Client:
+        Guarda tota la informació d’un client (nom, DNI).
 
-Reserva:
-Porta data d’entrada i sortida, en un Allotjament i amb un client.
+    Reserva:
+        Porta data d’entrada i sortida, en un Allotjament i amb un client.
 
-LlistaReserves:
-Gestiona les reserves, pot afegir-les a la llista.
+    LlistaReserves:
+        Gestiona les reserves, pot afegir-les a la llista.
 
-Camping:
-La més important, té llista de reserves, clients i allotjaments, i a més gestiona totes les llistes amb mestria... detecta que no hi hagi errors.
+    Camping:
+    La més important, té llista de reserves, clients i allotjaments, i a més gestiona totes les llistes amb mestria... detecta que no hi hagi errors.
 
 2. Diagrama (diagrama.png)
 
 3. Atributs de Reserva
-Allotjament: Perquè és l'allotjament que es reserva (crucial).
-Client: Ens diu qui ha fet la reserva.
-DataEntrada i DataSortida: Junts fan el termini de la reserva (evita solapaments).
+    Allotjament: Perquè és l'allotjament que es reserva (crucial).
+    Client: Ens diu qui ha fet la reserva.
+    DataEntrada i DataSortida: Junts fan el termini de la reserva (evita solapaments).
 
-La classe Reserva consta de quatre atributs: allotjament, client, DataEntrada i dataSortida. Així, podem guardar l'allotjament a reservar, el client que fa la reserva i les dates que està reservat l'allotjament. D'aquesta manera podem evitar solapaments amb altres reserves i guardem informació crucial sobre la reserva
+    La classe Reserva consta de quatre atributs: allotjament, client, DataEntrada i dataSortida. Així, podem guardar l'allotjament a reservar, el client que fa la reserva i les dates que està reservat l'allotjament. D'aquesta manera podem evitar solapaments amb altres reserves i guardem informació crucial sobre la reserva
 
 4. CorrecteFuncionament
-Es fa a Allotjament, però com que cadascú té criteris diferents, les classes es poden instanciar i aquestes ho implementen; en altres paraules, es fa un polimorfisme, fent que cada subclasse implementi la seva pròpia lògica.
+    Es fa a Allotjament, però com que cadascú té criteris diferents, les classes es poden instanciar i aquestes ho implementen; en altres paraules, es fa un polimorfisme, fent que cada subclasse implementi la seva pròpia lògica.
 
-El mètode correcteFuncionament és un mètode dels allotjaments. Com cada allotjament té uns criteris diferents per considerar si l'allotjament funciona correctament, es declara el mètode com abstracte en Allotjament i s'implementa en cada allotjament no abstracte.
+    El mètode correcteFuncionament és un mètode dels allotjaments. Com cada allotjament té uns criteris diferents per considerar si l'allotjament funciona correctament, es declara el mètode com abstracte en Allotjament i s'implementa en cada allotjament no abstracte.
 
 5. toString
-S’ha implementat en Allotjament i en Client per conèixer i imprimir informació per consola. Es fa en la classe abstracta Allotjament perquè tots el puguin fer servir.
-//tambien lo hemos implementado en reserva
+    S’ha implementat en Allotjament i en Client per conèixer i imprimir informació per consola. Es fa en la classe abstracta Allotjament perquè tots el puguin fer servir.
+    //tambien lo hemos implementado en reserva
 
 6. Public - Private
-Tots els atributs són private per mantenir l’encapsulació, fent el codi més segur i llegible; en canvi, la majoria de mètodes són públics per fer els objectes funcionals. Alguns d'aquests mètodes s'utilitzen per accedir i modificar els atributs encapsulats.
+    Tots els atributs són private per mantenir l’encapsulació, fent el codi més segur i llegible; en canvi, la majoria de mètodes són públics per fer els objectes funcionals. Alguns d'aquests mètodes s'utilitzen per accedir i modificar els atributs encapsulats.
 
 7. AfegirReserva en Camping?
-No té sentit perquè si fem allotjaments (que no es pot perquè és abstracta) i clients nous per a cada reserva, llavors, si el mateix client vol fer més d’una reserva, es crearan dos clients iguals en la memòria, i si creem un allotjament és possible que en realitat no existeixi. També cada allotjament es crearà disponible encara que no ho estigui.
+    No té sentit, perquè si fem allotjaments (que no es pot perquè és abstracta) i clients nous per a cada reserva, llavors, si el mateix client vol fer més d’una reserva, es crearan dos clients iguals en la memòria, i si creem un allotjament és possible que en realitat no existeixi. També cada allotjament es crearà disponible encara que no ho estigui.
 
-No seria correcte crear l'allotjament i el client quan es crea la reserva. En primer lloc, no podem crear "allotjaments", ja que és una classe abstracta. Tampoc funcionaria si no fos abstracta, ja que demanar una reserva no implica que l'allotjament existeixi en el càmping i estariem afegint allotjaments falsos. A més si volguessim reservar un allotjament que existeix, creariem un altre allotjament diferent amb els mateixos atributs, creant còpies. Tampoc es pot crear el client en la reserva, ja que si un client fes dos reserves diferents es crearien dos clients amb els mateixos atributs. L'únic que es podria fer és comprovar si el client existeix i si no existeix, crear-lo. Finalment, en el codi proporcionat en l'enunciat no hi ha cap comprovació sobre les dades de la reserva.
+    No seria correcte crear l'allotjament i el client quan es crea la reserva. En primer lloc, no podem crear "allotjaments", ja que és una classe abstracta. Tampoc funcionaria si no fos abstracta, ja que demanar una reserva no implica que l'allotjament existeixi en el càmping i estariem afegint allotjaments falsos. A més si volguessim reservar un allotjament que existeix, creariem un altre allotjament diferent amb els mateixos atributs, creant còpies. Tampoc es pot crear el client en la reserva, ja que si un client fes dos reserves diferents es crearien dos clients amb els mateixos atributs. L'únic que es podria fer és comprovar si el client existeix i si no existeix, crear-lo. Finalment, en el codi proporcionat en l'enunciat no hi ha cap comprovació sobre les dades de la reserva.
 
 8. Proves
-Hem corregit especialment els toString per coincidir amb els tests, fixar correctament les estades mínimes per temporada en tots els allotjaments i afegir el throw al constructor de reserves.
+    Hem corregit especialment els toString per coincidir amb els tests, fixar correctament les estades mínimes per temporada en tots els allotjaments i afegir el throw al constructor de reserves.
 
 9. Observacions
-Hem vist que a l’inici semblava massa difícil en ser el primer projecte “gran” orientat a objectes (sintaxi i altres coses), però a mesura que anàvem omplint les funcionalitats que demanava l’enunciat, hem pogut anar cada cop amb més confiança.
-
 A l'inici semblava massa difícil en ser el primer projecte "gran" orientat a objectes, però a mesura que hem anat omplint les funcionalitats que demanava l'enunciat, hem pogut anar cada cop amb més confiança. Ha estat un repte, ja que un dels integrants del grup no havia programat en java, però en poc temps s'ha pogut superar la barrera inicial. Les interfícies han estat molt útils per poder crear els mètodes més fàcilment i per tenir una visió general de l'estructura del projecte i poder fer el diagrama de classes. Inicialment, vam fer els mètodes de cerca amb for's, però vam acabar implementant els iteradors, ja que és una forma més segura i entenible per recòrrer llistes. També hem acabat modificant una mica la sintàxi del projecte, ja que diferents parts les havíem implementat de maneres curtes però poc llegibles. Considerem que ha estat un projecte complet on s'han vist molts punts importants, com: iteradors, excepcions, interfícies, enum's, etc. i ens ha servit per tenir un bon contacte amb la programació orientada a objectes.
-
-
-//cambia lo que no te guste, he ido poniendo lo que se me ha ocurrido

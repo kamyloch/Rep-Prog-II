@@ -1,12 +1,10 @@
 
 package prog2.vista;
 
-import prog2.model.Allotjament;
 import prog2.model.Camping;
-import prog2.model.InAllotjament;
-
 import java.time.LocalDate;
-import java.util.Locale;
+import static prog2.model.InAllotjament.Temp;   //Enum de Temporada
+import static prog2.model.InAllotjament.Temp.*; //Contingut del Enum
 
 /**
  * Classe per gestionar els allotjaments del Càmping del Mar.
@@ -38,7 +36,7 @@ public class GestorCamping {
         //--------------------------------------------------------------------------------------------------
         // Per completar
         System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: ");
-        System.out.println(campingMar.getAllotjamentEstadaMesCurta(InAllotjament.Temp.ALTA).toString());
+        System.out.println(campingMar.getAllotjamentEstadaMesCurta(ALTA));
        
     }
 
@@ -212,14 +210,14 @@ public class GestorCamping {
         // Crear una LocalDate per definir la data de la reserva.
         LocalDate entrada = LocalDate.of(2026,2,20);
         LocalDate sortida = LocalDate.of(2026,2,28);
-        System.out.println(camping.getLlistaClients().toString());
+        System.out.println(camping.getLlistaClients());
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
         try {
             camping.afegirReserva(id,dni,entrada,sortida);
             System.out.println("Reserva 1 feta!");
         }catch (ExcepcioReserva e){
-            System.out.println("Error: "+e.getMessage());
+            System.err.println("Error: "+e.getMessage());
         }
         
         // 2. Afegeix una reserva pel client amb DNI "78659101A" de l'allotjament amb identificador "100P"
@@ -236,7 +234,7 @@ public class GestorCamping {
             camping.afegirReserva(id,dni,entrada,sortida);
             System.out.println("Reserva 2 feta!");
         }catch (ExcepcioReserva e){
-            System.out.println("Error: "+e.getMessage());
+            System.err.println("Error: "+e.getMessage());
         }
            
         // 3. Afegeix una reserva pel client amb DNI "789101A" de l'allotjament amb identificador "300Z"
@@ -253,7 +251,7 @@ public class GestorCamping {
             camping.afegirReserva(id,dni,entrada,sortida);
             System.out.println("Reserva 3 feta!");
         }catch (ExcepcioReserva e){
-            System.out.println("Error: "+e.getMessage());
+            System.err.println("Error: "+e.getMessage());
         }
 
         System.out.println(camping.getLlistaReserves());

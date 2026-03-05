@@ -12,7 +12,8 @@ import static prog2.model.InAllotjament.Temp.*; //Contingut del Enum
 public class LlistaReserves implements InLlistaReserves {
     private ArrayList <Reserva>  reserves;
 
-
+    /**Constructor, getters i setters no gaire complicats
+     * segons InLlistReserves*/
     //Constructor
     public LlistaReserves() {
         this.reserves = new ArrayList <Reserva>();
@@ -47,8 +48,8 @@ public class LlistaReserves implements InLlistaReserves {
         return isEstadaMinima;
     }
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate entrada, LocalDate sortida) throws ExcepcioReserva{
-        //Condicións per a que es pugi fer la reserva
-        if (entrada.isAfter(sortida))   // <--- Condició duplpicada al constructor de reserva
+        //Condicións perquè es pugui fer la reserva
+        if (entrada.isAfter(sortida))   // <--- Condició duplicada al constructor de reserva
             throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
 
         if (!isEstadaMinima(allotjament, entrada, sortida))

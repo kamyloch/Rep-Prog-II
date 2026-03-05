@@ -3,7 +3,9 @@ package prog2.model;
 public class Parcela extends Allotjament{
     private float mida;
     private boolean connexio;
-
+    /**Constructor, getters i setters no gaire complicats
+     * tenim en compte les variables extres declarades amunt*/
+    //Constructor
     public Parcela (String nom_, String Id_, float mida_, boolean connexio_){
         super(nom_, Id_,4,2); //Estada segons el material
         mida = mida_;
@@ -27,6 +29,7 @@ public class Parcela extends Allotjament{
 
     //Mètodes
     @Override
+    /** L'única condició és tindre connexió **/
     public boolean correcteFuncionament(){
         boolean funciona=false;
         if(connexio==true)

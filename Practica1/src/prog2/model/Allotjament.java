@@ -5,14 +5,14 @@ public abstract class Allotjament implements InAllotjament{
     private String Id;
     private long estadaAlta;
     private long estadaBaixa;
-
+    /**Constructor, getters i setters no gaire complicats
+     * tenim en compte les variables extres declarades amunt*/
     //Constructor
     public Allotjament(String nom, String Id,long alta,long baixa) {
         this.nom = nom;
         this.Id = Id;
         setEstadaMinima(alta,baixa);
     }
-
     //Setters
     public  void  setId(String Id) {
         this.Id = Id;
@@ -42,6 +42,7 @@ public abstract class Allotjament implements InAllotjament{
     }
 
     //Mètodes
+    /** Cada subclase haura de implementar correcte funcionament **/
     public abstract boolean correcteFuncionament();
     public String toString(){
         return "Nom="+getNom()+

@@ -3,7 +3,8 @@ package prog2.model;
 class Glamping extends Casa{
     private String material;
     private boolean casaMascotes;
-
+    /**Constructor, getters i setters no gaire complicats
+     * tenim en compte les variables extres declarades amunt*/
     //Constructor
     public Glamping(String nom_,String Id_,String mida_,int numHabit_, int capacitat_, String material_,boolean casaMascotes_){
         super(nom_, Id_, mida_, numHabit_, capacitat_);
@@ -18,7 +19,6 @@ class Glamping extends Casa{
     public boolean getCasaMascotes(){
         return casaMascotes;
     }
-
     //Setters
     public void setMaterial(String material_){
         material=material_;
@@ -29,6 +29,7 @@ class Glamping extends Casa{
 
     //Mètodes
     @Override
+    /** L'única condició és que hi hagi casa per a mascotes **/
     public boolean correcteFuncionament(){
         boolean funciona=false;
         if(casaMascotes==true)

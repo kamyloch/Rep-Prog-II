@@ -6,6 +6,8 @@ public class Bungalow extends Casa {
     private int placesParquing;
     private boolean terrassa;
 
+    /**Constructor, getters i setters no gaire complicats
+     * tenim en compte les variables extres declarades amunt*/
     //Constructor
     public Bungalow (String nom_, String Id_, String mida_, int numHabit_, int capacitat_,int places_,boolean terrassa_,boolean televisio_,boolean aireFred_){
         super(nom_, Id_, mida_, numHabit_, capacitat_);
@@ -15,7 +17,6 @@ public class Bungalow extends Casa {
         terrassa=terrassa_;
         setEstadaMinima(7,4); //Estada segons el material
     }
-
     //Getters
     public boolean getAireFred(){return aireFred;}
     public boolean getTelevisio(){return televisio;}
@@ -29,6 +30,7 @@ public class Bungalow extends Casa {
 
     //Mètodes
     @Override
+    /** L'única condició és aireFred **/
     public boolean correcteFuncionament() {
         boolean funciona=false;
         if(aireFred==true)

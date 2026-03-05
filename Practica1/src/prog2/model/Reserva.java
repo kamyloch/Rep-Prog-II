@@ -9,7 +9,8 @@ public class Reserva implements InReserva {
     private Client client;
     private LocalDate dataEntrada;
     private LocalDate dataSortida;
-
+    /**Constructor, getters i setters no gaire complicats
+     * tenim en compte les variables extres declarades amunt*/
     //Constructor
     public Reserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
         if (dataEntrada.isAfter(dataSortida))
@@ -19,7 +20,6 @@ public class Reserva implements InReserva {
         this.dataEntrada = dataEntrada;
         this.dataSortida = dataSortida;
     }
-
     //Setters
     public void setClient(Client client) {
         this.client = client;
