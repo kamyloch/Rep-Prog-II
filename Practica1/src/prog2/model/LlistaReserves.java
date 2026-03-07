@@ -61,7 +61,7 @@ public class LlistaReserves implements InLlistaReserves {
         reserves.add(new Reserva(allotjament,client, entrada,sortida));
     }
 
-
+    /*
     //Només he fet això per mostrar més info al GestióCamping
     public String toString(){
         Iterator<Reserva> it = reserves.iterator();
@@ -71,6 +71,6 @@ public class LlistaReserves implements InLlistaReserves {
             bf.append(r).append("\n-----------------\n");
         }
         return bf.toString();
-    }
+    }*/
 
 }
