@@ -254,7 +254,7 @@ public class GestorCamping {
             System.err.println("Error: "+e.getMessage());
         }
 
-        System.out.println(camping.getLlistaReserves());
+        //System.out.println(camping.getLlistaReserves()); Comentamos los toString de reserva i llista reserves
 
     }
     
