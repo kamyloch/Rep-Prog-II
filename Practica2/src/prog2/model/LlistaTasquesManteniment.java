@@ -1,0 +1,114 @@
+package prog2.model;
+
+import prog2.vista.ExcepcioCamping;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import static prog2.model.TascaManteniment.TipusTascaManteniment; //Enum
+import static prog2.model.TascaManteniment.TipusTascaManteniment.*; //Contingut
+
+
+public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
+    private ArrayList<TascaManteniment> llista;
+
+    private boolean isInLLista(Allotjament allotjament){
+        boolean trobat = false;
+        Iterator<TascaManteniment> it = llista.iterator();
+        while(it.hasNext() && !trobat){
+            TascaManteniment actual = it.next();
+            trobat = actual.equals(allotjament);
+        }
+        return trobat;
+    }
+
+    private TipusTascaManteniment tascaToConst (String tipus){
+        TipusTascaManteniment resultat = null;
+        try{
+            TipusTascaManteniment manteniment = TipusTascaManteniment.valueOf(tipus);
+        }finally {
+            return resultat;
+        }
+    }
+    /**
+     * Aquest mètode crea una tasca de manteniment amb la informació passada com a paràmetres
+     * (número d'identificador, tipus, l'allotjament on s'ha produït, la data, i els dies esperats per completar-la) i l'afegeix a la llista.
+     * A més, s'ha de comprovar que aquest allotjament no té ja una tasca, si ja té una tasca s'ha de llançar una excepció.
+     * Una vegada creada la tasca s'ha de tancar (no operatiu) l'allotjament corresponent.
+     *
+     * @param num         Número d'identificació de la tasca.
+     * @param tipus       Aquest String permet crear el enum TipusTascaManteniment
+     * @param allotjament Allotjament on s'afegeix la tasca
+     * @param data        Data quan genera la tasca
+     * @param dies        Número de dies esperats per completar la tasca
+     * @throws ExcepcioCamping Per comprovar i avisar si l'allotjament ja té una tasca o si el tipus de tasca que es vol afegir no existeix.
+     */
+    @Override
+    public void afegirTascaManteniment(int num, String tipus, Allotjament allotjament, String data, int dies) throws ExcepcioCamping {
+        TipusTascaManteniment manteniment = tascaToConst(tipus);
+        if(manteniment == null)
+            throw new ExcepcioCamping("La tasca que es vol afegir no existeix");
+
+        if (!isInLLista(allotjament))
+            throw new ExcepcioCamping("Aquest allotjament ja té la tasca assignada");
+
+        llista.add(new TascaManteniment(num,manteniment ,allotjament, data,dies));
+    }
+
+    /**
+     * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
+     *
+     * @param tasca Objecte de tipus TascaManteniment
+     * @throws ExcepcioCamping
+     */
+    @Override
+    public void completarTascaManteniment(TascaManteniment tasca) throws ExcepcioCamping {
+        if(!llista.contains(tasca))
+            throw new ExcepcioCamping("La tasca no està a la llista");
+
+        llista.remove(tasca);
+        tasca.getAllotjament().obrirAllotjament();
+    }
+
+    /**
+     * Itera sobre la llista de tasques i retorna un String amb la informació de totes les tasques de manteniment.
+     * En cas que no hi hagi cap tasca llança una excepció.
+     *
+     * @return String
+     * @throws ExcepcioCamping
+     */
+    @Override
+    public String llistarTasquesManteniment() throws ExcepcioCamping {
+        if (llista.isEmpty())
+            throw new ExcepcioCamping("La llista está buida");
+
+        StringBuilder llistat = new StringBuilder("");
+
+        Iterator<TascaManteniment> it = llista.iterator();
+
+        while (it.hasNext()) {
+            TascaManteniment actual= it.next();
+            llistat.append(actual.toString()).append("\n");
+        }
+        return llistat.toString();
+    }
+
+    /**
+     * Busca la tasca amb el número rebut per paràmetre i la retorna.
+     * En cas que no existeixi llança una excepció.
+     *
+     * @param num Número d'identificació de la tasca.
+     * @return Objecte de tipus TascaManteniment
+     * @throws ExcepcioCamping Aquest mètode llança una excepció si no existeix cap tasca amb el número passat per paràmetre.
+     */
+    @Override
+    public TascaManteniment getTascaManteniment(int num) throws ExcepcioCamping {
+        Iterator<TascaManteniment> it = llista.iterator();
+        while (it.hasNext()) {
+            TascaManteniment actual= it.next();
+            if(actual.getNum() == num){
+                return actual;
+            }
+        }
+        throw new ExcepcioCamping("La tasca amb numero "+num+" no esta a la llista");
+    }
+}

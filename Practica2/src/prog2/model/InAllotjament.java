@@ -50,6 +50,11 @@ public interface InAllotjament {
         ALTA,
         BAIXA
     }
+    public enum Iluminacio{
+        CENT,
+        CINQUANTA,
+        ZERO
+    }
 
     /**
      * Modifica l'estat de l'allotjament a No Operatiu i la il·luminació depenent de la tasca rebuda com a paràmetre

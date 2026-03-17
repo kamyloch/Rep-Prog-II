@@ -1,0 +1,7 @@
+- Estat string y no enum?
+- cuando hace throw el afegirAllotjament a llistaAllotjaments?
+- El afegir allotjament de acces tiene que throwear tambien?(hay que cambiar la inteficie?)
+- Hay que sobreescribir el equals de allotjaments? (para el contais de llistaAllotjaments)
+- El enum de iluminacio va en la inteficie o en la clase
+- La data de tascaManteniment lo hacemos con string o Localdate
+- Se puede usar el contains? (hay que cambiar el equals()?)
