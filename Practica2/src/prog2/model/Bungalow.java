@@ -9,7 +9,7 @@ public class Bungalow extends Casa {
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public Bungalow (String nom_, String Id_,String estat,String iluminacio, String mida_, int numHabit_, int capacitat_,int places_,boolean terrassa_,boolean televisio_,boolean aireFred_){
+    public Bungalow (String nom_, String Id_,boolean estat,String iluminacio, String mida_, int numHabit_, int capacitat_,int places_,boolean terrassa_,boolean televisio_,boolean aireFred_){
         super(nom_, Id_,estat,iluminacio, mida_, numHabit_, capacitat_,7,4);
         aireFred = aireFred_;
         televisio = televisio_;

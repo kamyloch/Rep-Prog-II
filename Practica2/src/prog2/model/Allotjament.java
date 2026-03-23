@@ -50,6 +50,9 @@ public abstract class Allotjament implements InAllotjament{
         return Id;
     }
     public boolean getEstat() {return estat;}
+    public String getIluminacio(){
+        return iluminacio;
+    }
 
     //Mètodes
     /** Cada subclase haura de implementar correcte funcionament **/

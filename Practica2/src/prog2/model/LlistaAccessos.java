@@ -2,7 +2,17 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class LlistaAccessos implements InLlistaAccessos{
+    private ArrayList<Acces> accesos;
+
+    public LlistaAccessos(){
+        this.accesos = new ArrayList<>();
+    }
+
+
 
     /**
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
@@ -12,7 +22,10 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void afegirAcces(Acces acc) throws ExcepcioCamping {
-
+        if(accesos.contains(acc)){
+            throw new ExcepcioCamping("L'allotjament ja està a la llista");
+        }
+        accesos.add(acc);
     }
 
     /**
@@ -20,7 +33,7 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void buidar() {
-
+        accesos.clear();
     }
 
     /**
@@ -34,7 +47,25 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
-        return "";
+        if (accesos.isEmpty())
+            throw new ExcepcioCamping("La llista está buida");
+
+        StringBuilder sb = new StringBuilder("");
+
+        Iterator<Acces> it = accesos.iterator();
+
+        while (it.hasNext()) {
+            Acces actual= it.next();
+            if (actual.getEstat() == estat)
+                sb.append(actual.toString()).append("\n");
+        }
+
+        String resultado = sb.toString();
+
+        if (resultado.equals(""))
+            throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + estat);
+
+        return sb.toString();
     }
 
     /**
@@ -44,7 +75,14 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void actualitzaEstatAccessos() throws ExcepcioCamping {
-
+        Iterator<Acces> it = accesos.iterator();
+        while(it.hasNext()){
+            Acces actual = it.next();
+            if (actual.getAAllotjaments().containsAllotjamentOperatiu())
+                actual.obrirAcces();
+            else
+                actual.tancarAcces();
+        }
     }
 
     /**
@@ -55,7 +93,12 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
-        return 0;
+        int total = 0;
+        Acces actual = null;
+        for(Iterator<Acces> it  = accesos.iterator(); it.hasNext();actual = it.next())
+            total += actual.isAccessibilitat()? 1:0;
+
+        return total;
     }
 
     /**

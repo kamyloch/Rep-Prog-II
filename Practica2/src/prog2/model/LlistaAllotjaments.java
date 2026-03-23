@@ -83,7 +83,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
         boolean trobat = false;
         while (it.hasNext() && !trobat) {
             Allotjament actual= it.next();
-            trobat = actual.getEstat().equals("Operatiu"); //???
+            trobat = actual.getEstat(); //???
         }
         return trobat;
     }
