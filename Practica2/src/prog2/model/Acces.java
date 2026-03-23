@@ -2,7 +2,7 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
-public class Acces implements InAcces{
+public abstract class Acces implements InAcces{
     private String nom;
     private boolean estat;
     private boolean accessibilitat;
@@ -22,7 +22,12 @@ public class Acces implements InAcces{
      */
     @Override
     public void afegirAllotjament(Allotjament allotjament){
-        accesos.afegirAllotjament(allotjament);
+        try {
+            accesos.afegirAllotjament(allotjament);
+        }
+        catch (ExcepcioCamping e){
+            ;
+        }
     }
 
     /**
@@ -47,9 +52,7 @@ public class Acces implements InAcces{
      * @return
      */
     @Override
-    public boolean isAccessibilitat() {
-        return accessibilitat;
-    }
+    public abstract boolean  isAccessibilitat();
 
     /**
      * Retorna el nom de l'accés

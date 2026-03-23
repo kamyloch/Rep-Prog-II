@@ -8,18 +8,19 @@ import java.util.Iterator;
 public class LlistaAllotjaments implements InLlistaAllotjaments {
 
     private ArrayList<Allotjament> llistaAllotjaments;
-    /**
-     * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
-     *
-     * @param allotjament Objecte de tipus Allotjament
-     * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
-     */
+
 
     //Constructor
     public LlistaAllotjaments() {
         llistaAllotjaments = new ArrayList<>();
     }
 
+    /**
+     * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
+     *
+     * @param allotjament Objecte de tipus Allotjament
+     * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     */
     @Override
     public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
         if(llistaAllotjaments.contains(allotjament)){
