@@ -49,6 +49,10 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
         if (llistaAllotjaments.isEmpty())
             throw new ExcepcioCamping("La llista está buida");
+        if (!estat.equals("Operatiu") && !estat.equals("No Operatiu"))
+            throw new ExcepcioCamping("Estat no vàlid");
+
+        boolean volgut = estat.equals("Operatiu");
 
         StringBuilder sb = new StringBuilder("");
 
@@ -56,7 +60,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
 
         while (it.hasNext()) {
             Allotjament actual= it.next();
-            if (actual.getEstat().equals(estat))
+            if (actual.getEstat() == volgut)
                 sb.append(actual.toString()).append("\n");
         }
 
@@ -64,6 +68,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
 
         if (resultado.equals(""))
             throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + estat);
+
         return sb.toString();
     }
 

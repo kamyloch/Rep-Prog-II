@@ -6,10 +6,12 @@ public class Camping implements InCamping{
     private String nom;
     private LlistaAllotjaments allotjaments;
     private LlistaTasquesManteniment tasques;
-    private
 
-
-    public Camping(nom)
+     public Camping (String nom){
+        this.nom = nom;
+        this.allotjaments = new LlistaAllotjaments();
+        this.tasques = new LlistaTasquesManteniment();
+    }
     /**
      * Retorna el nom del càmping.
      *
@@ -29,7 +31,7 @@ public class Camping implements InCamping{
      */
     @Override
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
-        return "";
+        return allotjaments.llistarAllotjaments(estat);
     }
 
     /**

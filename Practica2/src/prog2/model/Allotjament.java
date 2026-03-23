@@ -9,13 +9,13 @@ public abstract class Allotjament implements InAllotjament{
     private String Id;
     private long estadaAlta;
     private long estadaBaixa;
-    private String estat;
-    private Iluminacio iluminacio;
+    private boolean estat;
+    private String iluminacio;
 
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public Allotjament(String nom, String Id, long alta, long baixa, String estat, Iluminacio iluminacio) {
+    public Allotjament(String nom, String Id, long alta, long baixa, boolean estat, String iluminacio) {
         this.nom = nom;
         this.Id = Id;
         this.estat = estat;
@@ -33,8 +33,6 @@ public abstract class Allotjament implements InAllotjament{
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public void setEstat(String estat) { this.estat = estat; }
-    public void setIluminacio(Iluminacio iluminacio) {this.iluminacio = iluminacio; }
 
     //Getters
     public String getNom() {
@@ -51,8 +49,7 @@ public abstract class Allotjament implements InAllotjament{
     public String getId() {
         return Id;
     }
-    public String getEstat() {return estat;}
-    public Iluminacio getIluminacio() {return iluminacio;}
+    public boolean getEstat() {return estat;}
 
     //Mètodes
     /** Cada subclase haura de implementar correcte funcionament **/
@@ -69,8 +66,8 @@ public abstract class Allotjament implements InAllotjament{
      */
     @Override
     public void obrirAllotjament() {
-        estat="Operatiu";
-        iluminacio = CENT;
+        estat=true;
+        iluminacio = "100%";
     }
 
     /**
@@ -79,19 +76,16 @@ public abstract class Allotjament implements InAllotjament{
      */
     @Override
     public void tancarAllotjament(TascaManteniment tasca) {
-        estat = "No operatiu";
+        estat = false;
         switch(tasca.getTipus()){
-            case Reparacio:
-                setIluminacio(CINQUANTA);
+            case Reparacio, RevisioTecnica:
+                this.iluminacio = "50%";
                 break;
             case Neteja:
-                setIluminacio(CENT);
-                break;
-            case RevisioTecnica:
-                setIluminacio(CINQUANTA);
+                this.iluminacio = "100%";
                 break;
             case Desinfeccio:
-                setIluminacio(ZERO);
+                this.iluminacio = "0%";
                 break;
         }
     }

@@ -6,7 +6,7 @@ public class Parcela extends Allotjament{
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public Parcela (String nom_, String Id_,String estat, Iluminacio iluminacio, float mida_, boolean connexio_){
+    public Parcela (String nom_, String Id_,boolean estat, String iluminacio, float mida_, boolean connexio_){
         super(nom_, Id_,4,2,estat,iluminacio); //Estada segons el material
         mida = mida_;
         connexio = connexio_;
