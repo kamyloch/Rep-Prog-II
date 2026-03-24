@@ -129,14 +129,61 @@ public class Camping implements InCamping, Serializable {
     public void save(String camiDesti) throws ExcepcioCamping {
         File fitxer = new File(camiDesti);
 
-        FileOutputStream fout=new FileOutputStream(fitxer);
-        ObjectOutputStream oos=new ObjectOutputStream(fout);
-        oos.writeObject(this);
-        oos.close();
+        FileOutputStream fout = null;
+        ObjectOutputStream oos = null;
+        try{
+            fout=new FileOutputStream(fitxer);
+        }catch(FileNotFoundException ex){
+            throw new ExcepcioCamping("El fitxer no s'ha trobat");
+        }
+
+        try{
+            oos=new ObjectOutputStream(fout);}
+        catch(IOException ex){
+            throw new ExcepcioCamping ("No s'ha pogut crear l'objecte per escriure al fitxer");
+        }try {
+            oos.writeObject(this);
+        }catch(IOException ex){
+            throw new ExcepcioCamping("No s'ha pogut escriure al fitxer");
+        }finally {
+            try {
+                oos.close();
+                fout.close();
+            } catch (IOException ex) {
+                throw new ExcepcioCamping("No s'ha pogut tancar el fitxer");
+            }
+        }
+    }
 
 
+    public Camping load(String camiOrigen) throws ExcepcioCamping {
+        File fitxer = new File(camiOrigen);
+        Camping camping=null;
+        FileInputStream fin = null;
+        ObjectInputStream ois = null;
+        try{
+            fin=new FileInputStream(fitxer);
+        }catch(FileNotFoundException ex){
+            throw new ExcepcioCamping("El fitxer no s'ha trobat");
+        }
 
-
+        try{
+            ois=new ObjectInputStream(fin);}
+        catch(IOException ex){
+            throw new ExcepcioCamping ("No s'ha pogut crear l'objecte per llegir al fitxer");
+        }try {
+            camping= (Camping) ois.readObject();
+        }catch(IOException | ClassNotFoundException ex){
+            throw new ExcepcioCamping("No s'ha pogut llegir al fitxer");
+        }finally {
+            try {
+                ois.close();
+                fin.close();
+            } catch (IOException ex) {
+                throw new ExcepcioCamping("No s'ha pogut tancar el fitxer");
+            }
+        }
+        return camping;
     }
 
     /**
