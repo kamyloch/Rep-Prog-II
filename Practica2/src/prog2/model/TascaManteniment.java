@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public class TascaManteniment implements InTascaManteniment{
 
+    public static enum TipusTascaManteniment {
+        Reparacio,
+        Neteja,
+        RevisioTecnica,
+        Desinfeccio
+    };
+
     private TipusTascaManteniment tipusTasca;
     private int num;
     private LocalDate data;
@@ -21,7 +28,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Retorna el número identificador de la tasca.
-     *
      * @return int
      */
     @Override
@@ -31,7 +37,7 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Retorna el tipus de tasca de manteniment.
-     *InTascaMantenime
+     * InTascaMantenime
      * @return TipusTascaManteniment
      */
     @Override
@@ -41,7 +47,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Retorna l'allotjament associat a la tasca.
-     *
      * @return Allotjament
      */
     @Override
@@ -51,7 +56,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Retorna la data de registre de la tasca.
-     *
      * @return String
      */
     @Override
@@ -61,7 +65,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Retorna el nombre de dies previstos per completar la tasca.
-     *
      * @return int
      */
     @Override
@@ -71,7 +74,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Assigna un nou número identificador a la tasca.
-     *
      * @param num_ Número identificador de la tasca.
      */
     @Override
@@ -81,7 +83,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Assigna el tipus de tasca de manteniment.
-     *
      * @param tipus_ Tipus de tasca.
      */
     @Override
@@ -91,7 +92,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Assigna l'allotjament associat a la tasca.
-     *
      * @param allotjament_ Allotjament afectat.
      */
     @Override
@@ -101,7 +101,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Assigna la data de registre de la tasca.
-     *
      * @param data_ Data de la tasca.
      */
     @Override
@@ -111,7 +110,6 @@ public class TascaManteniment implements InTascaManteniment{
 
     /**
      * Assigna el nombre de dies previstos per completar la tasca.
-     *
      * @param dies_ Nombre de dies.
      */
     @Override
@@ -122,7 +120,6 @@ public class TascaManteniment implements InTascaManteniment{
     /**
      * Retorna el percentatge d'il·luminació que ha de tenir l'allotjament
      * segons el tipus de tasca de manteniment.
-     *
      * @return String amb el percentatge d'il·luminació.
      */
     @Override
@@ -130,10 +127,5 @@ public class TascaManteniment implements InTascaManteniment{
         return allotjament.getIluminacio();
     }
 
-    public static enum TipusTascaManteniment {
-        Reparacio,
-        Neteja,
-        RevisioTecnica,
-        Desinfeccio
-    };
+
 }

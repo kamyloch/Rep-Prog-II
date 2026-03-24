@@ -1,9 +1,5 @@
 package prog2.model;
 
-import static prog2.model.InAllotjament.Iluminacio.*; //Enum
-import static prog2.model.TascaManteniment.TipusTascaManteniment.*; //Contingut
-
-
 public abstract class Allotjament implements InAllotjament{
     private String nom;
     private String Id;
@@ -79,18 +75,7 @@ public abstract class Allotjament implements InAllotjament{
      */
     @Override
     public void tancarAllotjament(TascaManteniment tasca) {
-        estat = false;
-        switch(tasca.getTipus()){
-            case Reparacio, RevisioTecnica:
-                this.iluminacio = "50%";
-                break;
-            case Neteja:
-                this.iluminacio = "100%";
-                break;
-            case Desinfeccio:
-                this.iluminacio = "0%";
-                break;
-        }
+
     }
 
     @Override

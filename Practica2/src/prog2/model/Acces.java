@@ -25,9 +25,7 @@ public abstract class Acces implements InAcces{
         try {
             accesos.afegirAllotjament(allotjament);
         }
-        catch (ExcepcioCamping e){
-            ;
-        }
+        catch (ExcepcioCamping ignored){}
     }
 
     /**
@@ -48,7 +46,6 @@ public abstract class Acces implements InAcces{
 
     /**
      * Retorna si l'accés permet accessibilitat amb cotxe o no.
-     *
      * @return
      */
     @Override
@@ -66,7 +63,6 @@ public abstract class Acces implements InAcces{
 
     /**
      * Retorna l'estat de l'accés (obert o tancat)
-     *
      * @return
      */
     @Override
@@ -76,7 +72,6 @@ public abstract class Acces implements InAcces{
 
     /**
      * Retorna la llista d'allotjaments associats a l'accés
-     *
      * @return
      */
     @Override
