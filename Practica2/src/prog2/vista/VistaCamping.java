@@ -1,17 +1,24 @@
 package prog2.vista;
 
 import prog2.model.Camping;
+import prog2.model.TascaManteniment;
+
+import javax.sound.midi.Soundbank;
+import java.util.Scanner;
+
+import static prog2.vista.VistaCamping.OpcionsMenuPrincipal;
+import static prog2.vista.VistaCamping.OpcionsMenuPrincipal.*;
 
 public class VistaCamping {
 
     // Declarem les opcions per a referir-se a les opcions del menú principal
     static private enum OpcionsMenuPrincipal {
-        LLISTAR_TOTS_ALLOTJAMENTS,
+        LLISTAR_ALLOTJAMENTS,
         LLISTAR_ALLOTJAMENTS_OPERATIUS,
         LLISTAR_ALLOTJAMENTS_NO_OPERATIUS,
         LLISTAR_ACCESSOS_OBERTS,
         LLISTAR_ACCESSOS_TANCATS,
-        LLISTAR_TASQUES_ACTIVES,
+        LLISTAR_TASQUES,
         AFEGIR_TASCA_MANTENIMENT,
         COMPLETAR_TASCA_MANTENIMENT,
         CALCULAR_ACCESSOS_SENSE_VEHICLE,
@@ -43,7 +50,108 @@ public class VistaCamping {
         this.camping.inicialitzaDadesCamping();
     }
     public void gestioCamping(){
+        Menu<OpcionsMenuPrincipal> menu= new Menu<>("Gestió del camping: "+ camping.getNomCamping(), OpcionsMenuPrincipal.values());
+        menu.setDescripcions(descMenuPrincipal);
+        OpcionsMenuPrincipal opcio = null;
+        Scanner sc = new Scanner(System.in);
 
+        do{
+            menu.mostrarMenu();
+            opcio=menu.getOpcio(sc);
+
+            switch (opcio){
+                case LLISTAR_ALLOTJAMENTS:
+                    try{
+                        System.out.println(camping.llistarAllotjaments("No Operatiu"));
+                        System.out.println(camping.llistarAllotjaments("Operatiu"));
+                    }catch (ExcepcioCamping ignored){}
+                    break;
+                case LLISTAR_ALLOTJAMENTS_OPERATIUS:
+                    try{
+                        System.out.println(camping.llistarAllotjaments("Operatiu"));
+                    }catch(ExcepcioCamping ignored){}
+                    break;
+                case LLISTAR_ALLOTJAMENTS_NO_OPERATIUS:
+                    try{
+                        System.out.println(camping.llistarAllotjaments("No Operatiu"));
+                    }catch(ExcepcioCamping ignored){}
+                    break;
+                case LLISTAR_ACCESSOS_OBERTS:
+                    try{
+                        System.out.println(camping.llistarAccessos("Obert"));
+                    }catch(ExcepcioCamping ignored){}
+                    break;
+                case LLISTAR_ACCESSOS_TANCATS:
+                    try{
+                        System.out.println(camping.llistarAccessos("Tancat"));
+                    }catch(ExcepcioCamping ignored){}
+                    break;
+                case LLISTAR_TASQUES:
+                    try{
+                        System.out.println(camping.llistarTasquesManteniment());
+                    }catch(ExcepcioCamping ignored){}
+                    break;
+                case AFEGIR_TASCA_MANTENIMENT:
+                    try {
+                        System.out.println("Introdueix el número de la tasca:");
+                        int num = sc.nextInt();
+                        System.out.println("Introdueix el tipus de tasca:");
+                        String tipus = sc.nextLine();
+                        System.out.println("Introdueix l'identificador de l'allotjament:");
+                        String idAllotjament = sc.nextLine();
+                        System.out.println("Introdueix la data de la tasca (aaaa/mm/dd):");
+                        String data = sc.nextLine();
+                        System.out.println("Introdueix el número de dies esperats per completar la tasca:");
+                        int dies = sc.nextInt();
+
+                        camping.afegirTascaManteniment(num, idAllotjament, tipus, data, dies);
+                    }catch(ExcepcioCamping e){
+                        System.err.println("Error al afegir la tasca de manteniment: " + e.getMessage());
+                    }catch(Exception e){
+                        System.err.println("Error a l'entrada de dades: "+e.getMessage());}
+                    break;
+                case COMPLETAR_TASCA_MANTENIMENT:
+                    try{
+                        System.out.println(camping.llistarTasquesManteniment());
+                        System.out.print("Introdueix el número de la tasca a completar: ");
+                        int numTasca = sc.nextInt();
+                        camping.completarTascaManteniment(numTasca);
+
+                    }catch(ExcepcioCamping e){
+                        System.err.println("Error al completar la tasca de manteniment: "+e.getMessage());
+                    }
+                    catch (Exception e){
+                        System.err.println("Error a l'entrada de dades: "+e.getMessage());
+                    }
+                    break;
+                case CALCULAR_ACCESSOS_SENSE_VEHICLE:
+                    break;
+                case CALCULAR_METRES_TERRA:
+                    System.out.println("Hi han " + camping.calculaMetresTerra() + "metres de terra al càmping.");
+                    break;
+                case GUARDAR_CAMPING:
+                    System.out.print("Introdueix la ruta del camping: ");
+                    String cami = sc.nextLine();
+                    try{
+                        camping.save(cami);
+                    }catch (ExcepcioCamping e){
+                        System.err.println("Error al guardar el camping: " + e.getMessage());
+                    }
+                    break;
+                case RECUPERAR_CAMPING:
+                    String camiOrigen=null;
+                    try{
+                        System.out.println("Introdueix la ruta del camping a recuperar: ");
+                        camiOrigen = sc.nextLine();
+                        camping=camping.load(camiOrigen);
+                    }catch(ExcepcioCamping e) {
+                        System.err.println("Error al recuperar el camping: " + e.getMessage());
+                    }
+                    break;
+                case SORTIR:
+            }
+
+        }while(opcio!= SORTIR);
 
     }
 }

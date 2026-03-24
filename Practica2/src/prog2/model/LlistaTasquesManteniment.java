@@ -26,9 +26,8 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
         TipusTascaManteniment resultat = null;
         try{
             TipusTascaManteniment manteniment = TipusTascaManteniment.valueOf(tipus);
-        }finally {
+        }catch(IllegalArgumentException Ignore){}
             return resultat;
-        }
     }
     /**
      * Aquest mètode crea una tasca de manteniment amb la informació passada com a paràmetres
