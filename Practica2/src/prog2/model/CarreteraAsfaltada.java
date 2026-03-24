@@ -1,10 +1,12 @@
 package prog2.model;
 
-public class CarreteraAsfalt extends AccesAsfalt {
+import java.io.Serializable;
+
+public class CarreteraAsfaltada extends AccesAsfalt implements Serializable {
 
     private float pesMaxim;
 
-    public CarreteraAsfalt(String nom, boolean estat, float asfalt, float pesMaxim) {
+    public CarreteraAsfaltada(String nom, boolean estat, float asfalt, float pesMaxim) {
         super(nom, estat, asfalt);
         this.pesMaxim = pesMaxim;
         ;

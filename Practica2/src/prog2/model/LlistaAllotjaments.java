@@ -2,10 +2,11 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class LlistaAllotjaments implements InLlistaAllotjaments {
+public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
 
     private ArrayList<Allotjament> llistaAllotjaments;
 
@@ -22,11 +23,9 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
      * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     @Override
-    public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
-        if(llistaAllotjaments.contains(allotjament)){
-            throw new ExcepcioCamping("L'allotjament ja està a la llista");
-        }
-        llistaAllotjaments.add(allotjament);
+    public void afegirAllotjament(Allotjament allotjament){
+        if(!llistaAllotjaments.contains(allotjament))
+            llistaAllotjaments.add(allotjament);
     }
 
     /**

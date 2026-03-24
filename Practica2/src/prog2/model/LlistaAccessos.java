@@ -2,10 +2,11 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class LlistaAccessos implements InLlistaAccessos{
+public class LlistaAccessos implements InLlistaAccessos , Serializable {
     private ArrayList<Acces> accesos;
 
     public LlistaAccessos(){
@@ -21,11 +22,9 @@ public class LlistaAccessos implements InLlistaAccessos{
      * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     @Override
-    public void afegirAcces(Acces acc) throws ExcepcioCamping {
-        if(accesos.contains(acc)){
-            throw new ExcepcioCamping("L'allotjament ja està a la llista");
-        }
-        accesos.add(acc);
+    public void afegirAcces(Acces acc)  {
+        if(!accesos.contains(acc))
+            accesos.add(acc);
     }
 
     /**
@@ -93,6 +92,9 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
+        if (accesos.isEmpty())
+            throw new ExcepcioCamping("La llista está buida");
+
         int total = 0;
         Acces actual = null;
         for(Iterator<Acces> it  = accesos.iterator(); it.hasNext();actual = it.next())
@@ -109,6 +111,19 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public float calculaMetresTerra() throws ExcepcioCamping {
-        return 0;
+        float total = 0;
+        Acces actual = null;
+        Iterator<Acces> it  = accesos.iterator();
+        while(it.hasNext()){
+            actual = it.next();
+            if (actual instanceof AccesTerra){
+                total += ((AccesTerra) actual).getLongitud();
+            }
+        }
+        if(total == 0){
+            throw new ExcepcioCamping("No hi han accessos de terra");
+        }
+
+        return total;
     }
 }

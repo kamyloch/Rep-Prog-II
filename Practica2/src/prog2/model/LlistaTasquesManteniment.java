@@ -2,13 +2,14 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import static prog2.model.TascaManteniment.TipusTascaManteniment; //Enum
 import static prog2.model.TascaManteniment.TipusTascaManteniment.*; //Contingut
 
 
-public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
+public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Serializable {
     private ArrayList<TascaManteniment> llista;
 
     private boolean isInLLista(Allotjament allotjament){

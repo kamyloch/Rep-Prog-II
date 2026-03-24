@@ -1,12 +1,14 @@
 package prog2.model;
 
-class Glamping extends Casa{
+import java.io.Serializable;
+
+class Glamping extends Casa implements Serializable {
     private String material;
     private boolean casaMascotes;
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public Glamping(String nom_, String Id_,boolean estat,String iluminacio, String mida_, int numHabit_, int capacitat_, String material_, boolean casaMascotes_){
+    public Glamping(String nom_, String Id_,boolean estat,String iluminacio, float mida_, int numHabit_, int capacitat_, String material_, boolean casaMascotes_){
         super(nom_, Id_, estat,iluminacio,mida_, numHabit_, capacitat_,3,3);
         material=material_;
         casaMascotes=casaMascotes_;

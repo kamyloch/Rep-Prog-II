@@ -1,12 +1,14 @@
 package prog2.model;
 
-public class BungalowPremium extends Bungalow{
+import java.io.Serializable;
+
+public class BungalowPremium extends Bungalow implements Serializable {
     private String codiWifi;
     private boolean serveisExtra;
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public BungalowPremium(String nom_, String Id_,boolean estat, String iluminacio, String mida_, int numHabit_, int capacitat_,int places_,boolean terrassa_,boolean televisio_,boolean aireFred_,boolean serveisExtra_,String codiWifi_){
+    public BungalowPremium(String nom_, String Id_,boolean estat, String iluminacio, float mida_, int numHabit_, int capacitat_,int places_,boolean terrassa_,boolean televisio_,boolean aireFred_,boolean serveisExtra_,String codiWifi_){
         super(nom_, Id_, estat,iluminacio, mida_, numHabit_, capacitat_,places_,terrassa_,televisio_,aireFred_);
         codiWifi=codiWifi_;
         serveisExtra=serveisExtra_;

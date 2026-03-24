@@ -1,11 +1,13 @@
 package prog2.model;
 
-public class MobilHome extends Casa{
+import java.io.Serializable;
+
+public class MobilHome extends Casa implements Serializable {
     private boolean terrassaAmbBarbacoa;
     /**Constructor, getters i setters no gaire complicats
      * tenim en compte les variables extres declarades amunt*/
     //Constructor
-    public MobilHome(String nom_,String Id_,boolean estat,String iluminacio,String mida_,int numHabit_, int capacitat_,boolean terrassaAmbBarbacoa_){
+    public MobilHome(String nom_,String Id_,boolean estat,String iluminacio,float mida_,int numHabit_, int capacitat_,boolean terrassaAmbBarbacoa_){
         super(nom_, Id_,estat,iluminacio,mida_, numHabit_, capacitat_,5,3);
         terrassaAmbBarbacoa=terrassaAmbBarbacoa_;
         setEstadaMinima(5,3); //Estada segons el material

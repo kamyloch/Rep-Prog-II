@@ -1,8 +1,9 @@
 package prog2.model;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class TascaManteniment implements InTascaManteniment{
+public class TascaManteniment implements InTascaManteniment, Serializable {
 
     public static enum TipusTascaManteniment {
         Reparacio,
