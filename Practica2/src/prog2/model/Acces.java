@@ -5,7 +5,6 @@ import prog2.vista.ExcepcioCamping;
 public abstract class Acces implements InAcces{
     private String nom;
     private boolean estat;
-    private boolean accessibilitat;
     private LlistaAllotjaments accesos;
 
 
@@ -33,7 +32,7 @@ public abstract class Acces implements InAcces{
      */
     @Override
     public void tancarAcces() {
-        this.accessibilitat = false;
+        this.estat = false;
     }
 
     /**
@@ -41,7 +40,7 @@ public abstract class Acces implements InAcces{
      */
     @Override
     public void obrirAcces() {
-        this.accessibilitat =  true;
+        this.estat =  true;
     }
 
     /**

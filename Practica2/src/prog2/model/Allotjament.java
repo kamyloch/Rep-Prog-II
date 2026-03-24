@@ -75,7 +75,8 @@ public abstract class Allotjament implements InAllotjament{
      */
     @Override
     public void tancarAllotjament(TascaManteniment tasca) {
-
+        estat = false;
+        this.iluminacio = tasca.getIluminacioAllotjament();
     }
 
     @Override

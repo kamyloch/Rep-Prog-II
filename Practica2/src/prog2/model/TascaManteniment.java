@@ -124,7 +124,19 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public String getIluminacioAllotjament() {
-        return allotjament.getIluminacio();
+        String iluminacio="";
+        switch(this.tipusTasca){
+            case Reparacio, RevisioTecnica:
+                iluminacio = "50%";
+                break;
+            case Neteja:
+                iluminacio = "100%";
+                break;
+            case Desinfeccio:
+                iluminacio = "0%";
+                break;
+        }
+        return iluminacio;
     }
 
 
