@@ -19,4 +19,9 @@ public class CarreteraTerra extends AccesTerra implements Serializable {
     public boolean isAccessibilitat() {
         return true;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+", Amplada: "+amplada+"m";
+    }
 }

@@ -76,4 +76,13 @@ public abstract class Acces implements InAcces, Serializable {
     public LlistaAllotjaments getAAllotjaments() {
         return accesos;
     }
+
+
+    @Override
+    public String toString(){
+        if(estat){
+            return "Nom: "+getNom()+", Estat: obert";
+        }
+        return "Nom: "+getNom()+", Estat: tancat";
+    }
 }

@@ -24,4 +24,9 @@ public class CarreteraAsfaltada extends AccesAsfalt implements Serializable {
     public boolean isAccessibilitat() {
         return true;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+", Pes màxim: "+pesMaxim+"kg";
+    }
 }

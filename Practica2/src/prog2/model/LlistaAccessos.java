@@ -31,9 +31,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
      * Buida la llista d'accessos
      */
     @Override
-    public void buidar() {
-        accesos.clear();
-    }
+    public void buidar() { accesos.clear(); }
 
     /**
      * Itera sobre la llista d'accessos i retorna un String amb la informació de tots els accessos amb l'estat rebut per paràmetre.

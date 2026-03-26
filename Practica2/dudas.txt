@@ -5,3 +5,9 @@
 - Se puede usar el contains? (hay que cambiar el equals()?)
 
 - accesibilitat de cotxe es un atribut?
+
+
+
+hay que poner los allotjaments en el toString de acces
+hay que mirar los inputs de tipus de tasca(da error)
+hay que poner bien las excepciones del menu

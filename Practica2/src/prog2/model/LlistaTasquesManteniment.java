@@ -12,6 +12,10 @@ import static prog2.model.TascaManteniment.TipusTascaManteniment.*; //Contingut
 public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Serializable {
     private ArrayList<TascaManteniment> llista;
 
+
+    public LlistaTasquesManteniment(){
+        llista=new ArrayList<TascaManteniment>();
+    }
     private boolean isInLLista(Allotjament allotjament){
         boolean trobat = false;
         Iterator<TascaManteniment> it = llista.iterator();
@@ -49,9 +53,10 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
             throw new ExcepcioCamping("La tasca que es vol afegir no existeix");
 
         if (!isInLLista(allotjament))
-            throw new ExcepcioCamping("Aquest allotjament ja té la tasca assignada");
-
-        llista.add(new TascaManteniment(num,manteniment ,allotjament, data,dies));
+            throw new ExcepcioCamping("Aquest allotjament ja té una tasca assignada");
+        TascaManteniment tasca=new TascaManteniment(num,manteniment ,allotjament, data,dies);
+        llista.add(tasca);
+        allotjament.tancarAllotjament(tasca);
     }
 
     /**

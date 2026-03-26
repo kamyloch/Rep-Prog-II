@@ -12,7 +12,7 @@ import static prog2.vista.VistaCamping.OpcionsMenuPrincipal.*;
 public class VistaCamping {
 
     // Declarem les opcions per a referir-se a les opcions del menú principal
-    static private enum OpcionsMenuPrincipal {
+    static enum OpcionsMenuPrincipal {
         LLISTAR_ALLOTJAMENTS,
         LLISTAR_ALLOTJAMENTS_OPERATIUS,
         LLISTAR_ALLOTJAMENTS_NO_OPERATIUS,
@@ -61,40 +61,55 @@ public class VistaCamping {
 
             switch (opcio){
                 case LLISTAR_ALLOTJAMENTS:
-                    try{
-                        System.out.println(camping.llistarAllotjaments("No Operatiu"));
+                    try {
                         System.out.println(camping.llistarAllotjaments("Operatiu"));
-                    }catch (ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e) {
+                        System.out.println(e.getMessage());
+                    }try{
+                        System.out.println(camping.llistarAllotjaments("No Operatiu"));
+                    }catch (ExcepcioCamping e){
+                                System.out.println(e.getMessage());
+                    }
                     break;
                 case LLISTAR_ALLOTJAMENTS_OPERATIUS:
                     try{
                         System.out.println(camping.llistarAllotjaments("Operatiu"));
-                    }catch(ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case LLISTAR_ALLOTJAMENTS_NO_OPERATIUS:
                     try{
                         System.out.println(camping.llistarAllotjaments("No Operatiu"));
-                    }catch(ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case LLISTAR_ACCESSOS_OBERTS:
                     try{
                         System.out.println(camping.llistarAccessos("Obert"));
-                    }catch(ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case LLISTAR_ACCESSOS_TANCATS:
                     try{
                         System.out.println(camping.llistarAccessos("Tancat"));
-                    }catch(ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case LLISTAR_TASQUES:
                     try{
                         System.out.println(camping.llistarTasquesManteniment());
-                    }catch(ExcepcioCamping ignored){}
+                    }catch(ExcepcioCamping e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case AFEGIR_TASCA_MANTENIMENT:
                     try {
                         System.out.println("Introdueix el número de la tasca:");
-                        int num = sc.nextInt();
+                        int num = Integer.parseInt((sc.nextLine())); //me lo ha dicho la profe, si ponia el next int no me leia el tipo
                         System.out.println("Introdueix el tipus de tasca:");
                         String tipus = sc.nextLine();
                         System.out.println("Introdueix l'identificador de l'allotjament:");
@@ -104,7 +119,7 @@ public class VistaCamping {
                         System.out.println("Introdueix el número de dies esperats per completar la tasca:");
                         int dies = sc.nextInt();
 
-                        camping.afegirTascaManteniment(num, idAllotjament, tipus, data, dies);
+                        camping.afegirTascaManteniment(num, tipus, idAllotjament, data, dies);
                     }catch(ExcepcioCamping e){
                         System.err.println("Error al afegir la tasca de manteniment: " + e.getMessage());
                     }catch(Exception e){

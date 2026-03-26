@@ -16,4 +16,9 @@ public abstract class AccesTerra extends Acces implements Serializable {
 
     @Override
     public abstract boolean isAccessibilitat();
+
+    @Override
+    public String toString(){
+        return super.toString()+", Longitud: "+longitud;
+    }
 }
