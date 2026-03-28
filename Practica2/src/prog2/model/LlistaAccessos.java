@@ -60,7 +60,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
         String resultado = sb.toString();
 
         if (resultado.equals(""))
-            throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + estat);
+            throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + (estat? "Obert" : "Tancat"));
 
         return sb.toString();
     }
@@ -92,12 +92,13 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
         if (accesos.isEmpty())
             throw new ExcepcioCamping("La llista está buida");
-
         int total = 0;
-        Acces actual = null;
-        for(Iterator<Acces> it  = accesos.iterator(); it.hasNext();actual = it.next())
-            total += actual.isAccessibilitat()? 1:0;
+        Iterator<Acces> it = accesos.iterator();
 
+        while (it.hasNext()) {
+            Acces actual = it.next();
+            total += actual.isAccessibilitat()? 0: 1;
+        }
         return total;
     }
 

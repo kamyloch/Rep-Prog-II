@@ -65,6 +65,10 @@ public abstract class Allotjament implements InAllotjament, Serializable {
     /**
      * Modifica l'estat de l'allotjament a Operatiu i la il·luminació al 100%
      */
+    public boolean isOperatiu(){//??? el test lo nesecitaba
+        return estat;
+    }
+
     @Override
     public void obrirAllotjament() {
         estat=true;

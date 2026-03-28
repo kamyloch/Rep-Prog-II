@@ -4,6 +4,7 @@ import prog2.model.Camping;
 import prog2.model.TascaManteniment;
 
 import javax.sound.midi.Soundbank;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static prog2.vista.VistaCamping.OpcionsMenuPrincipal;
@@ -57,8 +58,16 @@ public class VistaCamping {
 
         do{
             menu.mostrarMenu();
-            opcio=menu.getOpcio(sc);
-
+            while(true){
+                try {
+                    opcio = menu.getOpcio(sc);
+                    break;
+                }
+                catch(InputMismatchException e){
+                    System.err.println("Si su plau només numeros [1-13]");
+                    sc.nextLine();
+                }
+            }
             switch (opcio){
                 case LLISTAR_ALLOTJAMENTS:
                     try {
@@ -140,9 +149,10 @@ public class VistaCamping {
                     }
                     break;
                 case CALCULAR_ACCESSOS_SENSE_VEHICLE:
+                    System.out.println("Hi han "+ camping.calculaAccessosNoAccessibles()+ " accessos sense accessibilitat amb vehicle");
                     break;
                 case CALCULAR_METRES_TERRA:
-                    System.out.println("Hi han " + camping.calculaMetresTerra() + "metres de terra al càmping.");
+                    System.out.println("Hi han " + camping.calculaMetresTerra() + " metres de terra al càmping.");
                     break;
                 case GUARDAR_CAMPING:
                     System.out.print("Introdueix la ruta del camping: ");

@@ -27,10 +27,11 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
     }
 
     private TipusTascaManteniment tascaToConst (String tipus){
+        tipus = tipus.toUpperCase();
         TipusTascaManteniment resultat = null;
         try{
-            TipusTascaManteniment manteniment = TipusTascaManteniment.valueOf(tipus);
-        }catch(IllegalArgumentException Ignore){}
+            resultat = TipusTascaManteniment.valueOf(tipus);
+        }catch(Exception ignore){}
             return resultat;
     }
     /**
@@ -52,7 +53,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
         if(manteniment == null)
             throw new ExcepcioCamping("La tasca que es vol afegir no existeix");
 
-        if (!isInLLista(allotjament))
+        if (isInLLista(allotjament))
             throw new ExcepcioCamping("Aquest allotjament ja té una tasca assignada");
         TascaManteniment tasca=new TascaManteniment(num,manteniment ,allotjament, data,dies);
         llista.add(tasca);

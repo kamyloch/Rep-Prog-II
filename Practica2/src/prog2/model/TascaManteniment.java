@@ -6,10 +6,10 @@ import java.time.LocalDate;
 public class TascaManteniment implements InTascaManteniment, Serializable {
 
     public static enum TipusTascaManteniment {
-        Reparacio,
-        Neteja,
-        RevisioTecnica,
-        Desinfeccio
+        REPARACIO,
+        NETEJA,
+        REVISIOTECNICA,
+        DESINFECCIO
     };
 
     private TipusTascaManteniment tipusTasca;
@@ -42,7 +42,7 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
      * @return TipusTascaManteniment
      */
     @Override
-    public TascaManteniment.TipusTascaManteniment getTipus() {
+    public TipusTascaManteniment getTipus() {
         return tipusTasca;
     }
 
@@ -61,7 +61,7 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
      */
     @Override
     public String getData() {
-        return data.toString().replaceAll("-","/");
+        return data.toString();
     }
 
     /**
@@ -106,7 +106,7 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
      */
     @Override
     public void setData(String data_) {
-        data = LocalDate.parse(data_);
+        data = LocalDate.parse(data_.replaceAll("/","-"));
     }
 
     /**
@@ -127,18 +127,21 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
     public String getIluminacioAllotjament() {
         String iluminacio="";
         switch(this.tipusTasca){
-            case Reparacio, RevisioTecnica:
+            case REPARACIO, REVISIOTECNICA:
                 iluminacio = "50%";
                 break;
-            case Neteja:
+            case NETEJA:
                 iluminacio = "100%";
                 break;
-            case Desinfeccio:
+            case DESINFECCIO:
                 iluminacio = "0%";
                 break;
         }
         return iluminacio;
     }
 
-
+    @Override
+    public String toString(){
+        return "Num=" + num + ", Tipus=" + getTipus().toString() + ", Allotjament=" + allotjament.getId() + ", Data=" + getData() + ", Dies=" + dies;
+    }
 }
