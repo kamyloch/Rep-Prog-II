@@ -16,6 +16,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
     public LlistaTasquesManteniment(){
         llista=new ArrayList<TascaManteniment>();
     }
+
     private boolean isInLLista(Allotjament allotjament){
         boolean trobat = false;
         Iterator<TascaManteniment> it = llista.iterator();
@@ -27,11 +28,10 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
     }
 
     private TipusTascaManteniment tascaToConst (String tipus){
-        tipus = tipus.toUpperCase();
         TipusTascaManteniment resultat = null;
         try{
             resultat = TipusTascaManteniment.valueOf(tipus);
-        }catch(Exception ignore){}
+        }catch(Exception ignored){}
             return resultat;
     }
     /**

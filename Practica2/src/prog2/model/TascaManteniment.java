@@ -6,10 +6,10 @@ import java.time.LocalDate;
 public class TascaManteniment implements InTascaManteniment, Serializable {
 
     public static enum TipusTascaManteniment {
-        REPARACIO,
-        NETEJA,
-        REVISIOTECNICA,
-        DESINFECCIO
+        Reparacio,
+        Neteja,
+        RevisioTecnica,
+        Desinfeccio
     };
 
     private TipusTascaManteniment tipusTasca;
@@ -127,13 +127,13 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
     public String getIluminacioAllotjament() {
         String iluminacio="";
         switch(this.tipusTasca){
-            case REPARACIO, REVISIOTECNICA:
+            case Reparacio, RevisioTecnica:
                 iluminacio = "50%";
                 break;
-            case NETEJA:
+            case Neteja:
                 iluminacio = "100%";
                 break;
-            case DESINFECCIO:
+            case Desinfeccio:
                 iluminacio = "0%";
                 break;
         }
@@ -142,6 +142,6 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
 
     @Override
     public String toString(){
-        return "Num=" + num + ", Tipus=" + getTipus().toString() + ", Allotjament=" + allotjament.getId() + ", Data=" + getData() + ", Dies=" + dies;
+        return "Numero:" + num + ", Tipus:" + getTipus().toString() + ", Allotjament:" + allotjament.getId() + ", Data:" + getData() + ", Dies per completar-la:" + dies;
     }
 }
