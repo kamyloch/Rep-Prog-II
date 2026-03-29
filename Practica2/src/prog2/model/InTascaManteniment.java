@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioCamping;
+
 public interface InTascaManteniment {
 
 
@@ -55,7 +57,7 @@ public interface InTascaManteniment {
      * Assigna la data de registre de la tasca.
      * @param data_ Data de la tasca.
      */
-    void setData(String data_);
+    void setData(String data_) throws ExcepcioCamping;
 
     /**
      * Assigna el nombre de dies previstos per completar la tasca.

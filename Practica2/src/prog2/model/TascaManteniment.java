@@ -1,4 +1,6 @@
 package prog2.model;
+import prog2.vista.ExcepcioCamping;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -20,7 +22,7 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
     private int dies;
 
 
-    public TascaManteniment(int num,TipusTascaManteniment tipus,Allotjament allotjament, String data,int dies){
+    public TascaManteniment(int num,TipusTascaManteniment tipus,Allotjament allotjament, String data,int dies) throws ExcepcioCamping {
         this.tipusTasca = tipus;
         this.num = num;
         this.allotjament = allotjament;
@@ -106,11 +108,11 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
      * @param data_ Data de la tasca.
      */
     @Override
-    public void setData(String data_) {
+    public void setData(String data_) throws ExcepcioCamping {
         try{
             data = LocalDate.parse(data_.replaceAll("/","-"));
         }catch(Exception e){
-            throw new ExepcioCamping("Format de data incorrecte, siusplau [aaaa-mm-dd o aaaa/mm/dd]");
+            throw new ExcepcioCamping("Format de data incorrecte, siusplau [aaaa-mm-dd o aaaa/mm/dd]");
         }
     }
 

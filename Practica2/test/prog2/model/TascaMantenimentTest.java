@@ -2,6 +2,7 @@ package prog2.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import prog2.vista.ExcepcioCamping;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,7 +14,11 @@ public class TascaMantenimentTest {
     void setUp() {
         // Suposant que Allotjament té un constructor bàsic
         allotjament = new Parcela("Allotjament Test", "ID001", true,  "100%", 50,  true);
-        tasca = new TascaManteniment(1, TascaManteniment.TipusTascaManteniment.Reparacio, allotjament, "2024-03-25", 4);
+        try {
+            tasca = new TascaManteniment(1, TascaManteniment.TipusTascaManteniment.Reparacio, allotjament, "2024-03-25", 4);
+        } catch (ExcepcioCamping e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test

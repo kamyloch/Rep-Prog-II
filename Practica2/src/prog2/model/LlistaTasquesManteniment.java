@@ -23,7 +23,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
         Iterator<TascaManteniment> it = llista.iterator();
         while(it.hasNext() && !trobat){
             TascaManteniment actual = it.next();
-            trobat = actual.equals(allotjament);
+            trobat = actual.getAllotjament().equals(allotjament);
         }
         return trobat;
     }
@@ -54,9 +54,12 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
         if(manteniment == null)
             throw new ExcepcioCamping("La tasca que es vol afegir no existeix");
 
+        TascaManteniment tasca=new TascaManteniment(num,manteniment ,allotjament, data,dies);
+        if(llista.contains(tasca))
+            throw new ExcepcioCamping("Ja existeix una tasca amb aquest numero");
+
         if (isInLLista(allotjament))
             throw new ExcepcioCamping("Aquest allotjament ja té una tasca assignada");
-        TascaManteniment tasca=new TascaManteniment(num,manteniment ,allotjament, data,dies);
         llista.add(tasca);
         allotjament.tancarAllotjament(tasca);
     }
