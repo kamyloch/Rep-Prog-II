@@ -145,4 +145,10 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
     public String toString(){
         return "Numero:" + num + ", Tipus:" + getTipus().toString() + ", Allotjament:" + allotjament.getId() + ", Data:" + getData() + ", Dies per completar-la:" + dies;
     }
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof TascaManteniment)
+            return this.num == ((TascaManteniment)obj).getNum();
+        return super.equals(obj);
+    }
 }
