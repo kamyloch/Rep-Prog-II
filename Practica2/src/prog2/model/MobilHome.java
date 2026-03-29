@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa l'allotjament de tipus Mobil-Home del camping
+ */
 public class MobilHome extends Casa implements Serializable {
     private boolean terrassaAmbBarbacoa;
     /**Constructor, getters i setters no gaire complicats

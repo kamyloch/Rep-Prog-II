@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/** Classe que implementa una llista d'allotjaments
+ */
 public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
 
     private ArrayList<Allotjament> llistaAllotjaments;
@@ -20,7 +22,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
      * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
      *
      * @param allotjament Objecte de tipus Allotjament
-     * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     *
      */
     @Override
     public void afegirAllotjament(Allotjament allotjament){

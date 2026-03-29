@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/** Classe que implementa una llista d'accessos
+ */
 public class LlistaAccessos implements InLlistaAccessos , Serializable {
     private ArrayList<Acces> accesos;
 
@@ -19,7 +21,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
      *
      * @param acc Objecte de tipus Acces.
-     * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     *
      */
     @Override
     public void afegirAcces(Acces acc)  {

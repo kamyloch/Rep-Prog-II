@@ -2,7 +2,8 @@ package prog2.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+/** Classe que representa una tasca del camping
+ */
 public class TascaManteniment implements InTascaManteniment, Serializable {
 
     public static enum TipusTascaManteniment {

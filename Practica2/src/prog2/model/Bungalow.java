@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa l'allotjament de tipus bungalow del camping
+ */
 public class Bungalow extends Casa implements Serializable {
     private boolean televisio;
     private boolean aireFred;

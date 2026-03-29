@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe abstracte que representa els allotjaments del camping
+ */
 public abstract class Allotjament implements InAllotjament, Serializable {
     private String nom;
     private String Id;
@@ -47,7 +49,15 @@ public abstract class Allotjament implements InAllotjament, Serializable {
     public String getId() {
         return Id;
     }
+
+    /** Retorna l'estat (obert o tancat)
+     * @return boolean
+     */
     public boolean getEstat() {return estat;}
+
+    /** Retorna el nivell d'iluminació
+     * @return String
+     */
     public String getIluminacio(){
         return iluminacio;
     }
@@ -55,6 +65,11 @@ public abstract class Allotjament implements InAllotjament, Serializable {
     //Mètodes
     /** Cada subclase haura de implementar correcte funcionament **/
     public abstract boolean correcteFuncionament();
+
+    /**
+     * Retorna una representació String de l'objecte
+     * @return String
+     */
     public String toString(){
         return "Nom="+getNom()+
                 ", Id="+getId()+
@@ -85,6 +100,11 @@ public abstract class Allotjament implements InAllotjament, Serializable {
         this.iluminacio = tasca.getIluminacioAllotjament();
     }
 
+    /**
+     * Retona si dos allotjaments són iguals.
+     * @param obj l'objecte a comparar.
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj){
         if (!(obj instanceof Allotjament))

@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa l'allotjament de tipus casa del camping
+ */
 public abstract class Casa extends Allotjament implements Serializable {
     private float mida;
     private int numHabit;

@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa l'allotjament de tipus parcel·la del camping
+ */
 public class Parcela extends Allotjament implements Serializable {
     private float mida;
     private boolean connexio;

@@ -4,6 +4,8 @@ import prog2.vista.ExcepcioCamping;
 
 import java.io.*;
 
+/** Classe que representa el camping i conte els allotjaments, tasques i accessos
+ */
 public class Camping implements InCamping, Serializable {
     private String nom;
     private LlistaAllotjaments llistaAllotjaments;

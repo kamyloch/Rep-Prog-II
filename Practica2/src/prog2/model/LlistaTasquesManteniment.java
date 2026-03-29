@@ -8,7 +8,8 @@ import java.util.Iterator;
 import static prog2.model.TascaManteniment.TipusTascaManteniment; //Enum
 import static prog2.model.TascaManteniment.TipusTascaManteniment.*; //Contingut
 
-
+/** Classe que implementa una llista de tasques
+ */
 public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Serializable {
     private ArrayList<TascaManteniment> llista;
 

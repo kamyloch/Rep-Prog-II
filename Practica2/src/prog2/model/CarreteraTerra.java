@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa les carreteres de terra del camping
+ */
 public class CarreteraTerra extends AccesTerra implements Serializable {
 
     private float amplada;
@@ -11,8 +13,14 @@ public class CarreteraTerra extends AccesTerra implements Serializable {
         this.amplada=amplada;
     }
 
+    /** Retorna el la amplada
+     * @return float
+     */
     public float getAmplada() {return amplada;}
 
+    /** Estableix l'amplada
+     * @param amplada l'amplada a establir
+     */
     public void setAmplada(float amplada) {this.amplada = amplada;}
 
     @Override

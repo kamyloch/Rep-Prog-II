@@ -9,5 +9,10 @@
 
 
 hay que poner los allotjaments en el toString de acces
-hay que mirar los inputs de tipus de tasca(da error)
+
 hay que poner bien las excepciones del menu
+
+
+
+
+@throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.

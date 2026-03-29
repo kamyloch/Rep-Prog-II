@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa els camins de terra del camping
+ */
 public class CamiTerra extends AccesTerra implements Serializable {
 
     public CamiTerra(String nom, boolean estat, float longitud) {

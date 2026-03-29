@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe que representa l'allotjament de tipus Glamping del camping
+ */
 class Glamping extends Casa implements Serializable {
     private String material;
     private boolean casaMascotes;

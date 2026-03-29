@@ -3,7 +3,8 @@ package prog2.model;
 import prog2.vista.ExcepcioCamping;
 
 import java.io.Serializable;
-
+/** Classe abstracte que representa els accessos del camping
+ */
 public abstract class Acces implements InAcces, Serializable {
     private String nom;
     private boolean estat;
@@ -70,14 +71,17 @@ public abstract class Acces implements InAcces, Serializable {
 
     /**
      * Retorna la llista d'allotjaments associats a l'accés
-     * @return
+     * @return LlistaAllotjaments
      */
     @Override
     public LlistaAllotjaments getAAllotjaments() {
         return accesos;
     }
 
-
+    /**
+     * Retorna una representació String de l'objecte
+     * @return String
+     */
     @Override
     public String toString(){
         if(estat){
