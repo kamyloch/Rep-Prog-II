@@ -168,7 +168,7 @@ public class VistaCamping {
                     try{
                         System.out.println("Introdueix la ruta del camping a recuperar: ");
                         camiOrigen = sc.nextLine();
-                        camping=camping.load(camiOrigen);
+                        camping=Camping.load(camiOrigen);
                     }catch(ExcepcioCamping e) {
                         System.err.println("Error al recuperar el camping: " + e.getMessage());
                     }

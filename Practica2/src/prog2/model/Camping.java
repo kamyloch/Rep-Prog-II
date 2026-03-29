@@ -161,7 +161,7 @@ public class Camping implements InCamping, Serializable {
     }
 
 
-    public Camping load(String camiOrigen) throws ExcepcioCamping {
+    public static Camping load(String camiOrigen) throws ExcepcioCamping {
         File fitxer = new File(camiOrigen);
         Camping camping=null;
         FileInputStream fin = null;
