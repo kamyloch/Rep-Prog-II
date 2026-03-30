@@ -25,8 +25,9 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
      */
     @Override
     public void afegirAcces(Acces acc)  {
-        if(!accesos.contains(acc))
-            accesos.add(acc);
+        if(accesos.contains(acc))
+            throw new ExcepcioCamping("Ja existeix un acces amb el nom: " + acc.getNom());
+        accesos.add(acc);
     }
 
     /**
@@ -64,7 +65,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
         if (resultado.equals(""))
             throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + (estat? "Obert" : "Tancat"));
 
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     /**

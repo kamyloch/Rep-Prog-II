@@ -2,6 +2,7 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import javax.smartcardio.CardException;
 import java.io.Serializable;
 /** Classe abstracte que representa els accessos del camping
  */
@@ -23,7 +24,9 @@ public abstract class Acces implements InAcces, Serializable {
      * @param allotjament
      */
     @Override
-    public void afegirAllotjament(Allotjament allotjament){
+    public void afegirAllotjament(Allotjament allotjament) {
+        if (accesos.contains(allotjament))
+            throw new ExcepcioCamping("Aquest acces ja conté un allotjament amb id " + allotjament.getId());
         accesos.afegirAllotjament(allotjament);
     }
 
@@ -84,9 +87,6 @@ public abstract class Acces implements InAcces, Serializable {
      */
     @Override
     public String toString(){
-        if(estat){
-            return "Nom: "+getNom()+", Estat: obert";
-        }
-        return "Nom: "+getNom()+", Estat: tancat";
+        return "Nom: "+getNom()+", Estat: " + (estat? "obert" : "tancat");
     }
 }

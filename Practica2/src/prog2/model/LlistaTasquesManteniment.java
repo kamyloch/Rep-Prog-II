@@ -99,7 +99,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
             TascaManteniment actual= it.next();
             llistat.append(actual.toString()).append("\n");
         }
-        return llistat.toString();
+        return llistat.toString().trim();
     }
 
     /**

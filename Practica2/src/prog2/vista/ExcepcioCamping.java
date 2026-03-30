@@ -2,13 +2,11 @@
 package prog2.vista;
 
 /**
- *
- * @author lauraigual
+ *Exepcio Camping extends de runtime, aixi no ens obliga a posar try catch en fer mètodes que llençin alguna exception "sneaky"
+ * @author Camilo i Jean
  */
-public class ExcepcioCamping extends Exception {
-
-    public ExcepcioCamping(String message) {
-        super(message);
+public class ExcepcioCamping extends RuntimeException {
+    public ExcepcioCamping(String missatge) {
+        super(missatge);
     }
-    
 }

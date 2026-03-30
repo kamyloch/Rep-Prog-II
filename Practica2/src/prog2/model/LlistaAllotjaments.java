@@ -26,8 +26,9 @@ public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
      */
     @Override
     public void afegirAllotjament(Allotjament allotjament){
-        if(!llistaAllotjaments.contains(allotjament))
-            llistaAllotjaments.add(allotjament);
+        if(llistaAllotjaments.contains(allotjament))
+            throw new ExcepcioCamping("Ja existeix un allotjament amb el ID " + allotjament.getId());
+        llistaAllotjaments.add(allotjament);
     }
 
     /**
@@ -70,7 +71,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
         if (resultado.equals(""))
             throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + estat);
 
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     /**

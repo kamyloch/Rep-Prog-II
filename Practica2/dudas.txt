@@ -1,18 +1,27 @@
 
 
 - Hay que sobreescribir el equals de allotjaments? (para el contais de llistaAllotjaments)
+   Si pq contains de arraylist usa equals internamente, asi nos ahorramos escribir un recorrido
+
 - La data de tascaManteniment lo hacemos con string o Localdate
+  Pues es mejor para el thorws de formato incorrecto en vez de usar regex
+
 - Se puede usar el contains? (hay que cambiar el equals()?)
+ Si lo usamos si, ayer puse los equals en alllotjament, acces y tasca q alguno faltaba
 
 - accesibilitat de cotxe es un atribut?
+   No lo es, es solo algo que retorna el metodo
 
 
 
 hay que poner los allotjaments en el toString de acces
+No, creo que ya quedaria demasiado largo, pero podemos poner solo los ID's sin embargo queda muy complicado pq habria que poner un metodo que aga eso en llistaAllitjaments y que pereza
 
-hay que poner bien las excepciones del menu
+hay que poner bien las excepciones del
+Ayer puse algunas mas... no se cuales falten
 
 
 
 
 @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+He hecho el metodo ExepcioCamping extends de RuntimeException pq asi no nos obliga tratar la exepcion sino que puede saltar de metodo en metodo
