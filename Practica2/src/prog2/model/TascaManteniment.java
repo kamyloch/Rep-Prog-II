@@ -112,7 +112,7 @@ public class TascaManteniment implements InTascaManteniment, Serializable {
         try{
             data = LocalDate.parse(data_.replaceAll("/","-"));
         }catch(Exception e){
-            throw new ExcepcioCamping("Format de data incorrecte, siusplau [aaaa-mm-dd o aaaa/mm/dd]");
+            throw new ExcepcioCamping("Format de data incorrecte, si us plau [aaaa-mm-dd o aaaa/mm/dd]");
         }
     }
 

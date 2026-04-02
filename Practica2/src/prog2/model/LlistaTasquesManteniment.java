@@ -89,7 +89,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment, Ser
     @Override
     public String llistarTasquesManteniment() throws ExcepcioCamping {
         if (llista.isEmpty())
-            throw new ExcepcioCamping("La llista está buida");
+            throw new ExcepcioCamping("La llista està buida");
 
         StringBuilder llistat = new StringBuilder("");
 
