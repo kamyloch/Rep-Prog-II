@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import prog2.vista.ExcepcioCamping;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static prog2.model.TascaManteniment.TipusTascaManteniment.Desinfeccio;
 import static prog2.model.TascaManteniment.TipusTascaManteniment.Neteja;
 
 class LlistaTasquesMantenimentTest {
@@ -17,19 +18,21 @@ class LlistaTasquesMantenimentTest {
     @Test
     void afegirTascaManteniment() throws ExcepcioCamping {
         Parcela parcela=new Parcela("Parcela nord","PAR1",true,"100%",20f,true);
-        llista.afegirTascaManteniment(1,"Neteja",parcela,"2026/02/04",7);
-        assertEquals("Numero:1, Tipus:" +"Neteja, Allotjament:PAR1, Data:2026-02-04, Dies per completar-la:7",llista.llistarTasquesManteniment());
+        llista.afegirTascaManteniment(1,"Desinfeccio",parcela,"2026/02/04",7);
+        assertEquals("Numero:1, Tipus:" +"Desinfeccio, Allotjament:PAR1, Data:2026-02-04, Dies per completar-la:7",llista.llistarTasquesManteniment());
+        assertEquals("0%",parcela.getIluminacio());
     }
 
     @Test
     void completarTascaManteniment() throws ExcepcioCamping{
         Parcela parcela=new Parcela("Parcela nord","PAR1",true,"100%",20f,true);
-        llista.afegirTascaManteniment(1,"Neteja",parcela,"2026/02/04",7);
-        TascaManteniment tasca=new TascaManteniment(1,Neteja,parcela,"2026/02/04",7);
+        llista.afegirTascaManteniment(1,"Desinfeccio",parcela,"2026/02/04",7);
+        TascaManteniment tasca=new TascaManteniment(1,Desinfeccio,parcela,"2026/02/04",7);
         llista.completarTascaManteniment(tasca);
 
         ExcepcioCamping excepcio =assertThrows(ExcepcioCamping.class,()->{llista.llistarTasquesManteniment();});
         assertEquals("La llista està buida",excepcio.getMessage());
+        assertEquals("100%",parcela.getIluminacio());
     }
 
     @Test

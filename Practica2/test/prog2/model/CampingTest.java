@@ -21,6 +21,7 @@ class CampingTest {
     void afegirTascaMantenimentDisponible() throws ExcepcioCamping {
         camping.afegirTascaManteniment(1,"Neteja","ALL3","2026/02/04",7);
         assertEquals("Numero:1, Tipus:" +"Neteja, Allotjament:ALL3, Data:2026-02-04, Dies per completar-la:7",camping.llistarTasquesManteniment());
+        assertEquals(2,camping.llistarAccessos("Tancat").split("\r?\n").length); //veiem quants accessos s'han llistat
     }
 
     @Test
@@ -66,6 +67,10 @@ class CampingTest {
             camping.llistarTasquesManteniment();
         });
         assertEquals("La llista està buida",excepcio.getMessage());
+        excepcio=assertThrows(ExcepcioCamping.class, () -> {
+            camping.llistarAccessos("Tancat");
+        });
+        assertEquals("No hi ha accessos amb l'estat Tancat",excepcio.getMessage());
     }
 
     @Test

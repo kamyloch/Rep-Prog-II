@@ -63,7 +63,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
         String resultado = sb.toString();
 
         if (resultado.equals(""))
-            throw new ExcepcioCamping("No hi ha allotjaments amb l'estat " + (estat? "Obert" : "Tancat"));
+            throw new ExcepcioCamping("No hi ha accessos amb l'estat " + (estat? "Obert" : "Tancat"));
 
         return sb.toString().trim();
     }
