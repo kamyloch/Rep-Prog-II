@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioCamping;
+
 /**
  * Interfície que defineix les operacions bàsiques d'un accés.
  */
@@ -8,8 +10,9 @@ public interface InAcces {
     /**
      * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
      * @param allotjament
+     * @throws ExcepcioCamping
      */
-    public void afegirAllotjament(Allotjament allotjament);
+    public void afegirAllotjament(Allotjament allotjament)throws ExcepcioCamping;
     
     /**
      * Canvia l'estat de l'accés a tancat

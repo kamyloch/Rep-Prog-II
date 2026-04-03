@@ -2,7 +2,7 @@ package prog2.model;
 
 import java.io.Serializable;
 
-/** Classe abstracte que representa els accessos d'asfalt del camping
+/** Classe abstracta que representa els accessos d'asfalt del camping
  */
 public abstract class AccesAsfalt extends Acces implements Serializable {
 

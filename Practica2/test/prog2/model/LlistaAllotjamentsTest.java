@@ -13,7 +13,7 @@ class LlistaAllotjamentsTest {
 
 
     @Test
-    void afegirAllotjament() {
+    void afegirAllotjament() throws ExcepcioCamping{
         LlistaAllotjaments llista = new LlistaAllotjaments();
         llista.afegirAllotjament(all1);
 
@@ -22,7 +22,7 @@ class LlistaAllotjamentsTest {
     }
 
     @Test
-    void llistarAllotjaments() {
+    void llistarAllotjaments() throws ExcepcioCamping{
         LlistaAllotjaments llista = new LlistaAllotjaments();
         llista.afegirAllotjament(all1);//Operatiu
         llista.afegirAllotjament(all2);//No Operatiu
@@ -34,7 +34,7 @@ class LlistaAllotjamentsTest {
     }
 
     @Test
-    void containsAllotjamentOperatiu() {
+    void containsAllotjamentOperatiu() throws ExcepcioCamping{
         LlistaAllotjaments llista = new LlistaAllotjaments();
         llista.afegirAllotjament(all1);//Operatiu
         llista.afegirAllotjament(all2);//No Operatiu

@@ -2,7 +2,7 @@ package prog2.model;
 
 import java.io.Serializable;
 
-/** Classe abstracte que representa els allotjaments del camping
+/** Classe abstracta que representa els allotjaments del camping
  */
 public abstract class Allotjament implements InAllotjament, Serializable {
     private String nom;

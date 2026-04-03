@@ -40,7 +40,7 @@ public class AccesTest {
         assertTrue(acces1.getAAllotjaments() instanceof LlistaAllotjaments);
     }
     @Test
-    void afegirAllotjament() {
+    void afegirAllotjament() throws ExcepcioCamping{
         Allotjament all = new BungalowPremium("NewBunga","ALL1",false, "0%",12,1,12,2,false,true,false,true,"wifi88888888");
         acces1.afegirAllotjament(all);
         assertTrue(acces1.getAAllotjaments().contains(all));

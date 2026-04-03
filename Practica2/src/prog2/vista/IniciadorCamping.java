@@ -1,8 +1,10 @@
 package prog2.vista;
 
-/**
+/**Classe que inicialitza el camping i executa el menu
  *
  * @author lauraigual
+ *
+ *
  */
 public class IniciadorCamping {
     

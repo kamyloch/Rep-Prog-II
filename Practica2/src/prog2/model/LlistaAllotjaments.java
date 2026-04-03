@@ -25,7 +25,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
      *
      */
     @Override
-    public void afegirAllotjament(Allotjament allotjament){
+    public void afegirAllotjament(Allotjament allotjament)throws ExcepcioCamping{
         if(llistaAllotjaments.contains(allotjament))
             throw new ExcepcioCamping("Ja existeix un allotjament amb el ID " + allotjament.getId());
         llistaAllotjaments.add(allotjament);

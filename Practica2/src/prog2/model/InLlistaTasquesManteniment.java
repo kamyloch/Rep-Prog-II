@@ -5,9 +5,11 @@ import prog2.vista.ExcepcioCamping;
 
 import java.util.ArrayList;
 
-/**
+/**Interfície que defineix les operacions bàsiques d'una llista de tasques de manteniment
  *
  * @author lauraigual
+ *
+ *
  */
 public interface InLlistaTasquesManteniment {
     

@@ -24,7 +24,7 @@ public class LlistaAccessos implements InLlistaAccessos , Serializable {
      *
      */
     @Override
-    public void afegirAcces(Acces acc)  {
+    public void afegirAcces(Acces acc) throws ExcepcioCamping {
         if(accesos.contains(acc))
             throw new ExcepcioCamping("Ja existeix un acces amb el nom: " + acc.getNom());
         accesos.add(acc);

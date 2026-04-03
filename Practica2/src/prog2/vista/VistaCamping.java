@@ -3,13 +3,14 @@ package prog2.vista;
 import prog2.model.Camping;
 import prog2.model.TascaManteniment;
 
-import javax.sound.midi.Soundbank;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static prog2.vista.VistaCamping.OpcionsMenuPrincipal;
 import static prog2.vista.VistaCamping.OpcionsMenuPrincipal.*;
 
+
+/**Classe que implementa un menu per seleccionar i executar les diferents operacions que es poden realitzar en el camping
+ * */
 public class VistaCamping {
 
     // Declarem les opcions per a referir-se a les opcions del menú principal
@@ -51,7 +52,7 @@ public class VistaCamping {
         this.camping.inicialitzaDadesCamping();
     }
     public void gestioCamping(){
-        Menu<OpcionsMenuPrincipal> menu= new Menu<>("Gestió del camping: "+ camping.getNomCamping(), OpcionsMenuPrincipal.values());
+        TascaManteniment.Menu<OpcionsMenuPrincipal> menu= new TascaManteniment.Menu<>("Gestió del camping: "+ camping.getNomCamping(), OpcionsMenuPrincipal.values());
         menu.setDescripcions(descMenuPrincipal);
         OpcionsMenuPrincipal opcio = null;
         Scanner sc = new Scanner(System.in);

@@ -13,7 +13,7 @@ class LlistaAccessosTest {
     Acces acc3 = new CamiAsfaltat("Asfalt",false, 30.2F);
 
     @Test
-    void afegirAcces() {
+    void afegirAcces() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1);
         llista.afegirAcces(acc2);
@@ -23,7 +23,7 @@ class LlistaAccessosTest {
     }
 
     @Test
-    void buidar() {
+    void buidar() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1);
         llista.afegirAcces(acc2);
@@ -37,7 +37,7 @@ class LlistaAccessosTest {
     }
 
     @Test
-    void llistarAccessos() {
+    void llistarAccessos() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1); //false
         llista.afegirAcces(acc2); //true
@@ -47,7 +47,7 @@ class LlistaAccessosTest {
     }
 
     @Test
-    void actualitzaEstatAccessos() {
+    void actualitzaEstatAccessos() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1); //false
         llista.afegirAcces(acc2); //true
@@ -57,7 +57,7 @@ class LlistaAccessosTest {
     }
 
     @Test
-    void calculaAccessosNoAccessibles() {
+    void calculaAccessosNoAccessibles() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1); //false
         llista.afegirAcces(acc2); //true
@@ -66,7 +66,7 @@ class LlistaAccessosTest {
     }
 
     @Test
-    void calculaMetresTerra() {
+    void calculaMetresTerra() throws ExcepcioCamping{
         LlistaAccessos llista = new LlistaAccessos();
         llista.afegirAcces(acc1);//20m²
         llista.afegirAcces(acc2);//10000m²
