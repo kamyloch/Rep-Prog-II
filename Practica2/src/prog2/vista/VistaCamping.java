@@ -113,7 +113,10 @@ public class VistaCamping {
                     try{
                         System.out.println(camping.llistarTasquesManteniment());
                     }catch(ExcepcioCamping e) {
-                        System.out.println(e.getMessage());
+                        if (e.getMessage().equals("La llista està buida"))
+                            System.out.println("No hi ha tasques de manteniment actives");
+                        else
+                            System.err.println(e.getMessage());
                     }
                     break;
                 case AFEGIR_TASCA_MANTENIMENT:
@@ -130,6 +133,8 @@ public class VistaCamping {
                         int dies = sc.nextInt();
 
                         camping.afegirTascaManteniment(num, tipus, idAllotjament, data, dies);
+
+                        System.out.println("Tasca num '" + num + "' registrada!");
                     }catch(ExcepcioCamping e){
                         System.err.println("Error al afegir la tasca de manteniment: " + e.getMessage());
                     }catch(Exception e){
@@ -141,6 +146,8 @@ public class VistaCamping {
                         System.out.print("Introdueix el número de la tasca a completar: ");
                         int numTasca = sc.nextInt();
                         camping.completarTascaManteniment(numTasca);
+
+                        System.out.println("Tasca num '" + numTasca + "' completada!");
 
                     }catch(ExcepcioCamping e){
                         System.err.println("Error al completar la tasca de manteniment: "+e.getMessage());
@@ -158,10 +165,15 @@ public class VistaCamping {
                 case GUARDAR_CAMPING:
                     System.out.print("Introdueix la ruta del camping: ");
                     String cami = sc.nextLine();
+                    System.out.println("  *** Camping " + camping.getNomCamping() + " desat! *** ");
+
                     try{
                         camping.save(cami);
                     }catch (ExcepcioCamping e){
                         System.err.println("Error al guardar el camping: " + e.getMessage());
+                    }
+                    catch (Exception e){
+                        System.out.println("Error: " + e.getMessage());
                     }
                     break;
                 case RECUPERAR_CAMPING:
@@ -170,8 +182,13 @@ public class VistaCamping {
                         System.out.println("Introdueix la ruta del camping a recuperar: ");
                         camiOrigen = sc.nextLine();
                         camping=Camping.load(camiOrigen);
+
+                        System.out.println("  *** Camping " + camping.getNomCamping() + " carregat! *** ");
                     }catch(ExcepcioCamping e) {
                         System.err.println("Error al recuperar el camping: " + e.getMessage());
+                    }
+                    catch (Exception e){
+                        System.out.println("Error: " + e.getMessage());
                     }
                     break;
                 case SORTIR:

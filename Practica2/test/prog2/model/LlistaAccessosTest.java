@@ -18,8 +18,8 @@ class LlistaAccessosTest {
         llista.afegirAcces(acc1);
         llista.afegirAcces(acc2);
         llista.afegirAcces(acc3);
-        //No es poden accesos duplicats (per nom)
-        assertThrows(ExcepcioCamping.class, () -> {llista.afegirAcces(acc1);});
+            //No es poden accesos duplicats (per nom)
+            assertThrows(ExcepcioCamping.class, () -> {llista.afegirAcces(acc1);});
     }
 
     @Test

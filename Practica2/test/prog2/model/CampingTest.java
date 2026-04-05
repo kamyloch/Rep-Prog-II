@@ -73,14 +73,11 @@ class CampingTest {
     }
 
     @Test
-    void save() throws ExcepcioCamping{
+    void saveAndLoad() throws ExcepcioCamping{
         camping.afegirTascaManteniment(1,"Neteja","ALL3","2026/02/04",7);
         camping.save("saved.txt");
-    }
-
-    @Test
-    void load() throws ExcepcioCamping{
         camping=Camping.load("saved.txt");
         assertEquals("Numero:1, Tipus:" +"Neteja, Allotjament:ALL3, Data:2026-02-04, Dies per completar-la:7",camping.llistarTasquesManteniment());
     }
+
 }
