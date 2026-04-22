@@ -3,19 +3,21 @@ package prog2.model;
 import prog2.vista.BiblioException;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 
 public abstract class Prestec implements InPrestec, Serializable {
     private Exemplar exemplar;
     private Usuari usuari;
-    private Date data;
+    private Date dataCreacio;
+    private Date dataLimit;
     private boolean retornat;
 
     public Prestec (Exemplar exemplar, Usuari usuari, Date data){
         setExemplar(exemplar);
+        this.exemplar.setDisponible(false);
         setUsuari(usuari);
         setDataCreacio(data);
+        setDataLimitRetorn(new Date(data.getTime()+duradaPrestec()));
     }
 
     @Override
@@ -40,22 +42,22 @@ public abstract class Prestec implements InPrestec, Serializable {
 
     @Override
     public void setDataCreacio(Date data_) {
-        data = data_;
+        dataCreacio = data_;
     }
 
     @Override
     public Date getDataCreacio() {
-        return data;
+        return dataCreacio;
     }
 
     @Override
     public void setDataLimitRetorn(Date data_) {
-        data = data_;
+        dataLimit = data_;
     }
 
     @Override
     public Date getDataLimitRetorn() {
-        return data;
+        return dataLimit;
     }
 
     @Override
@@ -79,6 +81,7 @@ public abstract class Prestec implements InPrestec, Serializable {
         if (getRetornat())
             throw new BiblioException("Es préstec ja es va retornar");
         setRetornat(true);
+        exemplar.setDisponible(true);
     }
 
     /**
