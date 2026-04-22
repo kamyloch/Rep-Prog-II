@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public class Llista<T> implements Serializable {
+public abstract class Llista<T> implements InLlista<T>, Serializable {
    protected ArrayList<T> llista;
 
    public Llista() {
@@ -20,42 +20,45 @@ public class Llista<T> implements Serializable {
      * Retornar nombre d'elements continguts a la llista
      */
     public int getSize() {
-          // TO-BE-DONE
+          return llista.size();
     }
 
     /**
      * Afegir element a la llista. Afegeix l'element t a la llista
      */
     public void afegir(T t) throws BiblioException {
-          // TO-BE-DONE
+        //Cal fer equals de Exemplar, Usuari i Prestec!!!
+        if (llista.contains(t))
+            throw new BiblioException("Ja hi ha un " + t.getClass().getSimpleName()+ " amb el mateix id");
+        llista.add(t);
     }
 
     /**
      * Esborrar element de la llista. Esborra l'element t a la llista
      */
     public void esborrar(T t) {
-          // TO-BE-DONE
+          llista.remove(t);
     }
 
     /**
      * Retornar element de la llista a la posició position
      */
     public T getAt(int position) {
-          // TO-BE-DONE
+          return llista.get(position);
     }
 
     /**
      * Buidar tots el elements de la llista
      */
     public void clear() {
-          // TO-BE-DONE
+          llista.clear();
     }
 
     /**
      * Retornar true si la llista és buida
      */
     public boolean isEmpty() {
-          // TO-BE-DONE
+          return llista.isEmpty();
     }
 
     /**
@@ -64,5 +67,11 @@ public class Llista<T> implements Serializable {
     public ArrayList<T> getArrayList() {
         ArrayList<T> arrlist = new ArrayList<>(llista);
         return arrlist;
+    }
+    /**
+     * Retornar si l'element tipus <T> és a la llista
+     */
+    public boolean contains(T t){
+        return llista.contains(t);
     }
 }

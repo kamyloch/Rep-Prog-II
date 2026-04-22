@@ -4,7 +4,7 @@ import prog2.vista.BiblioException;
 
 import java.util.ArrayList;
 
-public interface InLlista<T> {
+public interface InLlista<T>{
     /**
      * Retornar nombre d'elements continguts a la llista
      */
