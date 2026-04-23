@@ -43,7 +43,7 @@ public class BiblioUB {
                                                       "Visualitzar Exemplars",
                                                       "Sortir"};
 
-    static private enum OpcionsMenuGestioClients {
+    static private enum OpcionsMenuGestioUsuaris {
         MENU_GESTIO_USUARIS_ADD,
         MENU_GESTIO_USUARIS_VIEW,
         MENU_GESTIO_USUARIS_EXIT
@@ -122,10 +122,10 @@ public class BiblioUB {
                         } catch (BiblioException ex) {
                             System.out.println("Error guardant les dades: " + ex.getMessage());
                         }
-                    }                   
+                    }
                     break;
                 case MENU_PRINCIPAL_LOAD:
-                    // Carregar dades                   
+                    // Carregar dades
                     String srcFile = getFilePath(sc,false); // Obtenir el fitxer d'entrada
                     if(srcFile != null) {
                         // Carregar les dades del fitxer triat
@@ -135,7 +135,7 @@ public class BiblioUB {
                         } catch(BiblioException ex) {
                             System.out.println("Error carregant les dades." + ex.getMessage());
                         }
-                    }     
+                    }
                     break;
                 case MENU_PRINCIPAL_EXIT:
                     // Sortir      1
@@ -146,6 +146,38 @@ public class BiblioUB {
     }
     
     private void menuGestioExemplars(Scanner sc) {
+        // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
+        Menu<OpcionsMenuGestioExemplars> menu = new Menu<>("Menu de gestió d'exemplars", OpcionsMenuGestioExemplars.values());
+
+        // Assignem la descripció de les opcions
+        menu.setDescripcions(descMenuGestioExemplars);
+
+        OpcionsMenuGestioExemplars opcio;
+        do {
+            // Mostrem les opcions del menú i demanem una opció
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            // Fem les accions necessàries per a la opció triada
+            switch(opcio) {
+                case MENU_GESTIO_EXEMPLARS_ADD:
+                    // Afegeix un exemplar
+
+                    break;
+
+                case MENU_GESTIO_EXEMPLARS_VIEW:
+                    // Mostra els exemplars
+
+                    break;
+
+                case MENU_GESTIO_EXEMPLARS_EXIT:
+                    // Surt del menú de gestió d'exemplars
+                    System.err.println("Sortint del gestor d'exemplars");
+                    break;
+
+
+            }
+        } while(opcio != OpcionsMenuGestioExemplars.MENU_GESTIO_EXEMPLARS_EXIT);
     }
     
     /**
@@ -157,7 +189,40 @@ public class BiblioUB {
     }
 
     private void menuGestioUsuaris(Scanner sc) {
+        // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
+        Menu<OpcionsMenuGestioUsuaris> menu = new Menu<>("Menu de gestió d'usuaris", OpcionsMenuGestioUsuaris.values());
+
+        // Assignem la descripció de les opcions
+        menu.setDescripcions(descMenuGestioUsuaris);
+
+        OpcionsMenuGestioUsuaris opcio;
+        do {
+            // Mostrem les opcions del menú i demanem una opció
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            // Fem les accions necessàries per a la opció triada
+            switch(opcio) {
+                case MENU_GESTIO_USUARIS_ADD:
+                    // Afegeix un usuari
+
+                    break;
+
+                case MENU_GESTIO_USUARIS_VIEW:
+                    // Mostra els usuaris
+
+                    break;
+
+                case MENU_GESTIO_USUARIS_EXIT:
+                    // Surt del menu de gestió d'usuaris
+                    System.err.println("Sortint del gestor d'usuaris");
+                    break;
+
+
+            }
+        } while(opcio != OpcionsMenuGestioUsuaris.MENU_GESTIO_USUARIS_EXIT);
     }
+
     
     /**
      * Afegir un nou usuari
@@ -168,6 +233,44 @@ public class BiblioUB {
     }
 
     private void menuGestioPrestecs(Scanner sc) {
+        // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
+        Menu<OpcionsMenuGestioPrestecs> menu = new Menu<>("Menu de gestió de prèstecs", OpcionsMenuGestioPrestecs.values());
+
+        // Assignem la descripció de les opcions
+        menu.setDescripcions(descMenuGestioPrestecs);
+
+        OpcionsMenuGestioPrestecs opcio;
+        do {
+            // Mostrem les opcions del menú i demanem una opció
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            // Fem les accions necessàries per a la opció triada
+            switch(opcio) {
+                case  MENU_GESTIO_PRESTECS_ADD:
+                    // Afegeix un PRESTEC
+
+                    break;
+                case  MENU_GESTIO_PRESTECS_REMOVE:
+                    // Retorna un prèstec
+
+                    break;
+                case  MENU_GESTIO_PRESTECS_VIEW:
+                    // Mostra els prèstecs
+
+                    break;
+                case  MENU_GESTIO_PRESTECS_VIEW_URG:
+                    // Mostra els prèstecs no retornats
+
+                    break;
+                case MENU_GESTIO_PRESTECS_EXIT:
+                    // Surt del menú de gestió de prèstecs
+                    System.err.println("Sortint del gestor de prèstecs");
+                    break;
+
+
+            }
+        } while(opcio != OpcionsMenuGestioPrestecs.MENU_GESTIO_PRESTECS_EXIT);
     }
     
     /**
