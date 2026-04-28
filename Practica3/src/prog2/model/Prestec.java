@@ -96,7 +96,7 @@ public abstract class Prestec implements InPrestec, Serializable {
     @Override
     public boolean prestecEndarrerit() {
         Date ara = new Date();
-        return getDataCreacio().before(ara);
+        return getDataLimitRetorn().after(ara);
     }
 
     @Override

@@ -4,6 +4,7 @@ import prog2.vista.BiblioException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class Dades implements InDades, Serializable {
@@ -13,8 +14,8 @@ public class Dades implements InDades, Serializable {
     private LlistaUsuaris usuaris;
 
     public Dades (){
-        usuaris = new LlistaUsuaris<>();
-        exemplars = new LlistaExemplars<>();
+        usuaris = new LlistaUsuaris();
+        exemplars = new LlistaExemplars();
         prestecs = new LlistaPrestecs();
     }
 
@@ -63,6 +64,20 @@ public class Dades implements InDades, Serializable {
         return usuaris.getArrayList();
     }
 
+
+
+    private boolean teEndarreit(Usuari user){;
+        ArrayList<Prestec> llista = prestecs.getArrayList();
+        Iterator<Prestec> it = llista.iterator();
+
+        while(it.hasNext()){
+            Prestec p = it.next();
+            if (p.getUsuari().equals(user) && p.prestecEndarrerit())
+                return true;
+        }
+        return false;
+    }
+
     /**
      * Afegeix préstec. Ha de fer diferents comprovacions que poden llançar excepcions.
      * Quan s'afegeix el préstec, s'han de tenir en compte les posicions d'exemplar
@@ -72,9 +87,45 @@ public class Dades implements InDades, Serializable {
      * @param usuariPos
      * @param esLlarg
      */
+
     @Override
     public void afegirPrestec(int exemplarPos, int usuariPos, boolean esLlarg) throws BiblioException {
-        //Falta hacer Prestec llarg-normal
+        /*
+        •
+        • Fer un prestec d’un exemplar no disponible.
+        •
+        • */
+        Exemplar exemplar = exemplars.getAt(exemplarPos);
+        Usuari usuari = usuaris.getAt(usuariPos);
+
+        //Afegir un objecte de tipus PrestecLlarg per a un exempler que no admet prestec llargs.
+        if (esLlarg && !exemplar.getAdmetPrestecLlarg())
+            throw new BiblioException("Aquest exemplar no admet prestec llarg");
+
+        //Fer un prestec d’un exemplar no disponible.
+        if (!exemplar.isDisponible())
+            throw new  BiblioException("Aquest exemplar no està disponible");
+
+        //Fer un prestec a un usuari que té prestecs endarrerits.
+        if (teEndarreit(usuari))
+            throw new BiblioException("Aquest usuari té pestecs endarreits");
+
+        //Fer un prestec a un usuari que excedeix el seu limit de prestecs normals o prestecs llargs.
+        if (esLlarg && usuari.getNumPrestecsLlargs()==usuari.getMaxPrestecsLlargs())
+            throw new BiblioException("Aquest usuari ha arribat al màxim de prèstecs llargs");
+        if (!esLlarg && usuari.getNumPrestecsNormals()==usuari.getMaxPrestecsNormals())
+            throw new BiblioException("Aquest usuari ha arribat al màxim de prèstecs normals");
+
+        if (esLlarg){
+            prestecs.afegir(new PrestecLlarg(exemplar,usuari, new Date()));
+            usuari.setNumPrestecsLlargs(usuari.getNumPrestecsLlargs()+1);
+        }
+        else{
+            prestecs.afegir(new PrestecNormal(exemplar,usuari, new Date()));
+            usuari.setNumPrestecsNormals(usuari.getNumPrestecsNormals()+1);
+        }
+
+        exemplar.setDisponible(false);
     }
 
     /**
