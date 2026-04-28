@@ -90,11 +90,12 @@ public class Dades implements InDades, Serializable {
 
     @Override
     public void afegirPrestec(int exemplarPos, int usuariPos, boolean esLlarg) throws BiblioException {
-        /*
-        •
-        • Fer un prestec d’un exemplar no disponible.
-        •
-        • */
+        //Posicio Vàlida
+        if(exemplarPos<0 || exemplarPos>=exemplars.getSize())
+            throw new BiblioException("No existeix l'exemplar amb número "+exemplarPos);
+        if(usuariPos<0 || usuariPos>=usuaris.getSize())
+            throw new BiblioException("No existeix l'usuari amb número "+usuariPos);
+
         Exemplar exemplar = exemplars.getAt(exemplarPos);
         Usuari usuari = usuaris.getAt(usuariPos);
 
@@ -136,7 +137,9 @@ public class Dades implements InDades, Serializable {
      */
     @Override
     public void retornarPrestec(int position) throws BiblioException {
-        ((Prestec)prestecs.getAt(position)).retorna();
+        Prestec prestec = prestecs.getAt(position);
+        prestec.retorna();
+
     }
 
     /**
@@ -152,14 +155,15 @@ public class Dades implements InDades, Serializable {
      */
     @Override
     public ArrayList<Prestec> recuperaPrestecsNoRetornats() {
-        ArrayList<Prestec> noReotrn = new ArrayList<>();
-        //Quitar el for each
-        for (Prestec p : recuperaPrestecs())
-            if (p.getRetornat())
-                noReotrn.add(p);
-
-        if (noReotrn.isEmpty())
+        ArrayList<Prestec> noRetornat = new ArrayList<>();
+        Iterator<Prestec> it =prestecs.getArrayList().iterator();
+        while(it.hasNext()){
+            Prestec act=it.next();
+            if (act.getRetornat())
+                noRetornat.add(act);
+        }
+        if (noRetornat.isEmpty())
             return null;
-        return noReotrn;
+        return noRetornat;
     }
 }

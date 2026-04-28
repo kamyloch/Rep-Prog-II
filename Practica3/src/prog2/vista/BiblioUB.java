@@ -5,9 +5,11 @@
  */
 package prog2.vista;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import prog2.adaptador.Adaptador;
+import prog2.model.Usuari;
 
 /**
  *
@@ -162,11 +164,15 @@ public class BiblioUB {
             switch(opcio) {
                 case MENU_GESTIO_EXEMPLARS_ADD:
                     // Afegeix un exemplar
-
+                    afegirExemplar(sc);
                     break;
 
                 case MENU_GESTIO_EXEMPLARS_VIEW:
                     // Mostra els exemplars
+                    if(adaptador.recuperaExemplars().isEmpty())
+                        System.err.println("No hi han exemplars");
+                    else
+                        showList("Exemplars",getLines(adaptador.recuperaExemplars()));
 
                     break;
 
@@ -186,6 +192,23 @@ public class BiblioUB {
      */
     
     private void afegirExemplar(Scanner sc){
+        String id,titol,autor,llarg;
+        System.out.println("Id del llibre:");
+        id=sc.nextLine();
+        System.out.println("Títol del llibre:");
+        titol= sc.nextLine();
+        System.out.println("Autor del llibre:");
+        autor=sc.nextLine();
+        System.out.println("Admet prèstec llarg:(s/n)");
+        llarg=sc.nextLine();
+        try{
+            if(llarg.equals("s"))
+                adaptador.afegirExemplar(id,titol,autor,true);
+            else
+                adaptador.afegirExemplar(id,titol,autor,false);
+        }catch (Exception ex){
+            System.err.println("Error: " + ex.getMessage());
+        }
     }
 
     private void menuGestioUsuaris(Scanner sc) {
@@ -205,11 +228,16 @@ public class BiblioUB {
             switch(opcio) {
                 case MENU_GESTIO_USUARIS_ADD:
                     // Afegeix un usuari
+                    afegirUsuari(sc);
 
                     break;
 
                 case MENU_GESTIO_USUARIS_VIEW:
                     // Mostra els usuaris
+                    if(adaptador.recuperaUsuaris().isEmpty())
+                        System.err.println("No hi han usuaris");
+                    else
+                        showList("Usuaris",getLines(adaptador.recuperaUsuaris()));
 
                     break;
 
@@ -230,6 +258,24 @@ public class BiblioUB {
      */
     
     private void afegirUsuari(Scanner sc){
+        String correu,nom, adreca,estudiant;
+        System.out.println("Correu:");
+        correu=sc.nextLine();
+        System.out.println("Nom:");
+        nom= sc.nextLine();
+        System.out.println("Adreça:");
+        adreca =sc.nextLine();
+        System.out.println("Es professor o estuiant?:(p/e)");
+        estudiant=sc.nextLine();
+        try {
+            if(estudiant.equals("e"))
+                adaptador.afegirUsuari(correu,nom,adreca,true);
+            else
+                adaptador.afegirUsuari(correu,nom,adreca,true);
+        }
+        catch(Exception ex){
+            System.err.println("Error: " + ex.getMessage());
+        }
     }
 
     private void menuGestioPrestecs(Scanner sc) {
@@ -257,6 +303,11 @@ public class BiblioUB {
                     break;
                 case  MENU_GESTIO_PRESTECS_VIEW:
                     // Mostra els prèstecs
+                    if(adaptador.recuperaPrestecs().isEmpty())
+                        System.err.println("No hi ha prèstecs");
+                    else
+                        showList("Prèstecs",getLines(adaptador.recuperaPrestecs()));
+
 
                     break;
                 case  MENU_GESTIO_PRESTECS_VIEW_URG:
@@ -322,6 +373,12 @@ public class BiblioUB {
             }
 
         return filePath;
+    }
+    private <T> List<String> getLines (ArrayList<T> lines) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i<lines.size();i++)
+            list.add(lines.get(i).toString());
+        return list;
     }
 
 }

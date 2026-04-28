@@ -10,7 +10,7 @@ public class Professor extends Usuari implements Serializable {
 
     @Override
     public String tipusUsuari() {
-        return "Estudiant";
+        return "Professor";
     }
 
     @Override

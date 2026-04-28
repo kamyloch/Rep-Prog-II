@@ -20,7 +20,7 @@ public abstract class Usuari implements InUsuari, Serializable {
 
     @Override
     public void setEmail(String email_) {
-        email = email;
+        email = email_;
     }
 
     @Override

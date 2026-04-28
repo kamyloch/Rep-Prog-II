@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public abstract class Llista<T> implements InLlista<T>, Serializable {
+public abstract class Llista<T>implements InLlista<T>, Serializable {
    protected ArrayList<T> llista;
 
    public Llista() {
@@ -27,9 +27,7 @@ public abstract class Llista<T> implements InLlista<T>, Serializable {
      * Afegir element a la llista. Afegeix l'element t a la llista
      */
     public void afegir(T t) throws BiblioException {
-        //Cal fer equals de Exemplar, Usuari i Prestec!!!
-        if (llista.contains(t))
-            throw new BiblioException("Ja hi ha un " + t.getClass().getSimpleName()+ " amb el mateix id");
+        //Cal fer equals de Exemplar, Usuari i Prestec!!
         llista.add(t);
     }
 
@@ -74,4 +72,5 @@ public abstract class Llista<T> implements InLlista<T>, Serializable {
     public boolean contains(T t){
         return llista.contains(t);
     }
+
 }

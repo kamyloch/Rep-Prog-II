@@ -81,6 +81,10 @@ public abstract class Prestec implements InPrestec, Serializable {
         if (getRetornat())
             throw new BiblioException("Es préstec ja es va retornar");
         setRetornat(true);
+        if(tipusPrestec().equals("Llarg"))
+            usuari.setNumPrestecsLlargs(usuari.getNumPrestecsLlargs()-1);
+        else
+            usuari.setNumPrestecsNormals(usuari.getNumPrestecsNormals()-1);
         exemplar.setDisponible(true);
     }
 
@@ -96,13 +100,13 @@ public abstract class Prestec implements InPrestec, Serializable {
     @Override
     public boolean prestecEndarrerit() {
         Date ara = new Date();
-        return getDataLimitRetorn().after(ara);
+        return !getRetornat() && getDataLimitRetorn().before(ara);
     }
 
     @Override
     public String toString(){
         return "Tipus=" + tipusPrestec() +
-                ", Exemplar=" + getExemplar().getAutor() +
+                ", Exemplar=" + getExemplar().getTitol() +
                 ", Usuari=" + getUsuari().getNom() +
                 ", Data de creacio=" + getDataCreacio() +
                 ", Data límit retorn=" + getDataLimitRetorn() +

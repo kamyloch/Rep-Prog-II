@@ -1,6 +1,8 @@
 package prog2.model;
 
-public class LlistaUsuaris<Usuari> extends Llista<Usuari>{
+import prog2.vista.BiblioException;
+
+public class LlistaUsuaris extends Llista<Usuari>{
 
     public LlistaUsuaris(){
         super();
@@ -12,5 +14,9 @@ public class LlistaUsuaris<Usuari> extends Llista<Usuari>{
             throw new BiblioException("Ja hi ha un exemplar amb el mateix nom : " + user.getNom());
         else
             llista.add(user);
+    }
+
+    public boolean contains(String email){
+        return llista.contains(new Estudiant(email, "", ""));
     }
 }
