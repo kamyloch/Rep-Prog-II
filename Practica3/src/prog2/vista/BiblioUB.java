@@ -5,9 +5,8 @@
  */
 package prog2.vista;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 import prog2.adaptador.Adaptador;
 import prog2.model.Usuari;
 
@@ -229,7 +228,6 @@ public class BiblioUB {
                 case MENU_GESTIO_USUARIS_ADD:
                     // Afegeix un usuari
                     afegirUsuari(sc);
-
                     break;
 
                 case MENU_GESTIO_USUARIS_VIEW:
@@ -294,7 +292,7 @@ public class BiblioUB {
             // Fem les accions necessàries per a la opció triada
             switch(opcio) {
                 case  MENU_GESTIO_PRESTECS_ADD:
-                    // Afegeix un PRESTEC
+                    afegirPrestec(sc);
 
                     break;
                 case  MENU_GESTIO_PRESTECS_REMOVE:
@@ -328,8 +326,35 @@ public class BiblioUB {
      * Afegir un nou prestec
      * @param sc
      */
-    
+
     private void afegirPrestec(Scanner sc){
+        boolean llarg ;
+        int exemplar,usuari ;
+        try{
+            if (adaptador.recuperaExemplars().isEmpty())
+                throw new BiblioException("No hi ha exemplars");
+            if (adaptador.recuperaUsuaris().isEmpty())
+                throw new BiblioException("No hi ha usuaris");
+
+            showList("Exemplar",getLines(adaptador.recuperaExemplars()));
+            System.out.println("Index de exemplar:");
+            exemplar = sc.nextInt();
+
+            showList("Usuaris",getLines(adaptador.recuperaUsuaris()));
+            System.out.println("Index d'usuaris:");
+            usuari = sc.nextInt();
+
+            System.out.println("Es un préstec llarg? (s/n)");
+            llarg = sc.nextLine().equals("s");
+            adaptador.afegirPrestec(exemplar, usuari, llarg);
+        }
+        catch (InputMismatchException ex){
+            System.err.println("Error: Debe ser un número");
+        }
+        catch(Exception ex){
+            System.err.println("Error: " + ex.getMessage());
+        }
+
     }
 
     private void cancelarPrestec(Scanner sc){
@@ -376,8 +401,8 @@ public class BiblioUB {
     }
     private <T> List<String> getLines (ArrayList<T> lines) {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i<lines.size();i++)
-            list.add(lines.get(i).toString());
+        for (T element : lines)
+            list.add(element.toString());
         return list;
     }
 

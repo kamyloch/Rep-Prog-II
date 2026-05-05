@@ -1,6 +1,6 @@
 package prog2.vista;
 
-public class IniciadorBiblioUB {
+public class                                                                                            IniciadorBiblioUB {
 
     /**
      * @param args the command line arguments

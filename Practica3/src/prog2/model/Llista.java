@@ -26,6 +26,7 @@ public abstract class Llista<T>implements InLlista<T>, Serializable {
     /**
      * Afegir element a la llista. Afegeix l'element t a la llista
      */
+    @Override
     public void afegir(T t) throws BiblioException {
         //Cal fer equals de Exemplar, Usuari i Prestec!!
         llista.add(t);
