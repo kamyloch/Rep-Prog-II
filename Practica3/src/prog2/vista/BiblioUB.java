@@ -8,6 +8,7 @@ package prog2.vista;
 import java.util.*;
 
 import prog2.adaptador.Adaptador;
+import prog2.model.Prestec;
 import prog2.model.Usuari;
 
 /**
@@ -94,7 +95,7 @@ public class BiblioUB {
             // Mostrem les opcions del menú i demanem una opció
             menu.mostrarMenu();
             opcio = menu.getOpcio(sc);
-
+            try{
             // Fem les accions necessàries per a la opció triada
             switch(opcio) {
                 case MENU_PRINCIPAL_EXEMPLARS:
@@ -121,7 +122,7 @@ public class BiblioUB {
                              this.adaptador.guardaDades(dstFile);
                              System.err.println("Dades guardades");
                         } catch (BiblioException ex) {
-                            System.out.println("Error guardant les dades: " + ex.getMessage());
+                            System.err.println("Error guardant les dades: " + ex.getMessage());
                         }
                     }
                     break;
@@ -134,7 +135,7 @@ public class BiblioUB {
                              this.adaptador.carregaDades(srcFile);
                              System.err.println("Dades carregades");
                         } catch(BiblioException ex) {
-                            System.out.println("Error carregant les dades." + ex.getMessage());
+                            System.err.println("Error carregant les dades." + ex.getMessage());
                         }
                     }
                     break;
@@ -143,6 +144,8 @@ public class BiblioUB {
                     System.err.println("Sortint de l'aplicació...");
                     break;
             }
+            }catch (Exception e)
+            {System.out.println("Error inesperat: " + e.getMessage());}
         } while(opcio != OpcionsMenuPrincipal.MENU_PRINCIPAL_EXIT);
     }
     
@@ -296,7 +299,7 @@ public class BiblioUB {
 
                     break;
                 case  MENU_GESTIO_PRESTECS_REMOVE:
-                    // Retorna un prèstec
+                    cancelarPrestec(sc);
 
                     break;
                 case  MENU_GESTIO_PRESTECS_VIEW:
@@ -310,6 +313,10 @@ public class BiblioUB {
                     break;
                 case  MENU_GESTIO_PRESTECS_VIEW_URG:
                     // Mostra els prèstecs no retornats
+                    if(adaptador.recuperaPrestecsNoRetornats().isEmpty())
+                        System.err.println("No hi ha prèstecs no retornats");
+                    else
+                        showList("Prèstecs no retornats",getLines(adaptador.recuperaPrestecsNoRetornats()));
 
                     break;
                 case MENU_GESTIO_PRESTECS_EXIT:
@@ -343,10 +350,14 @@ public class BiblioUB {
             showList("Usuaris",getLines(adaptador.recuperaUsuaris()));
             System.out.println("Index d'usuaris:");
             usuari = sc.nextInt();
+            sc.nextLine();
 
             System.out.println("Es un préstec llarg? (s/n)");
-            llarg = sc.nextLine().equals("s");
-            adaptador.afegirPrestec(exemplar, usuari, llarg);
+            String str = sc.nextLine();
+            if (!(str.equals("s") || str.equals("n")))
+                throw new BiblioException("Ha de ser (s/n)");
+
+            adaptador.afegirPrestec(exemplar, usuari, str.equals("s"));
         }
         catch (InputMismatchException ex){
             System.err.println("Error: Ha de ser un número");
@@ -358,13 +369,22 @@ public class BiblioUB {
     }
 
     private void cancelarPrestec(Scanner sc){
+        int index;
+        ArrayList<Prestec> prestecs = adaptador.recuperaPrestecsNoRetornats();
         try{
-            if (adaptador.recuperaPrestecsNoRetornats().isEmpty())
-                throw new BiblioException("No hi ha prestecs semse retornar");
+            if (prestecs==null)
+                throw new BiblioException("No hi ha prestecs sense retornar");
 
-            showList("Prestecs no retornats",getLines(adaptador.recuperaPrestecsNoRetornats()));
+            showList("Prestecs no retornats",getLines(prestecs));
             System.out.println("Index del exemplar:");
-            exemplar = sc.nextInt();}
+            index = sc.nextInt();
+            adaptador.retornarPrestec(index);
+        }catch (InputMismatchException ex){
+            System.err.println("Error: Ha de ser un número");
+        }
+        catch(Exception ex){
+            System.err.println("Error: " + ex.getMessage());
+        }
     }
 
      /**

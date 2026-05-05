@@ -137,7 +137,7 @@ public class Dades implements InDades, Serializable {
      */
     @Override
     public void retornarPrestec(int position) throws BiblioException {
-        Prestec prestec = prestecs.getAt(position);
+        Prestec prestec = recuperaPrestecsNoRetornats().get(position);
         prestec.retorna();
 
     }
@@ -159,7 +159,7 @@ public class Dades implements InDades, Serializable {
         Iterator<Prestec> it =prestecs.getArrayList().iterator();
         while(it.hasNext()){
             Prestec act=it.next();
-            if (act.getRetornat())
+            if (!act.getRetornat())
                 noRetornat.add(act);
         }
         if (noRetornat.isEmpty())

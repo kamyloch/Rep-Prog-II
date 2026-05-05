@@ -6,7 +6,7 @@ import prog2.vista.BiblioException;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Adaptador {
+public class Adaptador implements Serializable{
     private Dades dades;
 
     public Adaptador(){
@@ -16,8 +16,7 @@ public class Adaptador {
     public void guardaDades(String camiDesti) throws BiblioException{
         File fitxer = new File(camiDesti);
 
-        FileOutputStream fout =
-                null;
+        FileOutputStream fout = null;
         ObjectOutputStream oos = null;
         try{
             fout=new FileOutputStream(fitxer);
@@ -30,7 +29,7 @@ public class Adaptador {
         catch(IOException ex){
             throw new BiblioException ("No s'ha pogut crear l'objecte per escriure al fitxer");
         }try {
-            oos.writeObject(this);
+            oos.writeObject(dades);
         }catch(IOException ex){
             throw new BiblioException("No s'ha pogut escriure al fitxer");
         }finally {
