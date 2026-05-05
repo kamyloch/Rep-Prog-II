@@ -233,7 +233,7 @@ public class BiblioUB {
                 case MENU_GESTIO_USUARIS_VIEW:
                     // Mostra els usuaris
                     if(adaptador.recuperaUsuaris().isEmpty())
-                        System.err.println("No hi han usuaris");
+                        System.err.println("No hi ha usuaris");
                     else
                         showList("Usuaris",getLines(adaptador.recuperaUsuaris()));
 
@@ -349,7 +349,7 @@ public class BiblioUB {
             adaptador.afegirPrestec(exemplar, usuari, llarg);
         }
         catch (InputMismatchException ex){
-            System.err.println("Error: Debe ser un número");
+            System.err.println("Error: Ha de ser un número");
         }
         catch(Exception ex){
             System.err.println("Error: " + ex.getMessage());
@@ -358,6 +358,13 @@ public class BiblioUB {
     }
 
     private void cancelarPrestec(Scanner sc){
+        try{
+            if (adaptador.recuperaPrestecsNoRetornats().isEmpty())
+                throw new BiblioException("No hi ha prestecs semse retornar");
+
+            showList("Prestecs no retornats",getLines(adaptador.recuperaPrestecsNoRetornats()));
+            System.out.println("Index del exemplar:");
+            exemplar = sc.nextInt();}
     }
 
      /**

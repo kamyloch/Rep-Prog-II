@@ -88,7 +88,11 @@ public class Menu<TEnum> {
         int opcioInt=-1;
         do {
             System.out.print("Entra una opcio >> ");
-            opcioInt=sc.nextInt();
+            try{
+                opcioInt=sc.nextInt();}
+            catch(Exception e) {
+                opcio=null;
+            }
             sc.nextLine();
 
             if(opcioInt>0 && opcioInt<=_llistaOpcions.length) {
