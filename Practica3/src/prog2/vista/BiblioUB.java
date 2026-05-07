@@ -272,7 +272,7 @@ public class BiblioUB {
             if(estudiant.equals("e"))
                 adaptador.afegirUsuari(correu,nom,adreca,true);
             else
-                adaptador.afegirUsuari(correu,nom,adreca,true);
+                adaptador.afegirUsuari(correu,nom,adreca,false);
         }
         catch(Exception ex){
             System.err.println("Error: " + ex.getMessage());
@@ -313,7 +313,7 @@ public class BiblioUB {
                     break;
                 case  MENU_GESTIO_PRESTECS_VIEW_URG:
                     // Mostra els prèstecs no retornats
-                    if(adaptador.recuperaPrestecsNoRetornats().isEmpty())
+                    if(adaptador.recuperaPrestecsNoRetornats()==null)
                         System.err.println("No hi ha prèstecs no retornats");
                     else
                         showList("Prèstecs no retornats",getLines(adaptador.recuperaPrestecsNoRetornats()));
