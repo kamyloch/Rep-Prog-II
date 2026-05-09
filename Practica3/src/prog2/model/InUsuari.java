@@ -1,5 +1,8 @@
 package prog2.model;
 
+/**Interficie de la classe Usuari
+ *
+ */
 public interface InUsuari {
     void setEmail(String email);
 

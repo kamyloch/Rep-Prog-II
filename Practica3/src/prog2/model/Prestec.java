@@ -5,6 +5,9 @@ import prog2.vista.BiblioException;
 import java.io.Serializable;
 import java.util.Date;
 
+/**Classe abstracta que representa un prèstec
+ *
+ */
 public abstract class Prestec implements InPrestec, Serializable {
     private Exemplar exemplar;
     private Usuari usuari;

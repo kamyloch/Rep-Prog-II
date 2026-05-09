@@ -2,6 +2,9 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Subclasse que representa un tipus d'usuari estudiant
+ *
+ */
 public class Estudiant extends Usuari implements Serializable {
 
     public Estudiant(String email_, String nom_,String adreca_){

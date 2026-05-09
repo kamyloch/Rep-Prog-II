@@ -15,6 +15,10 @@ import prog2.model.Usuari;
  *
  * @author dortiz
  */
+
+/**Classe que implementa els menús i gestiona les dades mitjançant l'adaptador
+ *
+ */
 public class BiblioUB {
     
     // Declarem les constants del menu principal

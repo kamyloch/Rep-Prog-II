@@ -4,6 +4,10 @@ import prog2.vista.BiblioException;
 
 import java.util.ArrayList;
 
+/**Interfície de la classe Llista</T>
+ *
+ * @param <T>
+ */
 public interface InLlista<T>{
     /**
      * Retornar nombre d'elements continguts a la llista

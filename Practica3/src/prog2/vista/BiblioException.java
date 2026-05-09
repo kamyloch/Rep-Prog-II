@@ -1,5 +1,8 @@
 package prog2.vista;
 
+/**Classe que representa una excepció a la biblioteca
+ *
+ */
 public class BiblioException extends RuntimeException {
     public BiblioException(String message) {
         super(message);

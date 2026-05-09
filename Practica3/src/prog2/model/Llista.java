@@ -9,7 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public abstract class Llista<T>implements InLlista<T>, Serializable {
+/** Classe genèrica que representa un llista d'objectes de tipus </T>
+ *
+ * @param <T>
+ */
+public class Llista<T> implements InLlista<T>, Serializable {
    protected ArrayList<T> llista;
 
    public Llista() {

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+/** Classe que conté totes les dades de la biblioteca
+ *
+ */
 public class Dades implements InDades, Serializable {
 
     private LlistaExemplars exemplars;

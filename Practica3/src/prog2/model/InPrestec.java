@@ -2,6 +2,9 @@ package prog2.model;
 
 import java.util.Date;
 
+/** Interfície de la classe Prestec
+ *
+ */
 public interface InPrestec {
     void setExemplar(Exemplar exemplar);
 

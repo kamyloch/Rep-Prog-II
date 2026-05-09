@@ -13,6 +13,10 @@ import prog2.vista.BiblioException;
  *
  * @author dortiz
  */
+
+/**Interfície de la classe Dades
+ *
+ */
 public interface InDades {
 
     /**

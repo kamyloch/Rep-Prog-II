@@ -1,5 +1,8 @@
 package prog2.model;
 
+/**Interfície de la classe Exemplar
+ *
+ */
 public interface InExemplar {
     void setId(String id);
 

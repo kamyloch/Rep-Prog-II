@@ -2,6 +2,9 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/** Classe abstracta que representa un usuari de la biblioteca
+ *
+ */
 public abstract class Usuari implements InUsuari, Serializable {
 
     private String email;

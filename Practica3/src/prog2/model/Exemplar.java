@@ -2,6 +2,9 @@ package prog2.model;
 
 import java.io.Serializable;
 
+/**Classe que representa un exemplar de la biblioteca
+ *
+ */
 public class Exemplar implements InExemplar, Serializable {
     private String id;
     private String titol;

@@ -3,6 +3,9 @@ package prog2.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**Subclasse de prestec que representa un tipus de prèstec llarg
+ *
+ */
 public class PrestecLlarg extends Prestec implements Serializable {
 
 

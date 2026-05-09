@@ -4,6 +4,9 @@ import prog2.vista.BiblioException;
 
 import java.util.Iterator;
 
+/** Subclasse de Llista<Exemplar> que implementa el mètode afegir
+ *
+ */
 public class LlistaExemplars extends Llista<Exemplar>{
 
     public LlistaExemplars (){

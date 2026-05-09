@@ -6,6 +6,10 @@ import prog2.vista.BiblioException;
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**Classe adaptadora que permet la interacció entre els elements del paquet vista i el paquet model
+ *
+ */
 public class Adaptador implements Serializable{
     private Dades dades;
 

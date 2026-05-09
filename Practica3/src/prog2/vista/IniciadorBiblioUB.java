@@ -1,5 +1,8 @@
 package prog2.vista;
 
+/**Classe que inicia el programa
+ *
+ */
 public class IniciadorBiblioUB {
 
     /**
