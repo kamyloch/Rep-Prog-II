@@ -140,8 +140,12 @@ public class Dades implements InDades, Serializable {
      */
     @Override
     public void retornarPrestec(int position) throws BiblioException {
-        Prestec prestec = recuperaPrestecsNoRetornats().get(position);
-        prestec.retorna();
+        try{
+            Prestec prestec = recuperaPrestecsNoRetornats().get(position);
+            prestec.retorna();
+        }catch(Exception e){
+            throw new BiblioException("La posició seleccionada no existeix");
+        }
 
     }
 

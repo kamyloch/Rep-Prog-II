@@ -4,7 +4,7 @@ import prog2.vista.BiblioException;
 
 import java.util.ArrayList;
 
-/**Interfície de la classe Llista</T>
+/**Interfície de la classe {@code Llista<T> }
  *
  * @param <T>
  */

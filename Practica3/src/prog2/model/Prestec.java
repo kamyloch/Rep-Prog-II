@@ -80,9 +80,7 @@ public abstract class Prestec implements InPrestec, Serializable {
      * Retornar prestec. Llança excepció si el prestec ja es vaig retornar
      */
     @Override
-    public void retorna() {
-        if (getRetornat())
-            throw new BiblioException("Es préstec ja es va retornar");
+    public void retorna(){
         setRetornat(true);
         if(tipusPrestec().equals("Llarg"))
             usuari.setNumPrestecsLlargs(usuari.getNumPrestecsLlargs()-1);

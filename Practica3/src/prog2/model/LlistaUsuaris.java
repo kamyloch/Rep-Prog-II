@@ -2,7 +2,7 @@ package prog2.model;
 
 import prog2.vista.BiblioException;
 
-/** Subclasse de Llista<Usuari> que implementa el mètode afegir
+/** Subclasse de {@code Llista<Usuari>} que implementa el mètode afegir
  *
  */
 public class LlistaUsuaris extends Llista<Usuari>{

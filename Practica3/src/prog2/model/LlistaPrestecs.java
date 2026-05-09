@@ -1,6 +1,6 @@
 package prog2.model;
 
-/** Subclasse de Llista<Prestec>
+/** Subclasse de {@code Llista<Prestec>}
  *
  */
 public class LlistaPrestecs extends Llista<Prestec>{

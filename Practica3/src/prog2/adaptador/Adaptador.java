@@ -17,6 +17,11 @@ public class Adaptador implements Serializable{
         dades=new Dades();
     }
 
+    /**Guarda les dades donada la direcció d'un fitxer
+     *
+     * @param camiDesti
+     * @throws BiblioException
+     */
     public void guardaDades(String camiDesti) throws BiblioException{
         File fitxer = new File(camiDesti);
 
@@ -46,6 +51,11 @@ public class Adaptador implements Serializable{
         }
     }
 
+    /**Carrega les dades donada la direcció d'un fitxer
+     *
+     * @param camiDesti
+     * @throws BiblioException
+     */
     public void carregaDades(String camiDesti) throws BiblioException {
         File fitxer = new File(camiDesti);
         FileInputStream fin = null;

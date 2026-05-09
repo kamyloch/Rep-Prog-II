@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-/** Classe genèrica que representa un llista d'objectes de tipus </T>
+/** Classe genèrica que representa un llista d'objectes de tipus {@code <T>}
  *
  * @param <T>
  */
@@ -72,7 +72,7 @@ public class Llista<T> implements InLlista<T>, Serializable {
         return arrlist;
     }
     /**
-     * Retornar si l'element tipus <T> és a la llista
+     * Retornar si l'element tipus T és a la llista
      */
     public boolean contains(T t){
         return llista.contains(t);
