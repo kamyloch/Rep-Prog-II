@@ -83,6 +83,9 @@ public class BiblioUB {
     public BiblioUB() {
         adaptador = new Adaptador();
     }
+    public BiblioUB(Adaptador init) {
+        adaptador = init;
+    }
      
     public void gestioBiblioUB() {
         // Creem un objecte per llegir des del teclat
@@ -395,6 +398,7 @@ public class BiblioUB {
             adaptador.retornarPrestec(index);
         }catch (InputMismatchException ex){
             System.err.println("Error: Ha de ser un número");
+            sc.nextLine();
         }
         catch(Exception ex){
             System.err.println("Error: " + ex.getMessage());
