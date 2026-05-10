@@ -5,7 +5,7 @@ import java.io.Serializable;
 /** Subclasse que representa un tipus d'usuari estudiant
  *
  */
-public class Estudiant extends Usuari implements Serializable {
+public class Estudiant extends Usuari {
 
     public Estudiant(String email_, String nom_,String adreca_){
         super(email_,nom_,adreca_);

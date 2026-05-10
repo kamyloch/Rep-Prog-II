@@ -6,7 +6,7 @@ import java.util.Date;
 /**Subclasse de prestec que representa un tipus de prèstec normal
  *
  */
-public class PrestecNormal extends Prestec implements Serializable {
+public class PrestecNormal extends Prestec{
 
 
     public PrestecNormal(Exemplar exemplar,Usuari usuari, Date data){
