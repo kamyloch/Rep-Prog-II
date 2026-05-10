@@ -86,7 +86,10 @@ public class BiblioUB {
     public BiblioUB(Adaptador init) {
         adaptador = init;
     }
-     
+
+    /**Gestiona la biblioteca i les seves dades mitjançant menús
+     *
+     */
     public void gestioBiblioUB() {
         // Creem un objecte per llegir des del teclat
         Scanner sc = new Scanner(System.in);
