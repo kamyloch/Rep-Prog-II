@@ -79,7 +79,12 @@ public abstract class Usuari implements InUsuari, Serializable {
 
     @Override
     public abstract  int getMaxPrestecsLlargs();
-    
+
+    /**Retorna si un usuari té el mateix email
+     *
+     * @param o   the reference object with which to compare.
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (o instanceof  Usuari)

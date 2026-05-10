@@ -19,6 +19,11 @@ public class LlistaUsuaris extends Llista<Usuari>{
             llista.add(user);
     }
 
+    /**Retorna si la llista conté un estudiant amb l'email
+     *
+     * @param email
+     * @return boolean
+     */
     public boolean contains(String email){
         return llista.contains(new Estudiant(email, "", ""));
     }

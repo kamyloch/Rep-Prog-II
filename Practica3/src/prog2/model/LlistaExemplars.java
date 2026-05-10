@@ -20,6 +20,12 @@ public class LlistaExemplars extends Llista<Exemplar>{
         else
             llista.add(exemplar);
     }
+
+    /**Retorna si la llista conté un exemplar amb aquesta id
+     *
+     * @param exemplarId
+     * @return boolean
+     */
     public boolean contains(String exemplarId){
         return llista.contains(new Exemplar(exemplarId,"","",false));
     }

@@ -60,14 +60,27 @@ public class Exemplar implements InExemplar, Serializable {
         return admetPrestecLlarg;
     }
 
+    /**Assigna si l'exemplar està disponible
+     *
+     * @param disponible_
+     */
     public void setDisponible(boolean disponible_){
         disponible = disponible_;
     }
 
+    /**Retorna si l'exemplar està disponible
+     *
+     * @return boolean
+     */
     public boolean isDisponible(){
         return disponible;
     }
 
+    /**Retorna si l'exemplar té el mateix id que un altre
+     *
+     * @param o   the reference object with which to compare.
+     * @return boolean
+     */
     @Override
     public boolean equals (Object o){
         if (o instanceof  Exemplar)
