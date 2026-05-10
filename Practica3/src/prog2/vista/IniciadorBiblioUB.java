@@ -16,7 +16,7 @@ public class IniciadorBiblioUB {
         biblioUB.gestioBiblioUB();
     }
 
-    public static Adaptador adaptadorDefault(){
+    private static Adaptador adaptadorDefault(){
         Adaptador a = new Adaptador();
         try {
             for(int i = 0; i< 10; i++){
