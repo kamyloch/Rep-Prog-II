@@ -155,7 +155,10 @@ public class BiblioUB {
                     break;
             }
             }catch (Exception e)
-            {System.out.println("Error inesperat: " + e.getMessage());}
+            {
+                System.out.println("Error inesperat: " + e.getMessage());
+                opcio = null;
+            }
         } while(opcio != OpcionsMenuPrincipal.MENU_PRINCIPAL_EXIT);
     }
     
