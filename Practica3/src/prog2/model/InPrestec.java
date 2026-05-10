@@ -89,6 +89,10 @@ public interface InPrestec {
      */
     boolean prestecEndarrerit();
 
+    /**Retorna una representació en String del prèstec
+     *
+     * @return String
+     */
     @Override
     String toString();
 }
