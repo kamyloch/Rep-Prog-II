@@ -205,10 +205,14 @@ public class BiblioUB {
         titol= sc.nextLine();
         System.out.println("Autor del llibre:");
         autor=sc.nextLine();
-        System.out.println("Admet prèstec llarg:(s/n)");
-        llarg=sc.nextLine();
+        String str = "";
+        while(!(str.equals("s") || str.equals("n"))){
+            System.out.println("Es un préstec llarg? (s/n)");
+            str = sc.nextLine();
+        }
+
         try{
-            if(llarg.equals("s"))
+            if(str.equals("s"))
                 adaptador.afegirExemplar(id,titol,autor,true);
             else
                 adaptador.afegirExemplar(id,titol,autor,false);
@@ -272,6 +276,11 @@ public class BiblioUB {
         adreca =sc.nextLine();
         System.out.println("Es professor o estuiant?:(p/e)");
         estudiant=sc.nextLine();
+        String str = "";
+        while(!(str.equals("p") || str.equals("e"))){
+            System.out.println("Es professor o estuiant?:(p/e)");
+            str = sc.nextLine();
+        }
         try {
             if(estudiant.equals("e"))
                 adaptador.afegirUsuari(correu,nom,adreca,true);
@@ -365,6 +374,7 @@ public class BiblioUB {
         }
         catch (InputMismatchException ex){
             System.err.println("Error: Ha de ser un número");
+            sc.nextLine();
         }
         catch(Exception ex){
             System.err.println("Error: " + ex.getMessage());
