@@ -1,5 +1,15 @@
 package prog2.vista;
 
+/*import org.kordamp.ikonli.swing.FontIcon;
+import org.kordamp.ikonli.remixicon.RemixIcon;
+
+// ...
+JButton button = new JButton(" GitHub");
+FontIcon githubIcon = FontIcon.of(RemixIcon.GITHUB_FILL);
+githubIcon.setIconSize(20); // Ajusta el tamaño
+button.setIcon(githubIcon);*/ // El chat me dio esto para ponerle Iconos bonitos a los botones... Se ve facil asi que me gustaria probarlo
+
+
 import javax.swing.*;
 import java.awt.*;
 
