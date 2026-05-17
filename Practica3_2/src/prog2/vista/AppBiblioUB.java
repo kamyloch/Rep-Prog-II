@@ -2,10 +2,7 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.util.Locale;
 
 import prog2.vista.ComponentsPersonalitzats.*;
 
@@ -14,6 +11,8 @@ public class AppBiblioUB extends Finestra {
     private JButton botoUsuaris;
     private JButton botoExemplars;
     private JButton botoPrestecs;
+    private JButton botoGuarda;
+    private JButton botoCarrega;
     private Adaptador adaptador;
 
     public AppBiblioUB() {
@@ -44,14 +43,23 @@ public class AppBiblioUB extends Finestra {
      */
     private void $$$setupUI$$$() {
         createUIComponents();
-        PanelMenu.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        PanelMenu.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         PanelMenu.setEnabled(false);
-        botoUsuaris.setText(" Usuaris");
-        PanelMenu.add(botoUsuaris, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoUsuaris.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/manage_user.png")));
+        botoUsuaris.setText("Usuaris");
+        PanelMenu.add(botoUsuaris, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoExemplars.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/book.png")));
         botoExemplars.setText("Exemplars");
-        PanelMenu.add(botoExemplars, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        PanelMenu.add(botoExemplars, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoPrestecs.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/list.png")));
         botoPrestecs.setText("Prestecs");
-        PanelMenu.add(botoPrestecs, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        PanelMenu.add(botoPrestecs, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoGuarda.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/save.png")));
+        botoGuarda.setText("");
+        PanelMenu.add(botoGuarda, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoCarrega.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/upload.png")));
+        botoCarrega.setText("");
+        PanelMenu.add(botoCarrega, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -67,5 +75,7 @@ public class AppBiblioUB extends Finestra {
         botoUsuaris = new Boto();
         botoExemplars = new Boto();
         botoPrestecs = new Boto();
+        botoCarrega = new Boto();
+        botoGuarda = new Boto();
     }
 }

@@ -24,15 +24,15 @@ public class ComponentsPersonalitzats {
             setBackground(Color.DARK_GRAY); //Fondo
             setForeground(Color.WHITE); // Letra
             setFocusPainted(false); //Quita la cosa fea del boton defecto
-            setHorizontalAlignment(SwingConstants.CENTER); //Centra
             setMargin(new Insets(20, 40, 20, 40)); // Aleja la letra del borde
             setFont(FONT);//:)
+            setIconTextGap(15);//Aleja la imagen del texto si hay
         }
     }
     public static class Finestra extends JFrame{
         public Finestra(){
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Mata solo la pestaña actual
-            setMinimumSize(new Dimension(500, 500));
+            setMinimumSize(new Dimension(700, 500));
             setLocationRelativeTo(null);  //Aparece en el medio
             setVisible(true);
             setBackground(COLOR_FONS);

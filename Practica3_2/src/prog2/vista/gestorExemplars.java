@@ -1,33 +1,34 @@
 package prog2.vista;
 
-import prog2.adaptador.Adaptador;
-
 import javax.swing.*;
-import java.awt.*;
+
+import prog2.adaptador.Adaptador;
 import prog2.vista.ComponentsPersonalitzats.*;
 
+import java.awt.*;
+
 public class gestorExemplars extends Finestra {
+    private JButton botoMostra;
     private JButton botoAfegir;
-    private JPanel panelExemplars;
-    private JButton botoMostrar;
     private JButton botoTornar;
+    private JPanel PanelExemplars;
 
     public gestorExemplars(Adaptador adaptador, Finestra pare) {
         super();//Preset
         $$$setupUI$$$();//Del Swing UI
-        setContentPane(panelExemplars);//Afegim el contingut
+        setContentPane(PanelExemplars);//Afegim el contingut
         setTitle("Exemplars");
-
-        botoMostrar.addActionListener(e -> {
-
-        });
-        botoAfegir.addActionListener(e -> {
-
-        });
         botoTornar.addActionListener(e -> {
             pare.setBloquejar(false);
             dispose();
         });
+    }
+
+    private void createUIComponents() {
+        PanelExemplars = new Panell();
+        botoMostra = new Boto();
+        botoAfegir = new Boto();
+        botoTornar = new Boto();
     }
 
     /**
@@ -39,26 +40,22 @@ public class gestorExemplars extends Finestra {
      */
     private void $$$setupUI$$$() {
         createUIComponents();
-        panelExemplars.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
-        botoAfegir.setText("Afegir Exemplar");
-        panelExemplars.add(botoAfegir, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        botoMostrar.setText("Mostrar Exemplars");
-        panelExemplars.add(botoMostrar, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        PanelExemplars.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        botoTornar.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/back.png")));
         botoTornar.setText("Tornar");
-        panelExemplars.add(botoTornar, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        PanelExemplars.add(botoTornar, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoAfegir.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/books.png")));
+        botoAfegir.setText("Visualitar-ne");
+        PanelExemplars.add(botoAfegir, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        botoMostra.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/add_book.png")));
+        botoMostra.setText("Afegir-ne");
+        PanelExemplars.add(botoMostra, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return panelExemplars;
-    }
-
-    private void createUIComponents() {
-        panelExemplars = new Panell();
-        botoMostrar = new Boto();
-        botoAfegir = new Boto();
-        botoTornar = new Boto();
+        return PanelExemplars;
     }
 }
