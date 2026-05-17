@@ -28,6 +28,8 @@ public class AppBiblioUB extends Finestra {
             setBloquejar(true);
         });
         botoExemplars.addActionListener(e -> {
+            new gestorExemplars(adaptador, this);
+            setBloquejar(true);
         });
         botoPrestecs.addActionListener(e -> {
         });
@@ -46,7 +48,7 @@ public class AppBiblioUB extends Finestra {
         PanelMenu.setEnabled(false);
         botoUsuaris.setText(" Usuaris");
         PanelMenu.add(botoUsuaris, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        botoExemplars.setText("\uD83D\uDCDA Exemplars");
+        botoExemplars.setText("Exemplars");
         PanelMenu.add(botoExemplars, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         botoPrestecs.setText("Prestecs");
         PanelMenu.add(botoPrestecs, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

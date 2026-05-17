@@ -23,6 +23,13 @@ public class gestorUsuaris extends Finestra {
             dispose();
         });
 
+        botoAfegir.addActionListener(e -> {
+
+        });
+        botoMostra.addActionListener(e -> {
+
+        });
+
     }
 
     /**
