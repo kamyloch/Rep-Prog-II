@@ -14,14 +14,11 @@ public class gestorExemplars extends Finestra {
     private JPanel PanelExemplars;
 
     public gestorExemplars(Adaptador adaptador, Finestra pare) {
-        super();//Preset
+        super(adaptador, pare);//Preset
         $$$setupUI$$$();//Del Swing UI
         setContentPane(PanelExemplars);//Afegim el contingut
         setTitle("Exemplars");
-        botoTornar.addActionListener(e -> {
-            pare.setBloquejar(false);
-            dispose();
-        });
+        botoTornar.addActionListener(e -> tancar());
     }
 
     private void createUIComponents() {
@@ -58,4 +55,5 @@ public class gestorExemplars extends Finestra {
     public JComponent $$$getRootComponent$$$() {
         return PanelExemplars;
     }
+
 }
