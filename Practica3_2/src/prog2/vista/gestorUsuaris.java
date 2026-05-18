@@ -23,7 +23,8 @@ public class gestorUsuaris extends Finestra {
             dispose();
         });
 
-        botoAfegir.addActionListener(e -> {
+        botoAfegir.addActionListener(e -> { new OmplirUsuari(adaptador, this);
+            setBloquejar(true);
 
         });
         botoMostra.addActionListener(e -> {
