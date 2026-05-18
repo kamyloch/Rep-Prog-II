@@ -12,13 +12,16 @@ public class gestorExemplars extends Finestra {
     private JButton botoAfegir;
     private JButton botoTornar;
     private JPanel PanelExemplars;
+    private Finestra afegirFinestra;
 
     public gestorExemplars(Adaptador adaptador, Finestra pare) {
         super(adaptador, pare);//Preset
         $$$setupUI$$$();//Del Swing UI
         setContentPane(PanelExemplars);//Afegim el contingut
+        afegirFinestra = new OmplirUsuari(adaptador, pare);
         setTitle("Exemplars");
         botoTornar.addActionListener(e -> tancar());
+        botoAfegir.addActionListener(e -> afegirFinestra.obrir());
     }
 
     private void createUIComponents() {//ss

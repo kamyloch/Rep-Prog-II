@@ -12,7 +12,7 @@ button.setIcon(githubIcon);*/ // El chat me dio esto para ponerle Iconos bonitos
 
 import prog2.adaptador.Adaptador;
 
-import javax.swing.*;/9
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

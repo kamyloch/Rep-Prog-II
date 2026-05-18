@@ -23,7 +23,8 @@ public class gestorUsuaris extends Finestra {
         botoTornar.addActionListener(e -> tancar());
         botoMostra.addActionListener(e -> llista.setListData(adaptador.recuperaUsuaris().toArray()));
 
-        botoAfegir.addActionListener(e -> { new OmplirUsuari(adaptador, this);
+        botoAfegir.addActionListener(e -> {
+            new OmplirUsuari(adaptador, this);
             setBloquejar(true);
 
         });
@@ -46,7 +47,7 @@ public class gestorUsuaris extends Finestra {
         PanelBotons.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         PanelUsuaris.add(PanelBotons, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         botoMostra.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/user_list.png")));
-        botoMostra.setText("Visualitzar-ne");
+        botoMostra.setText("Visualitzar-ne.");
         PanelBotons.add(botoMostra, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         botoAfegir.setIcon(new ImageIcon(getClass().getResource("/prog2/vista/imatges/add_user.png")));
         botoAfegir.setText("Afegir-ne");
