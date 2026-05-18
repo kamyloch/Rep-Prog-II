@@ -22,7 +22,7 @@
             </constraints>
             <properties>
               <icon value="prog2/vista/imatges/user_list.png"/>
-              <text value="Visualitzar-ne"/>
+              <text value="Visualitzar-ne."/>
             </properties>
           </component>
           <component id="812f5" class="javax.swing.JButton" binding="botoAfegir" custom-create="true">

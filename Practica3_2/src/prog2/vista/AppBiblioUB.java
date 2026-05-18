@@ -21,7 +21,7 @@ public class AppBiblioUB extends Finestra {
         super(ad, null); //Preset
         $$$setupUI$$$(); //Del Swing UI Extention
         finestraUsuaris = new gestorUsuaris(adaptador, this);
-        finestraExemplars = new gestorExemplars(adaptador, this);
+        finestraExemplars = new gestorExemplars(adaptador, this);//ss
 
         botoUsuaris.addActionListener(e -> finestraUsuaris.obrir());
         botoExemplars.addActionListener(e -> finestraExemplars.obrir());

@@ -19,7 +19,7 @@ public class gestorUsuaris extends Finestra {
         super(adaptador, pare);//Preset
         $$$setupUI$$$();//Del Swing UI
         setContentPane(PanelUsuaris);//Afegim el contingut
-        setTitle("Usuaris");
+        setTitle("Usuaris");//s
         botoTornar.addActionListener(e -> tancar());
         botoMostra.addActionListener(e -> llista.setListData(adaptador.recuperaUsuaris().toArray()));
 

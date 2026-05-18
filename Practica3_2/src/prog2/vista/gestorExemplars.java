@@ -21,7 +21,7 @@ public class gestorExemplars extends Finestra {
         botoTornar.addActionListener(e -> tancar());
     }
 
-    private void createUIComponents() {
+    private void createUIComponents() {//ss
         PanelExemplars = new Panell();
         botoMostra = new Boto();
         botoAfegir = new Boto();
