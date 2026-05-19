@@ -21,7 +21,7 @@ public class gestorPrestecs extends Finestra{
     private RetornaPrestec finestraRetornar;
 
 
-    public gestorPrestecs(Adaptador adaptador, Finestra pare) {
+    public gestorPrestecs(Adaptador adaptador, FinestraPrincipal pare) {
         super(adaptador, pare);//Preset
         setContentPane(panelGrande);//Afegim el contingut
         setTitle("Usuaris");//s

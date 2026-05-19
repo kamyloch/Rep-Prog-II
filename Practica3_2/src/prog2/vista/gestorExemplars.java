@@ -15,7 +15,7 @@ public class gestorExemplars extends Finestra {
     private OmplirExemplar afegirFinestra;
 
 
-    public gestorExemplars(Adaptador adaptador, Finestra pare) {
+    public gestorExemplars(Adaptador adaptador, FinestraPrincipal pare) {
         super(adaptador, pare);//Preset
         setContentPane(PanelExemplars);//Afegim el contingut
         setTitle("Exemplars");

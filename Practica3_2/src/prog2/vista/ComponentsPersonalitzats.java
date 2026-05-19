@@ -43,9 +43,48 @@ public class ComponentsPersonalitzats {
             setIconTextGap(15);//Aleja la imagen del texto si hay
         }
     }
-    public static class Finestra extends JFrame{
+    public static class FinestraPrincipal extends JFrame{
+        protected Adaptador adaptador;
+        public FinestraPrincipal(Adaptador adaptador){
+            this.adaptador = adaptador;
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
+            setMinimumSize(new Dimension(700, 500));
+            setLocationRelativeTo(null);  //Aparece en el medio
+            setBackground(COLOR_FONS);
+            //setIconImage(LOGO);
+            setDefaultCloseOperation(EXIT_ON_CLOSE); //Si no hay padre todo muere
+        }
+
+        public void setBloquejar(boolean bloquear) { //Gemini
+            JPanel glass = (JPanel) getGlassPane();
+            if (bloquear) {
+                glass.setVisible(true);
+                glass.addMouseListener(new java.awt.event.MouseAdapter() {});
+                glass.addKeyListener(new java.awt.event.KeyAdapter() {});
+                glass.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                glass.setBackground(new Color(0, 0, 0, 50));
+                glass.setOpaque(true);
+
+            } else {
+                glass.setVisible(false);
+                glass.setOpaque(false);
+                for (java.awt.event.MouseListener ml : glass.getMouseListeners()) glass.removeMouseListener(ml); //Neteja els escoltadors fantasma
+            }
+        }
+
+        public void obrir (){
+            setVisible(true);
+        }
+        public void tancar (){
+            dispose();
+        }
+    }
+    public static class Finestra extends JDialog{
         protected Adaptador adaptador;
         private Finestra pare;
+
+
         public Finestra(Adaptador adaptador, Finestra pare){
             this.adaptador = adaptador;
             this.pare = pare;
@@ -63,6 +102,7 @@ public class ComponentsPersonalitzats {
             else
                 setDefaultCloseOperation(EXIT_ON_CLOSE); //Si no hay padre todo muere
         }
+
         public void setBloquejar(boolean bloquear) { //Gemini
             JPanel glass = (JPanel) getGlassPane();
             if (bloquear) {

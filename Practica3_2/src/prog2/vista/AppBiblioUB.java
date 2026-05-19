@@ -6,7 +6,7 @@ import java.io.File;
 
 import prog2.vista.ComponentsPersonalitzats.*;
 
-public class AppBiblioUB extends Finestra {
+public class AppBiblioUB extends FinestraPrincipal {
     private JPanel PanelMenu;
     private JButton botoUsuaris;
     private JButton botoExemplars;
@@ -18,11 +18,11 @@ public class AppBiblioUB extends Finestra {
     private Finestra finestraPrestecs;
 
     public AppBiblioUB (){ //Constructor per defecte
-        super(new Adaptador(),null);
+        super(new Adaptador());
         go();
     }
     public AppBiblioUB(Adaptador ad) { //Constructor amb adaptador predefinit
-        super(ad, null); //Preset
+        super(ad); //Preset
         go();
 
     }

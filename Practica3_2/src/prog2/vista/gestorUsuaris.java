@@ -16,7 +16,7 @@ public class gestorUsuaris extends Finestra {
     private JScrollPane PanelLlista;
     private Finestra finestraomplir;
 
-    public gestorUsuaris(Adaptador adaptador, Finestra pare) {
+    public gestorUsuaris(Adaptador adaptador, FinestraPrincipal pare) {
         super(adaptador, pare);//Preset
         setContentPane(PanelUsuaris);//Afegim el contingut
         setTitle("Usuaris");//s
