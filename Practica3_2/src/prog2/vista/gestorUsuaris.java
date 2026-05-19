@@ -16,23 +16,18 @@ public class gestorUsuaris extends Finestra {
     private JScrollPane PanelLlista;
     private Finestra finestraomplir;
 
-    public gestorUsuaris(Adaptador adaptador, FinestraPrincipal pare) {
+    public gestorUsuaris(Adaptador adaptador, Window pare) {
         super(adaptador, pare);//Preset
         setContentPane(PanelUsuaris);//Afegim el contingut
-        setTitle("Usuaris");//s
+        setTitle("Usuaris");
 
-
+        updateLlista();
         botoTornar.addActionListener(e -> tancar());
         botoAfegir.addActionListener(e ->{
             finestraomplir = new OmplirUsuari(adaptador,this);
             finestraomplir.obrir();
         });
-    }
 
-    @Override
-    public void obrir() {
-        super.obrir();
-        updateLlista();
     }
 
     public void updateLlista(){

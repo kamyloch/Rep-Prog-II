@@ -1,7 +1,10 @@
 package prog2.vista;
 import prog2.adaptador.Adaptador;
+import prog2.model.Exemplar;
+import prog2.model.Usuari;
 import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class OmplirPrestec extends Finestra {
@@ -18,18 +21,33 @@ public class OmplirPrestec extends Finestra {
 
     public OmplirPrestec(Adaptador ad, gestorPrestecs pare){
         super(ad, pare);
+        setMinimumSize(new Dimension(1000, 500));
         setContentPane(panelGrande);
         botoTornar.addActionListener(e->tancar());
         botoAfegir.addActionListener(e->{
-        int numUsuari=usuariComboBox.getSelectedIndex();
-        int numExemplar=exemplarComboBox.getSelectedIndex();
-        boolean llarg=prestecLlargCheckBox.isSelected();
-        try{
-            adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
-        }catch(BiblioException exepcionnnn){}
-        pare.updateLlista();
-        tancar();
-        });
+            int numUsuari=usuariComboBox.getSelectedIndex();
+            int numExemplar=exemplarComboBox.getSelectedIndex();
+            boolean llarg=prestecLlargCheckBox.isSelected();
+
+            try{
+                adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
+                pare.updateLlista();
+                tancar();
+            }catch(BiblioException exepcionnnn){
+                new Missatge(this,exepcionnnn.getMessage());
+            }
+            });
+        updateLlistas();
+    }
+
+    public void updateLlistas (){
+        usuariComboBox.removeAll();
+        exemplarComboBox.removeAll();
+        for (Usuari u : adaptador.recuperaUsuaris())
+            usuariComboBox.addItem(u);
+        for (Exemplar e : adaptador.recuperaExemplars())
+            exemplarComboBox.addItem(e);
+
     }
 
 
@@ -52,7 +70,7 @@ public class OmplirPrestec extends Finestra {
         prestecLlargCheckBox = new Check();
 
         //ComboBox
-        usuariComboBox=new JComboBox<>(adaptador.recuperaUsuaris().toArray());
-        exemplarComboBox=new JComboBox<>(adaptador.recuperaExemplars().toArray());
+        usuariComboBox=new ComboCaixa();
+        exemplarComboBox=new ComboCaixa();
     }
 }

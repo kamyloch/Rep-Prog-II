@@ -34,11 +34,11 @@ public class OmplirUsuari extends Finestra {
 
             try{
                 adaptador.afegirUsuari(email,nom,adreca,professor);
-            }catch(BiblioException exc){}
-
-            pare.updateLlista();
-            tancar();
-            
+                pare.updateLlista();
+                tancar();
+            }catch(BiblioException exc){
+                new Missatge(this,exc.getMessage());
+            }
         });
     }
 

@@ -42,7 +42,7 @@
             </constraints>
             <properties>
               <horizontalAlignment value="10"/>
-              <text value="Titol:"/>
+              <text value="Nom:"/>
             </properties>
           </component>
           <component id="ed04e" class="javax.swing.JLabel" binding="adrecaLabel" custom-create="true">

@@ -2,11 +2,12 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 
 import prog2.vista.ComponentsPersonalitzats.*;
 
-public class AppBiblioUB extends FinestraPrincipal {
+public class AppBiblioUB extends JFrame {
     private JPanel PanelMenu;
     private JButton botoUsuaris;
     private JButton botoExemplars;
@@ -16,17 +17,21 @@ public class AppBiblioUB extends FinestraPrincipal {
     private Finestra finestraUsuaris;
     private Finestra finestraExemplars;
     private Finestra finestraPrestecs;
+    private Adaptador adaptador;
 
     public AppBiblioUB (){ //Constructor per defecte
-        super(new Adaptador());
+        this.adaptador = new Adaptador();
         go();
     }
     public AppBiblioUB(Adaptador ad) { //Constructor amb adaptador predefinit
-        super(ad); //Preset
+        this.adaptador = ad;//Preset
         go();
 
     }
     public void go (){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para gestionar el pare
+        setMinimumSize(new Dimension(700, 500));
+        setLocationRelativeTo(null);  //Aparece en el medio
 
         botoUsuaris.addActionListener(e ->{
             finestraUsuaris = new gestorUsuaris(adaptador, this);

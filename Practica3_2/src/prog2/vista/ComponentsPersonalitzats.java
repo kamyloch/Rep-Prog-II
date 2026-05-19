@@ -15,22 +15,17 @@ import prog2.adaptador.Adaptador;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.lang.reflect.Array;
 
 public class ComponentsPersonalitzats {
     private static Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
     private static Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
+    private static Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
     private static Color COLOR_FONS = new Color(0Xb5b5b5);
     private static Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
     private static Color COLOR_BOTO = Color.DARK_GRAY;
     private static Color COLOR_LLETRA = Color.white;
     private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
     private static Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
-    //private static Image LOGO = new ImageIcon("prog2/vista/imatges/logo.png").getImage();
 
     public static class Boto extends JButton{
         public Boto (){
@@ -43,49 +38,13 @@ public class ComponentsPersonalitzats {
             setIconTextGap(15);//Aleja la imagen del texto si hay
         }
     }
-    public static class FinestraPrincipal extends JFrame{
-        protected Adaptador adaptador;
-        public FinestraPrincipal(Adaptador adaptador){
-            this.adaptador = adaptador;
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
-            setMinimumSize(new Dimension(700, 500));
-            setLocationRelativeTo(null);  //Aparece en el medio
-            setBackground(COLOR_FONS);
-            //setIconImage(LOGO);
-            setDefaultCloseOperation(EXIT_ON_CLOSE); //Si no hay padre todo muere
-        }
-
-        public void setBloquejar(boolean bloquear) { //Gemini
-            JPanel glass = (JPanel) getGlassPane();
-            if (bloquear) {
-                glass.setVisible(true);
-                glass.addMouseListener(new java.awt.event.MouseAdapter() {});
-                glass.addKeyListener(new java.awt.event.KeyAdapter() {});
-                glass.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-                glass.setBackground(new Color(0, 0, 0, 50));
-                glass.setOpaque(true);
-
-            } else {
-                glass.setVisible(false);
-                glass.setOpaque(false);
-                for (java.awt.event.MouseListener ml : glass.getMouseListeners()) glass.removeMouseListener(ml); //Neteja els escoltadors fantasma
-            }
-        }
-
-        public void obrir (){
-            setVisible(true);
-        }
-        public void tancar (){
-            dispose();
-        }
-    }
     public static class Finestra extends JDialog{
         protected Adaptador adaptador;
-        private Finestra pare;
+        private Window pare;
 
 
-        public Finestra(Adaptador adaptador, Finestra pare){
+        public Finestra(Adaptador adaptador, Window pare){
+            super(pare, Dialog.ModalityType.APPLICATION_MODAL);
             this.adaptador = adaptador;
             this.pare = pare;
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
@@ -93,42 +52,16 @@ public class ComponentsPersonalitzats {
             setLocationRelativeTo(null);  //Aparece en el medio
             setBackground(COLOR_FONS);
             //setIconImage(LOGO);
-            if(pare != null)
-                addWindowListener(new WindowAdapter() { //desbloqueja el pare si es tanca amb X
-                    public void windowClosed(WindowEvent e) {
-                        pare.setBloquejar(false);
-                    }
-                });
-            else
-                setDefaultCloseOperation(EXIT_ON_CLOSE); //Si no hay padre todo muere
         }
 
-        public void setBloquejar(boolean bloquear) { //Gemini
-            JPanel glass = (JPanel) getGlassPane();
-            if (bloquear) {
-                glass.setVisible(true);
-                glass.addMouseListener(new java.awt.event.MouseAdapter() {});
-                glass.addKeyListener(new java.awt.event.KeyAdapter() {});
-                glass.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-                glass.setBackground(new Color(0, 0, 0, 50));
-                glass.setOpaque(true);
-
-            } else {
-                glass.setVisible(false);
-                glass.setOpaque(false);
-                for (java.awt.event.MouseListener ml : glass.getMouseListeners()) glass.removeMouseListener(ml); //Neteja els escoltadors fantasma
-            }
-        }
 
         public void obrir (){
-            if (pare != null)
-                pare.setBloquejar(true);
-            setVisible(true);
+            if (pare != null){
+                setVisible(true);
+            }
         }
         public void tancar (){
             if (pare != null){
-                pare.setBloquejar(false);
                 pare.setVisible(true);//aunque siempre es visible, lo sobrepone si esta en el fondo
             }
             dispose();
@@ -142,6 +75,7 @@ public class ComponentsPersonalitzats {
     }
     public static class Llista extends JList{
         private static String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
+        private boolean isEmpty;
         public Llista (){
             setFixedCellHeight(35); //Espai ente Items
             setSelectionBackground(COLOR_FONS_FOSC);
@@ -149,15 +83,26 @@ public class ComponentsPersonalitzats {
             setBackground(COLOR_FONS);
             setForeground(COLOR_LLETRA);
             setFont(FONT_PETITA);
+            isEmpty = true;
 
             //setBorder(BORDE_GRAN);
         }
         @Override
         public void setListData(Object[] lista) {
-            if(lista == null || lista.length == 0)
+            if(lista == null || lista.length == 0){
+                isEmpty = true;
                 super.setListData(llistaFantsama);
-            else
+            }
+            else{
+                isEmpty = false;
                 super.setListData(lista);
+            }
+        }
+        @Override
+        public boolean isSelectionEmpty(){ //por la fantasma
+            if (isEmpty)
+                return false;
+            return super.isSelectionEmpty();
         }
     }
 
@@ -193,10 +138,63 @@ public class ComponentsPersonalitzats {
             setFont(FONT);
             setBorder(BORDE_GRAN);
         }
+        public Etiqueta (String s){
+            super(s);
+            setBackground(COLOR_FONS_FOSC);
+            setForeground(COLOR_LLETRA);
+            setFont(FONT);
+            setBorder(BORDE_GRAN);
+        }
     }
 
-    public static class PanelCerca extends JPanel{
-        private Llista llista;
+    public static class ComboCaixa extends JComboBox{
+        public ComboCaixa(){
+            super();
+            setBackground(COLOR_FONS_FOSC);
+            setForeground(COLOR_LLETRA);
+            setFont(FONT_PETITONA);
+            setBorder(BORDE_GRAN);
+        }
+    }
+
+    public static class Missatge extends JDialog{
+        //Alternativa a hacer esto:
+        //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
+        private static final Dimension dim = new Dimension(400,150);
+        private static final ImageIcon WARNING = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
+        private static final ImageIcon HAPPY = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
+
+        public Missatge(Window pare, String missatge){
+            super(pare, "Error",Dialog.ModalityType.APPLICATION_MODAL);
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            setResizable(false);
+            setMinimumSize(dim);
+            Panell contingut  = new Panell();
+
+
+            //Missatge
+            Etiqueta txt = new Etiqueta(missatge);
+            txt.setFont(FONT_PETITA);
+            txt.setIcon(WARNING);
+            txt.setBackground(COLOR_FONS_FOSC);
+
+            //Boto
+            Boto boto =  new Boto();
+            boto.setText("D'acord!");
+            boto.setIcon(HAPPY);
+            boto.setFont(FONT_PETITA);
+            boto.addActionListener(e->dispose());
+
+            //Importa el orden como se añaden al Border layout
+            contingut.add(txt,BorderLayout.CENTER);
+            contingut.add(boto,BorderLayout.SOUTH);
+
+            getRootPane().setDefaultButton(boto);//Sale con enter
+            setContentPane(contingut);
+
+            setLocationRelativeTo(pare);
+            setVisible(true);
+        }
     }
 
 }

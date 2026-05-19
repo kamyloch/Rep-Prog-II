@@ -1,10 +1,11 @@
 package prog2.vista;
 
-import prog2.RetornaPrestec;
 import prog2.adaptador.Adaptador;
+import prog2.model.Exemplar;
 import prog2.vista.ComponentsPersonalitzats.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class gestorPrestecs extends Finestra{
     private JPanel panelGrande;
@@ -18,32 +19,38 @@ public class gestorPrestecs extends Finestra{
 
     //Finestras fills
     private OmplirPrestec finestraAfegir;
-    private RetornaPrestec finestraRetornar;
 
 
-    public gestorPrestecs(Adaptador adaptador, FinestraPrincipal pare) {
+    public gestorPrestecs(Adaptador adaptador, Window pare) {
         super(adaptador, pare);//Preset
         setContentPane(panelGrande);//Afegim el contingut
         setTitle("Usuaris");//s
+        updateLlista();
 
         noRetornatsCheckBox.addActionListener(e -> updateLlista());
-
         botoAfegir.addActionListener( e->{
             finestraAfegir=new OmplirPrestec(adaptador,this);
             finestraAfegir.obrir();
         });
         botoTornar.addActionListener(e -> tancar());
         botoRetornarPrestec.addActionListener(e -> {
-            finestraRetornar=new RetornaPrestec(adaptador,this);
-            finestraRetornar.obrir();
+
+
+            try{
+                if(llista.isSelectionEmpty())
+                    throw new Exception("Si us plau en tria un de la lista");
+                int seleccio = llista.getSelectedIndex();
+                if (noRetornatsCheckBox.isSelected())
+                    adaptador.retornarPrestec(seleccio);
+                else
+                    throw new RuntimeException("Activa los no retornats");
+
+                updateLlista();
+            }catch (Exception exew){
+                new Missatge(this, exew.getMessage());
+            }
         });
 
-    }
-
-    @Override
-    public void obrir() {
-        super.obrir();
-        updateLlista();
     }
 
     public void updateLlista(){

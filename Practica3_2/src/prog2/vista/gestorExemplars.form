@@ -45,7 +45,9 @@
         <children>
           <component id="994e6" class="javax.swing.JList" binding="llista" custom-create="true">
             <constraints/>
-            <properties/>
+            <properties>
+              <model/>
+            </properties>
           </component>
         </children>
       </scrollpane>

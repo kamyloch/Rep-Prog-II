@@ -34,22 +34,16 @@ public class OmplirExemplar extends Finestra {
 
             try{
                 adaptador.afegirExemplar(id,titol,autor,admetLlarg);
+                pare.updateLlista();
+                tancar();
             }catch(BiblioException exc){
-                JDialog error =  new JDialog();
-                error.setTitle(exc.getMessage());
-                error.setVisible(true);
-
+                new Missatge(this, exc.getMessage());
             }
-            pare.updateLlista();
-            tancar();
-
         });
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-
-
         botoTornar = new Boto();
         botoAfegir = new Boto();
         llargCheckBox = new Check();
