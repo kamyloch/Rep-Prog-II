@@ -45,7 +45,25 @@ public class OmplirExemplar extends Finestra {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+
+
         botoTornar = new Boto();
         botoAfegir = new Boto();
+        llargCheckBox = new Check();
+
+        //Camps de Text
+        titolTextField = new CampText();
+        autoTextField = new CampText();
+        IdTextField = new CampText();
+
+        //Panells
+        panelGrande = new Panell();
+        panelInferior = new Panell();
+        panelSuperior = new Panell();
+
+        //Labels
+        autorLabel = new Etiqueta();
+        idLabel = new Etiqueta();
+        titolLabel = new Etiqueta();
     }
 }

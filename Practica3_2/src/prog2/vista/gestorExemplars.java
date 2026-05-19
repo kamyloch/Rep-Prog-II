@@ -40,6 +40,8 @@ public class gestorExemplars extends Finestra {
         PanelExemplars = new Panell();
         botoAfegir = new Boto();
         botoTornar = new Boto();
+        llista = new Llista();
+        panelBotons = new Panell();
     }
 
 }

@@ -15,6 +15,9 @@ public class OmplirUsuari extends Finestra {
     private JPanel panellAT;
     private JTextField emailTextField;
     private JCheckBox professorCheckBox;
+    private JLabel nomLabel;
+    private JLabel adrecaLabel;
+    private JLabel emailLabel;
 
     public OmplirUsuari(Adaptador adaptador, gestorUsuaris pare) {
         super(adaptador, pare);
@@ -42,10 +45,23 @@ public class OmplirUsuari extends Finestra {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        //Botones
         afegirButton = new Boto();
         tornarButton = new Boto();
+        //Paneles
         PanellOmplirUs = new Panell();
         panellAT = new Panell();
         panellDades = new Panell();
+        //CheckBox
+        professorCheckBox = new Check();
+        //Area de text
+        nomTextField = new CampText();
+        adrecaTextField = new CampText();
+        emailTextField = new CampText();
+
+        //Labels
+        nomLabel = new Etiqueta();
+        emailLabel = new Etiqueta();
+        adrecaLabel = new Etiqueta();
     }
 }

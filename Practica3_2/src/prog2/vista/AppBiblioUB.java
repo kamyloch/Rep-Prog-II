@@ -2,7 +2,6 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 
 import prog2.vista.ComponentsPersonalitzats.*;
@@ -16,14 +15,25 @@ public class AppBiblioUB extends Finestra {
     private JButton botoCarrega;
     private Finestra finestraUsuaris;
     private Finestra finestraExemplars;
+    private Finestra finestraPrestecs;
 
-    public AppBiblioUB(Adaptador ad) {
+    public AppBiblioUB (){ //Constructor per defecte
+        super(new Adaptador(),null);
+        go();
+    }
+    public AppBiblioUB(Adaptador ad) { //Constructor amb adaptador predefinit
         super(ad, null); //Preset
+        go();
+
+    }
+    public void go (){
         finestraUsuaris = new gestorUsuaris(adaptador, this);
-        finestraExemplars = new gestorExemplars(adaptador, this);//ss
+        finestraExemplars = new gestorExemplars(adaptador, this);
+        finestraPrestecs = new gestorPrestecs(adaptador, this);
 
         botoUsuaris.addActionListener(e -> finestraUsuaris.obrir());
         botoExemplars.addActionListener(e -> finestraExemplars.obrir());
+        botoPrestecs.addActionListener(e -> finestraPrestecs.obrir());
         botoCarrega.addActionListener(e -> { //MateixCodi de la part 1
             String srcFile = demanaPath(false); // Obtenir el fitxer d'entrada
             if (srcFile != null) {
