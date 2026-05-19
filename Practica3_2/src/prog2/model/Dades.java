@@ -169,8 +169,6 @@ public class Dades implements InDades, Serializable {
             if (!act.getRetornat())
                 noRetornat.add(act);
         }
-        if (noRetornat.isEmpty())
-            return null;
         return noRetornat;
     }
 }

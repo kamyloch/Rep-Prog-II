@@ -35,6 +35,9 @@ public class OmplirExemplar extends Finestra {
             try{
                 adaptador.afegirExemplar(id,titol,autor,admetLlarg);
             }catch(BiblioException exc){
+                JDialog error =  new JDialog();
+                error.setTitle(exc.getMessage());
+                error.setVisible(true);
 
             }
             pare.updateLlista();

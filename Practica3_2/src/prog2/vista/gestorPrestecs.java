@@ -11,18 +11,22 @@ public class gestorPrestecs extends Finestra{
     private JButton botoRetornarPrestec;
     private JButton botoTornar;
     private JList llista;
-    private JCheckBox retornatsCheckBox;
+    private JCheckBox noRetornatsCheckBox;
     private JPanel panelInferior;
     private JPanel panelSuperior;
+
+    //Finestras fills
 
 
     public gestorPrestecs(Adaptador adaptador, Finestra pare) {
         super(adaptador, pare);//Preset
         setContentPane(panelGrande);//Afegim el contingut
         setTitle("Usuaris");//s
-        retornatsCheckBox.addActionListener(e -> updateLlista());
-        botoTornar.addActionListener(e -> tancar());
 
+        noRetornatsCheckBox.addActionListener(e -> updateLlista());
+
+        botoAfegir.addActionListener( e-> new OmplirPrestec(adaptador,this).obrir());
+        botoTornar.addActionListener(e -> tancar());
         botoRetornarPrestec.addActionListener(e -> tancar());
 
     }
@@ -34,7 +38,7 @@ public class gestorPrestecs extends Finestra{
     }
 
     public void updateLlista(){
-        if (retornatsCheckBox.isSelected())
+        if (noRetornatsCheckBox.isSelected())
             llista.setListData(adaptador.recuperaPrestecsNoRetornats().toArray());
         else
             llista.setListData(adaptador.recuperaPrestecs().toArray());
@@ -43,10 +47,20 @@ public class gestorPrestecs extends Finestra{
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        //Botos
         botoAfegir = new Boto();
         botoTornar = new Boto();
         botoRetornarPrestec = new Boto();
+
+        //Llista
         llista = new Llista();
-        retornatsCheckBox = new Check();
+
+        //Check
+        noRetornatsCheckBox = new Check();
+
+        //Paneles
+        panelGrande = new Panell();
+        panelInferior  = new Panell();
+        panelSuperior = new Panell();
     }
 }

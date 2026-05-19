@@ -17,6 +17,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.lang.reflect.Array;
 
 public class ComponentsPersonalitzats {
     private static Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
@@ -84,8 +87,10 @@ public class ComponentsPersonalitzats {
             setVisible(true);
         }
         public void tancar (){
-            if (pare != null)
+            if (pare != null){
                 pare.setBloquejar(false);
+                pare.setVisible(true);//aunque siempre es visible, lo sobrepone si esta en el fondo
+            }
             dispose();
         }
     }
@@ -96,6 +101,7 @@ public class ComponentsPersonalitzats {
         }
     }
     public static class Llista extends JList{
+        private static String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
         public Llista (){
             setFixedCellHeight(35); //Espai ente Items
             setSelectionBackground(COLOR_FONS_FOSC);
@@ -103,20 +109,30 @@ public class ComponentsPersonalitzats {
             setBackground(COLOR_FONS);
             setForeground(COLOR_LLETRA);
             setFont(FONT_PETITA);
-            //setBorder(BORDE_GRAN);
-            setMaximumSize(new Dimension(400,800));
 
+            //setBorder(BORDE_GRAN);
+        }
+        @Override
+        public void setListData(Object[] lista) {
+            if(lista == null || lista.length == 0)
+                super.setListData(llistaFantsama);
+            else
+                super.setListData(lista);
         }
     }
 
     public static class Check extends JCheckBox{
+        private static final ImageIcon CHECK_ON = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_on.png"));
+        private static final ImageIcon CHECK_OFF = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_off.png"));
         public Check(){
             setFont(FONT);
             setBackground(COLOR_FONS_FOSC);
             setForeground(COLOR_LLETRA);
             setBorder(BORDE_PETIT);
             setFocusPainted(false);//Seleccion por defecto
-            addActionListener(e-> System.err.println("chek\n\n"));
+
+            setSelectedIcon(CHECK_ON);
+            setIcon(CHECK_OFF);
 
         }
     }
@@ -136,7 +152,6 @@ public class ComponentsPersonalitzats {
             setForeground(COLOR_LLETRA);
             setFont(FONT);
             setBorder(BORDE_GRAN);
-
         }
     }
 
