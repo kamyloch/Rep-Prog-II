@@ -13,6 +13,7 @@ public class main {
                 a.afegirExemplar("Id"+i,"Tit"+i,"Aut"+i,i%2 == 0);
                 a.afegirUsuari("Mail"+i,"Nom"+i,"Adr"+i,i%2 ==0);
             }
+            a.afegirPrestec(1,1,false);
         }
         catch (Exception e){
             System.err.println("Error inesperat:" + e.getMessage());

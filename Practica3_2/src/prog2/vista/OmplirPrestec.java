@@ -2,11 +2,12 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class OmplirPrestec extends Finestra {
     private JPanel panelGrande;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox usuariComboBox;
+    private JComboBox exemplarComboBox;
     private JCheckBox prestecLlargCheckBox;
     private JButton botoAfegir;
     private JButton botoTornar;
@@ -19,7 +20,18 @@ public class OmplirPrestec extends Finestra {
         super(ad, pare);
         setContentPane(panelGrande);
         botoTornar.addActionListener(e->tancar());
+        botoAfegir.addActionListener(e->{
+        int numUsuari=usuariComboBox.getSelectedIndex();
+        int numExemplar=exemplarComboBox.getSelectedIndex();
+        boolean llarg=prestecLlargCheckBox.isSelected();
+        try{
+            adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
+        }catch(BiblioException exepcionnnn){}
+        pare.updateLlista();
+        tancar();
+        });
     }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -38,5 +50,9 @@ public class OmplirPrestec extends Finestra {
 
         //Chek
         prestecLlargCheckBox = new Check();
+
+        //ComboBox
+        usuariComboBox=new JComboBox<>(adaptador.recuperaUsuaris().toArray());
+        exemplarComboBox=new JComboBox<>(adaptador.recuperaExemplars().toArray());
     }
 }

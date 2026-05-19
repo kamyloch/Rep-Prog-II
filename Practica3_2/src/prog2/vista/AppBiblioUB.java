@@ -27,13 +27,19 @@ public class AppBiblioUB extends Finestra {
 
     }
     public void go (){
-        finestraUsuaris = new gestorUsuaris(adaptador, this);
-        finestraExemplars = new gestorExemplars(adaptador, this);
-        finestraPrestecs = new gestorPrestecs(adaptador, this);
 
-        botoUsuaris.addActionListener(e -> finestraUsuaris.obrir());
-        botoExemplars.addActionListener(e -> finestraExemplars.obrir());
-        botoPrestecs.addActionListener(e -> finestraPrestecs.obrir());
+        botoUsuaris.addActionListener(e ->{
+            finestraUsuaris = new gestorUsuaris(adaptador, this);
+            finestraUsuaris.obrir();
+        });
+        botoExemplars.addActionListener(e -> {
+            finestraExemplars = new gestorExemplars(adaptador, this);
+            finestraExemplars.obrir();
+        });
+        botoPrestecs.addActionListener(e -> {
+            finestraPrestecs = new gestorPrestecs(adaptador, this);
+            finestraPrestecs.obrir();
+        });
         botoCarrega.addActionListener(e -> { //MateixCodi de la part 1
             String srcFile = demanaPath(false); // Obtenir el fitxer d'entrada
             if (srcFile != null) {

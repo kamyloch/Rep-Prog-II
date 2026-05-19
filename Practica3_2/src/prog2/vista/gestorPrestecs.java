@@ -1,5 +1,6 @@
 package prog2.vista;
 
+import prog2.RetornaPrestec;
 import prog2.adaptador.Adaptador;
 import prog2.vista.ComponentsPersonalitzats.*;
 
@@ -16,6 +17,8 @@ public class gestorPrestecs extends Finestra{
     private JPanel panelSuperior;
 
     //Finestras fills
+    private OmplirPrestec finestraAfegir;
+    private RetornaPrestec finestraRetornar;
 
 
     public gestorPrestecs(Adaptador adaptador, Finestra pare) {
@@ -25,9 +28,15 @@ public class gestorPrestecs extends Finestra{
 
         noRetornatsCheckBox.addActionListener(e -> updateLlista());
 
-        botoAfegir.addActionListener( e-> new OmplirPrestec(adaptador,this).obrir());
+        botoAfegir.addActionListener( e->{
+            finestraAfegir=new OmplirPrestec(adaptador,this);
+            finestraAfegir.obrir();
+        });
         botoTornar.addActionListener(e -> tancar());
-        botoRetornarPrestec.addActionListener(e -> tancar());
+        botoRetornarPrestec.addActionListener(e -> {
+            finestraRetornar=new RetornaPrestec(adaptador,this);
+            finestraRetornar.obrir();
+        });
 
     }
 
