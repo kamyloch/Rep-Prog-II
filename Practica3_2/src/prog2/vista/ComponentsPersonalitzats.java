@@ -73,18 +73,14 @@ public class ComponentsPersonalitzats {
         }
 
         public void obrir (){
-            if (pare != null){
+            if (pare != null)
                 pare.setBloquejar(true);
-            }
             setVisible(true);
         }
         public void tancar (){
-            if (pare != null){
+            if (pare != null)
                 pare.setBloquejar(false);
-                setVisible(false);
-            }
-            else //Si no hi ha pare, tot mor
-                dispose();
+            dispose();
         }
     }
     public static class Panell extends JPanel{
