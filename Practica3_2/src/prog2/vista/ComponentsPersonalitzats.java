@@ -158,6 +158,8 @@ public class ComponentsPersonalitzats {
             setResizable(false);
             setMinimumSize(dim);
             Panell contingut  = new Panell();
+            Panell panelInf = new Panell(); //Como usare BorderLayout, añado un panel Inf para que el boton quede centrado en este panel pero no llene todoa el panel
+            contingut.setLayout(new BorderLayout());
 
 
             //Missatge
@@ -175,11 +177,13 @@ public class ComponentsPersonalitzats {
 
             //Importa el orden como se añaden al Border layout
             contingut.add(txt,BorderLayout.CENTER);
-            contingut.add(boto,BorderLayout.SOUTH);
+            contingut.add(panelInf,BorderLayout.SOUTH); //Abajo el panel
+            panelInf.add(boto); //En el panel el boton
 
             getRootPane().setDefaultButton(boto);//Sale con enter
             setContentPane(contingut);
 
+            pack(); //Deja que no se cote la etiqueta
             setLocationRelativeTo(pare);
             setVisible(true);
         }
