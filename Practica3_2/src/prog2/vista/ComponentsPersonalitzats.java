@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
+ */
 public class ComponentsPersonalitzats {
     private static Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
     private static Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
@@ -15,7 +18,9 @@ public class ComponentsPersonalitzats {
     private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
     private static Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
 
-
+    /**
+     * JButton personalitzat amb la estética
+     */
     public static class Boto extends JButton{
         public Boto (){
             super();
@@ -27,11 +32,19 @@ public class ComponentsPersonalitzats {
             setIconTextGap(15);//Aleja la imagen del texto si hay
         }
     }
+
+    /**
+     * JDialog personalitzat amb la estética
+     */
     public static class Finestra extends JDialog{
         protected Adaptador adaptador;
         private Window pare;
 
-
+        /**
+         * Constructor de Finestra
+         * @param adaptador Dades de la biblioUB
+         * @param pare Finestra que obre el diàleg
+         */
         public Finestra(Adaptador adaptador, Window pare){
             super(pare, Dialog.ModalityType.APPLICATION_MODAL);
             this.adaptador = adaptador;
@@ -43,12 +56,18 @@ public class ComponentsPersonalitzats {
             //setIconImage(LOGO);
         }
 
-
+        /**
+         * Posa Visible el diàleg
+         */
         public void obrir (){
             if (pare != null){
                 setVisible(true);
             }
         }
+
+        /**
+         * Tanca la finestra amb dispose y sobreposa la finestra pare
+         */
         public void tancar (){
             if (pare != null){
                 pare.setVisible(true);//aunque siempre es visible, lo sobrepone si esta en el fondo
