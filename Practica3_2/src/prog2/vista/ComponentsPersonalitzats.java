@@ -208,5 +208,14 @@ public class ComponentsPersonalitzats {
             setVisible(true);
         }
     }
+    public static class MenuPare extends JMenuBar{
+
+    }
+    public static class MenuFill extends JMenu{
+
+    }
+    public static class MenuNet extends JMenuItem{
+
+    }
 
 }
