@@ -15,6 +15,7 @@ public class ComponentsPersonalitzats {
     private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
     private static Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
 
+
     public static class Boto extends JButton{
         public Boto (){
             super();

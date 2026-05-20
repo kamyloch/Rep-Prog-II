@@ -47,33 +47,34 @@ public class AppBiblioUB extends JFrame {
         });
         botoCarrega.addActionListener(e -> { //MateixCodi de la part 1
             String srcFile = demanaPath(false); // Obtenir el fitxer d'entrada
-            if (srcFile != null) {
-                // Carregar les dades del fitxer triat
-                try {
-                    this.adaptador.carregaDades(srcFile);
-                    System.err.println("Dades carregades");
-                } catch (BiblioException ex) {
-                    System.err.println("Error carregant les dades." + ex.getMessage());
-                }
-
-            }
+            loadDades(srcFile);
         });
         botoGuarda.addActionListener(e -> {
             String dstFile = demanaPath(true); // Obtenir el fitxer de sortida
-            if (dstFile != null) {
-                // Guardar les dades al fitxer triat
-                try {
-                    this.adaptador.guardaDades(dstFile);
-                    System.err.println("Dades guardades");
-                } catch (BiblioException ex) {
-                    System.err.println("Error guardant les dades: " + ex.getMessage());
-                }
-            }
+            saveDades(dstFile);
         });
 
         setContentPane(PanelMenu); //Afegim el menú
         setTitle("BiblioUB"); //Title
         setVisible(true);
+    }
+    public void loadDades(String cami){
+        if (cami != null) {
+            try {
+                this.adaptador.carregaDades(cami);
+            } catch (BiblioException ex) {
+                new Missatge(this, ex.getMessage());
+            }
+        }
+    }
+    public void saveDades (String cami){
+        if (cami != null) {
+            try {
+                this.adaptador.guardaDades(cami);
+            } catch (BiblioException ex) {
+                new Missatge(this, ex.getMessage());
+            }
+        }
     }
 
     private String demanaPath(boolean isSave) {
