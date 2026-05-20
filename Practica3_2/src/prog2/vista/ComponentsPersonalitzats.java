@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.MissingFormatArgumentException;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -23,8 +24,22 @@ public class ComponentsPersonalitzats {
      * JButton personalitzat amb la estética
      */
     public static class Boto extends JButton{
+        {
+            UIManager.put("ToolTip.font", FONT_PETITONA);
+            UIManager.put("ToolTip.background", COLOR_FONS_FOSC);
+            UIManager.put("ToolTip.foreground", COLOR_LLETRA);
+        }
+        public Boto (String tip){
+            super();
+            if (tip != null)
+                setToolTipText(tip);
+            init();
+        }
         public Boto (){
             super();
+            init();
+        }
+        private void init (){
             setBackground(COLOR_BOTO); //Fondo
             setForeground(COLOR_LLETRA); // Letra
             setFocusPainted(false); //Quita la cosa fea del boton defecto
@@ -37,7 +52,7 @@ public class ComponentsPersonalitzats {
     /**
      * JDialog personalitzat amb la estética
      */
-    public static class Finestra extends JDialog{
+    public abstract static class Finestra extends JDialog{
         protected Adaptador adaptador;
         private Window pare;
 
@@ -172,7 +187,7 @@ public class ComponentsPersonalitzats {
         private static final Dimension dim = new Dimension(400,150);
         private static final ImageIcon WARNING = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
         private static final ImageIcon HAPPY = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
-
+        protected Etiqueta txt;
         public Missatge(Window pare, String missatge){
             super(pare, "Error",Dialog.ModalityType.APPLICATION_MODAL);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -180,11 +195,12 @@ public class ComponentsPersonalitzats {
             setMinimumSize(dim);
             Panell contingut  = new Panell();
             Panell panelInf = new Panell(); //Como usare BorderLayout, añado un panel Inf para que el boton quede centrado en este panel pero no llene todoa el panel
+            Panell panelSup  = new Panell();
             contingut.setLayout(new BorderLayout());
 
 
             //Missatge
-            Etiqueta txt = new Etiqueta(missatge);
+            txt = new Etiqueta(missatge);
             txt.setFont(FONT_PETITA);
             txt.setIcon(WARNING);
             txt.setBackground(COLOR_FONS_FOSC);
@@ -197,9 +213,10 @@ public class ComponentsPersonalitzats {
             boto.addActionListener(e->dispose());
 
             //Importa el orden como se añaden al Border layout
-            contingut.add(txt,BorderLayout.CENTER);
+            contingut.add(panelSup,BorderLayout.CENTER);
             contingut.add(panelInf,BorderLayout.SOUTH); //Abajo el panel
             panelInf.add(boto); //En el panel el boton
+            panelSup.add(txt);
 
             getRootPane().setDefaultButton(boto);//Sale con enter
             setContentPane(contingut);
@@ -230,15 +247,15 @@ public class ComponentsPersonalitzats {
     public static class MenuFill extends JMenu{
         public MenuFill(String nom){
             super(nom);
-            setBackground(Color.black);
+            setForeground(COLOR_LLETRA);
             setFont(FONT_PETITONA);
-            setBackground(COLOR_LLETRA);
+            setBackground(COLOR_FONS_FOSC);
         }
     }
     public static class MenuNet extends JMenuItem{
         public MenuNet(String nom){
             super(nom);
-            setBackground(Color.black);
+            setForeground(COLOR_FONS_FOSC);
             setFont(FONT_PETITONA);
             setBackground(COLOR_LLETRA);
         }

@@ -24,14 +24,15 @@ public class gestorExemplars extends Finestra {
         updateLlista();
 
         botoTornar.addActionListener(e -> tancar());
-        botoAfegir.addActionListener(e ->{
-            afegirFinestra= new OmplirExemplar(adaptador,this);
+        botoAfegir.addActionListener(e -> {
+            afegirFinestra = new OmplirExemplar(adaptador, this);
             afegirFinestra.obrir();
             updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
 
     }
-    public void updateLlista(){
+
+    public void updateLlista() {
         llista.setListData(adaptador.recuperaExemplars().toArray());
     }
 
@@ -41,63 +42,5 @@ public class gestorExemplars extends Finestra {
         botoTornar = new Boto();
         llista = new Llista();
         panelBotons = new Panell();
-    }
-
-    public static class OmplirExemplar extends Finestra {
-        private JTextField titolTextField;
-        private JTextField autoTextField;
-        private JTextField IdTextField;
-        private JButton botoAfegir;
-        private JButton botoTornar;
-        private JCheckBox llargCheckBox;
-        private JLabel titolLabel;
-        private JLabel autorLabel;
-        private JLabel idLabel;
-        private JPanel panelSuperior;
-        private JPanel panelInferior;
-        private JPanel panelGrande;
-
-        public OmplirExemplar(Adaptador adaptador, Window pare) {
-            super(adaptador, pare);
-            setContentPane(panelGrande);
-            setTitle("Afegir Exemplar");
-
-            botoTornar.addActionListener(e-> tancar());
-            botoAfegir.addActionListener(e->{
-                String titol= titolTextField.getText();
-                String autor=autoTextField.getText();
-                String id=IdTextField.getText();
-                boolean admetLlarg=llargCheckBox.isSelected();
-
-                try{
-                    adaptador.afegirExemplar(id,titol,autor,admetLlarg);
-                    tancar();
-                }catch(BiblioException exc){
-                    new Missatge(this, exc.getMessage());
-                }
-            });
-        }
-
-        private void createUIComponents() {
-            // TODO: place custom component creation code here
-            botoTornar = new Boto();
-            botoAfegir = new Boto();
-            llargCheckBox = new Check();
-
-            //Camps de Text
-            titolTextField = new CampText();
-            autoTextField = new CampText();
-            IdTextField = new CampText();
-
-            //Panells
-            panelGrande = new Panell();
-            panelInferior = new Panell();
-            panelSuperior = new Panell();
-
-            //Labels
-            autorLabel = new Etiqueta();
-            idLabel = new Etiqueta();
-            titolLabel = new Etiqueta();
-        }
     }
 }
