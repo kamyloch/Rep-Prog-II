@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.MissingFormatArgumentException;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -172,7 +173,7 @@ public class ComponentsPersonalitzats {
         private static final Dimension dim = new Dimension(400,150);
         private static final ImageIcon WARNING = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
         private static final ImageIcon HAPPY = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
-
+        protected Etiqueta txt;
         public Missatge(Window pare, String missatge){
             super(pare, "Error",Dialog.ModalityType.APPLICATION_MODAL);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -180,11 +181,12 @@ public class ComponentsPersonalitzats {
             setMinimumSize(dim);
             Panell contingut  = new Panell();
             Panell panelInf = new Panell(); //Como usare BorderLayout, añado un panel Inf para que el boton quede centrado en este panel pero no llene todoa el panel
+            Panell panelSup  = new Panell();
             contingut.setLayout(new BorderLayout());
 
 
             //Missatge
-            Etiqueta txt = new Etiqueta(missatge);
+            txt = new Etiqueta(missatge);
             txt.setFont(FONT_PETITA);
             txt.setIcon(WARNING);
             txt.setBackground(COLOR_FONS_FOSC);
@@ -197,9 +199,10 @@ public class ComponentsPersonalitzats {
             boto.addActionListener(e->dispose());
 
             //Importa el orden como se añaden al Border layout
-            contingut.add(txt,BorderLayout.CENTER);
+            contingut.add(panelSup,BorderLayout.CENTER);
             contingut.add(panelInf,BorderLayout.SOUTH); //Abajo el panel
             panelInf.add(boto); //En el panel el boton
+            panelSup.add(txt);
 
             getRootPane().setDefaultButton(boto);//Sale con enter
             setContentPane(contingut);

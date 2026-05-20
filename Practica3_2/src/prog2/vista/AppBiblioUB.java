@@ -64,13 +64,14 @@ public class AppBiblioUB extends JFrame {
         if (cami != null) {
             try {
                 this.adaptador.carregaDades(cami);
+                new Missatge(this,"Dades Carregades!");
             } catch (BiblioException ex) {
                 new Missatge(this, ex.getMessage());
             }
         }
     }
     public void saveDades (){
-        String cami = demanaPath(false);
+        String cami = demanaPath(true);
         if (cami != null) {
             try {
                 this.adaptador.guardaDades(cami);
