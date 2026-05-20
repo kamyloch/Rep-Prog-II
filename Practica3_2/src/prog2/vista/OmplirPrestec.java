@@ -19,7 +19,7 @@ public class OmplirPrestec extends Finestra {
     private JPanel panelSuperior;
     private JPanel panelInferior;
 
-    public OmplirPrestec(Adaptador ad, gestorPrestecs pare){
+    public OmplirPrestec(Adaptador ad, Window pare){
         super(ad, pare);
         setMinimumSize(new Dimension(1000, 500));
         setContentPane(panelGrande);
@@ -30,7 +30,6 @@ public class OmplirPrestec extends Finestra {
             boolean llarg=prestecLlargCheckBox.isSelected();
             try{
                 adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
-                pare.updateLlista();
                 tancar();
             }catch(BiblioException exepcionnnn){
                 new Missatge(this,exepcionnnn.getMessage());

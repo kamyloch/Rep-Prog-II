@@ -3,6 +3,7 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class OmplirUsuari extends Finestra {
 
@@ -19,12 +20,11 @@ public class OmplirUsuari extends Finestra {
     private JLabel adrecaLabel;
     private JLabel emailLabel;
 
-    public OmplirUsuari(Adaptador adaptador, gestorUsuaris pare) {
+    public OmplirUsuari(Adaptador adaptador, Window pare) {
         super(adaptador, pare);
         setContentPane(PanellOmplirUs);
         setTitle("Afegir usuari");
 
-        tornarButton.addActionListener(e->pare.obrir());
         tornarButton.addActionListener(e-> tancar());
         afegirButton.addActionListener(e->{
             String nom=nomTextField.getText();
@@ -34,7 +34,6 @@ public class OmplirUsuari extends Finestra {
 
             try{
                 adaptador.afegirUsuari(email,nom,adreca,professor);
-                pare.updateLlista();
                 tancar();
             }catch(BiblioException exc){
                 new Missatge(this,exc.getMessage());

@@ -26,6 +26,7 @@ public class gestorUsuaris extends Finestra {
         botoAfegir.addActionListener(e ->{
             finestraomplir = new OmplirUsuari(adaptador,this);
             finestraomplir.obrir();
+            updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
 
     }

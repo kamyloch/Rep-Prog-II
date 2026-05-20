@@ -5,6 +5,8 @@ import javax.swing.*;
 import prog2.adaptador.Adaptador;
 import prog2.vista.ComponentsPersonalitzats.*;
 
+import java.awt.*;
+
 public class OmplirExemplar extends Finestra {
     private JTextField titolTextField;
     private JTextField autoTextField;
@@ -19,13 +21,12 @@ public class OmplirExemplar extends Finestra {
     private JPanel panelInferior;
     private JPanel panelGrande;
 
-    public OmplirExemplar(Adaptador adaptador, gestorExemplars pare) {
+    public OmplirExemplar(Adaptador adaptador, Window pare) {
         super(adaptador, pare);
         setContentPane(panelGrande);
         setTitle("Afegir Exemplar");
 
         botoTornar.addActionListener(e-> tancar());
-        botoTornar.addActionListener(e->pare.obrir());
         botoAfegir.addActionListener(e->{
             String titol= titolTextField.getText();
             String autor=autoTextField.getText();
@@ -34,7 +35,6 @@ public class OmplirExemplar extends Finestra {
 
             try{
                 adaptador.afegirExemplar(id,titol,autor,admetLlarg);
-                pare.updateLlista();
                 tancar();
             }catch(BiblioException exc){
                 new Missatge(this, exc.getMessage());

@@ -31,6 +31,7 @@ public class gestorPrestecs extends Finestra{
         botoAfegir.addActionListener( e->{
             finestraAfegir=new OmplirPrestec(adaptador,this);
             finestraAfegir.obrir();
+            updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
         botoTornar.addActionListener(e -> tancar());
         botoRetornarPrestec.addActionListener(e -> {

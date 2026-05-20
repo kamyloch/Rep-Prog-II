@@ -27,6 +27,7 @@ public class gestorExemplars extends Finestra {
         botoAfegir.addActionListener(e ->{
             afegirFinestra= new OmplirExemplar(adaptador,this);
             afegirFinestra.obrir();
+            updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
 
     }

@@ -26,7 +26,6 @@ public class AppBiblioUB extends JFrame {
     public AppBiblioUB(Adaptador ad) { //Constructor amb adaptador predefinit
         this.adaptador = ad;//Preset
         go();
-
     }
     public void go (){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para gestionar el pare
@@ -45,20 +44,15 @@ public class AppBiblioUB extends JFrame {
             finestraPrestecs = new gestorPrestecs(adaptador, this);
             finestraPrestecs.obrir();
         });
-        botoCarrega.addActionListener(e -> { //MateixCodi de la part 1
-            String srcFile = demanaPath(false); // Obtenir el fitxer d'entrada
-            loadDades(srcFile);
-        });
-        botoGuarda.addActionListener(e -> {
-            String dstFile = demanaPath(true); // Obtenir el fitxer de sortida
-            saveDades(dstFile);
-        });
+        botoCarrega.addActionListener(e -> loadDades());
+        botoGuarda.addActionListener(e ->  saveDades());
 
         setContentPane(PanelMenu); //Afegim el menú
         setTitle("BiblioUB"); //Title
         setVisible(true);
     }
-    public void loadDades(String cami){
+    public void loadDades(){
+        String cami = demanaPath(false);
         if (cami != null) {
             try {
                 this.adaptador.carregaDades(cami);
@@ -67,7 +61,8 @@ public class AppBiblioUB extends JFrame {
             }
         }
     }
-    public void saveDades (String cami){
+    public void saveDades (){
+        String cami = demanaPath(false);
         if (cami != null) {
             try {
                 this.adaptador.guardaDades(cami);
@@ -76,7 +71,6 @@ public class AppBiblioUB extends JFrame {
             }
         }
     }
-
     private String demanaPath(boolean isSave) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(".")); //Se abre desde la carpeta actual
@@ -94,6 +88,7 @@ public class AppBiblioUB extends JFrame {
         else
             return null;
     }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
