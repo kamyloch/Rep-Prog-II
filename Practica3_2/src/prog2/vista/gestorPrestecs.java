@@ -36,7 +36,6 @@ public class gestorPrestecs extends Finestra{
         botoTornar.addActionListener(e -> tancar());
         botoRetornarPrestec.addActionListener(e -> {
 
-
             try{
                 if(llista.isSelectionEmpty())
                     throw new Exception("Si us plau en tria un de la lista");
@@ -44,7 +43,7 @@ public class gestorPrestecs extends Finestra{
                 if (noRetornatsCheckBox.isSelected())
                     adaptador.retornarPrestec(seleccio);
                 else
-                    throw new RuntimeException("Activa los no retornats");
+                    adaptador.retornarPrestecTots(seleccio);
 
                 updateLlista();
             }catch (Exception exew){

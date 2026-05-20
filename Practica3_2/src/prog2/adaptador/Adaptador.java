@@ -5,6 +5,7 @@ import prog2.vista.BiblioException;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**Classe adaptadora que permet la interacció entre els elements del paquet vista i el paquet model
@@ -157,6 +158,23 @@ public class Adaptador implements Serializable{
      */
     public ArrayList<Prestec> recuperaPrestecsNoRetornats() {
         return dades.recuperaPrestecsNoRetornats();
+    }
+
+    public void retornarPrestecTots(int position) throws BiblioException {
+        try{
+            Prestec prestec=dades.recuperaPrestecs().get(position);
+            int position2=-1,i=0;
+            Iterator<Prestec> it=dades.recuperaPrestecsNoRetornats().iterator();
+            while(it.hasNext()){
+                Prestec act=it.next();
+                if(prestec.equals(act))
+                    position2=i;
+                i++;
+            }
+            dades.retornarPrestec(position2);
+        }catch(Exception ex){
+            throw new BiblioException("El prèstec seleccionat ja està retornat");
+        }
     }
 
 }
