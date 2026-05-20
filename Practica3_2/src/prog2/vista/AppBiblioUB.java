@@ -19,6 +19,26 @@ public class AppBiblioUB extends JFrame {
     private Finestra finestraPrestecs;
     private Adaptador adaptador;
 
+    //MenuBar
+    private MenuPare menubarra;
+    //Fills
+    private MenuFill menuUsuari;
+    private MenuFill menuFitxer;
+    private MenuFill menuExemplar;
+    private MenuFill menuPrestec;
+    //Nets
+    private MenuNet menuCarregar;
+    private MenuNet menuObrir;
+    private MenuNet menuSortir;
+    private MenuNet menuUserMostra;
+    private MenuNet menuUserAfegir;
+    private MenuNet menuExemplarMostra;
+    private MenuNet menuExemplarAfegir;
+    private MenuNet menuPrestecMostra;
+    private MenuNet menuPrestecAfegir;
+
+
+
     public AppBiblioUB (){ //Constructor per defecte
         this.adaptador = new Adaptador();
         go();
@@ -46,6 +66,9 @@ public class AppBiblioUB extends JFrame {
         });
         botoCarrega.addActionListener(e -> loadDades());
         botoGuarda.addActionListener(e ->  saveDades());
+
+        initMenuBar();
+        setJMenuBar(menubarra);
 
         setContentPane(PanelMenu); //Afegim el menú
         setTitle("BiblioUB"); //Title
@@ -98,5 +121,44 @@ public class AppBiblioUB extends JFrame {
         botoPrestecs = new Boto();
         botoCarrega = new Boto();
         botoGuarda = new Boto();
+    }
+
+    private void initMenuBar() {
+
+        menubarra = new MenuPare();
+
+        //Fills
+        menuFitxer = new MenuFill("Fitxer");
+        menuUsuari = new MenuFill("Usuaris");
+        menuExemplar = new MenuFill("Exemplars");
+        menuPrestec = new MenuFill("Préstec");
+        menubarra.add(menuFitxer);
+        menubarra.add(menuUsuari);
+        menubarra.add(menuExemplar);
+        menubarra.add(menuPrestec);
+
+        //Nets
+            //Fitxer
+            menuCarregar = new MenuNet("Carregar");
+            menuObrir  = new MenuNet("Obrir");
+            menuSortir = new MenuNet("Sortir");
+            menuFitxer.add(menuCarregar);
+            menuFitxer.add(menuObrir);
+            menuFitxer.add(menuSortir);
+
+            //Fitxer
+            menuUserAfegir = new MenuNet("Carregar");
+            menuUserMostra = new MenuNet("Obrir");
+            menuSortir = new MenuNet("Sortir");
+            menuFitxer.add(menuCarregar);
+            menuFitxer.add(menuObrir);
+            menuFitxer.add(menuSortir);
+
+            //Usuaris
+            menuUserMostra =  new MenuNet("Mostrar");
+            menuUserAfegir = new MenuNet("Afegir");
+
+
+
     }
 }

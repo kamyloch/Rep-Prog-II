@@ -208,14 +208,28 @@ public class ComponentsPersonalitzats {
             setVisible(true);
         }
     }
-    public static class MenuPare extends JMenuBar{
+    public static class MenuPare extends JMenuBar {
+        public MenuPare (){
+            setBackground(COLOR_FONS_FOSC);
+        }
 
     }
     public static class MenuFill extends JMenu{
+        public MenuFill(String nom){
+            super(nom);
+            setBackground(Color.black);
+            setFont(FONT_PETITONA);
+            setBackground(COLOR_LLETRA);
+        }
 
     }
     public static class MenuNet extends JMenuItem{
-
+        public MenuNet(String nom){
+            super(nom);
+            setBackground(Color.black);
+            setFont(FONT_PETITONA);
+            setBackground(COLOR_LLETRA);
+        }
     }
 
 }
