@@ -37,7 +37,7 @@ public class ComponentsPersonalitzats {
     /**
      * JDialog personalitzat amb la estética
      */
-    public static class Finestra extends JDialog{
+    public abstract static class Finestra extends JDialog{
         protected Adaptador adaptador;
         private Window pare;
 
