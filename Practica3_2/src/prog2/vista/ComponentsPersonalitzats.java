@@ -3,6 +3,7 @@ package prog2.vista;import prog2.adaptador.Adaptador;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -209,8 +210,20 @@ public class ComponentsPersonalitzats {
         }
     }
     public static class MenuPare extends JMenuBar {
+        private MenuFill last_Fill;
         public MenuPare (){
+            last_Fill = null;
             setBackground(COLOR_FONS_FOSC);
+        }
+        public void addFill(String nom){
+            last_Fill = new MenuFill(nom);
+            add(last_Fill);
+        }
+        public void addNet(String nom, ActionListener e){
+            if (last_Fill == null) return;
+            MenuNet nou = new MenuNet(nom);
+            nou.addActionListener(e);
+            last_Fill.add(nou);
         }
 
     }
@@ -221,7 +234,6 @@ public class ComponentsPersonalitzats {
             setFont(FONT_PETITONA);
             setBackground(COLOR_LLETRA);
         }
-
     }
     public static class MenuNet extends JMenuItem{
         public MenuNet(String nom){
@@ -231,5 +243,4 @@ public class ComponentsPersonalitzats {
             setBackground(COLOR_LLETRA);
         }
     }
-
 }
