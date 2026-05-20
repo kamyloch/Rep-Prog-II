@@ -230,15 +230,15 @@ public class ComponentsPersonalitzats {
     public static class MenuFill extends JMenu{
         public MenuFill(String nom){
             super(nom);
-            setBackground(Color.black);
+            setForeground(COLOR_LLETRA);
             setFont(FONT_PETITONA);
-            setBackground(COLOR_LLETRA);
+            setBackground(COLOR_FONS_FOSC);
         }
     }
     public static class MenuNet extends JMenuItem{
         public MenuNet(String nom){
             super(nom);
-            setBackground(Color.black);
+            setForeground(COLOR_FONS_FOSC);
             setFont(FONT_PETITONA);
             setBackground(COLOR_LLETRA);
         }

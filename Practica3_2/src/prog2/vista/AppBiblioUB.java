@@ -120,7 +120,7 @@ public class AppBiblioUB extends JFrame {
         barra.addNet("Afegeix", e-> new OmplirUsuari(adaptador,this).obrir());
         barra.addFill("Exemplar");
         barra.addNet("Mostra", e-> new gestorExemplars(adaptador,this).obrir());
-        barra.addNet("Afegeix", e-> new gestorExemplars.OmplirExemplar(adaptador,this).obrir());
+        barra.addNet("Afegeix", e-> new OmplirExemplar(adaptador,this).obrir());
         barra.addFill("Préstecs");
         barra.addNet("Mostra", e-> new gestorPrestecs(adaptador,this).obrir());
         barra.addNet("Afegeix", e-> new OmplirPrestec(adaptador,this).obrir());
