@@ -24,8 +24,22 @@ public class ComponentsPersonalitzats {
      * JButton personalitzat amb la estética
      */
     public static class Boto extends JButton{
+        {
+            UIManager.put("ToolTip.font", FONT_PETITONA);
+            UIManager.put("ToolTip.background", COLOR_FONS_FOSC);
+            UIManager.put("ToolTip.foreground", COLOR_LLETRA);
+        }
+        public Boto (String tip){
+            super();
+            if (tip != null)
+                setToolTipText(tip);
+            init();
+        }
         public Boto (){
             super();
+            init();
+        }
+        private void init (){
             setBackground(COLOR_BOTO); //Fondo
             setForeground(COLOR_LLETRA); // Letra
             setFocusPainted(false); //Quita la cosa fea del boton defecto

@@ -105,8 +105,8 @@ public class AppBiblioUB extends JFrame {
         botoUsuaris = new Boto();
         botoExemplars = new Boto();
         botoPrestecs = new Boto();
-        botoCarrega = new Boto();
-        botoGuarda = new Boto();
+        botoCarrega = new Boto("Carrega una Biblio");
+        botoGuarda = new Boto("Guarda la Biblio");
     }
 
     private void initMenuBar() {
