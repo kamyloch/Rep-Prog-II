@@ -44,7 +44,7 @@ public class gestorPrestecs extends Finestra{
                 if (noRetornatsCheckBox.isSelected())
                     adaptador.retornarPrestec(seleccio);
                 else
-                    throw new RuntimeException("Activa los no retornats");
+                    adaptador.retornarPrestecTots(seleccio);
 
                 updateLlista();
             }catch (Exception exew){
