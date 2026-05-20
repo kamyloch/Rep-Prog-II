@@ -28,7 +28,6 @@ public class OmplirPrestec extends Finestra {
             int numUsuari=usuariComboBox.getSelectedIndex();
             int numExemplar=exemplarComboBox.getSelectedIndex();
             boolean llarg=prestecLlargCheckBox.isSelected();
-
             try{
                 adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
                 pare.updateLlista();
@@ -38,6 +37,8 @@ public class OmplirPrestec extends Finestra {
             }
             });
         updateLlistas();
+        setLocationRelativeTo(pare);
+        pack();
     }
 
     public void updateLlistas (){
