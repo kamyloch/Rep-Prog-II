@@ -4,21 +4,24 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Objects;
+
+import static java.util.Objects.*;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
  */
 public class ComponentsPersonalitzats {
-    private static Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
-    private static Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
-    private static Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
-    private static Color COLOR_FONS = new Color(0Xb5b5b5);
-    private static Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
-    private static Color COLOR_FONS_FOSCOR = new Color(0X545454);
-    private static Color COLOR_BOTO = Color.DARK_GRAY;
-    private static Color COLOR_LLETRA = Color.white;
-    private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
-    private static Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
+    private static final Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
+    private static final Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
+    private static final Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
+    private static final Color COLOR_FONS = new Color(0Xb5b5b5);
+    private static final Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
+    private static final Color COLOR_FONS_FOSCOR = new Color(0X545454);
+    private static final Color COLOR_BOTO = Color.DARK_GRAY;
+    private static final Color COLOR_LLETRA = Color.white;
+    private static final Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
+    private static final Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
 
     /**
      * JButton personalitzat amb la estética
@@ -54,7 +57,7 @@ public class ComponentsPersonalitzats {
      */
     public abstract static class Finestra extends JDialog{
         protected Adaptador adaptador;
-        private Window pare;
+        private final Window pare;
 
         /**
          * Constructor de Finestra
@@ -98,7 +101,7 @@ public class ComponentsPersonalitzats {
         }
     }
     public static class Llista extends JList{
-        private static String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
+        private static final String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
         private boolean isEmpty;
         public Llista (){
             setFixedCellHeight(35); //Espai ente Items
@@ -191,7 +194,7 @@ public class ComponentsPersonalitzats {
         private static final ImageIcon FESTA_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/party.png"));
         private static final ImageIcon CHECK_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check.png"));
 
-        enum Tipus {ERROR, INFO,LLEST,FESTA}
+        public enum Tipus {ERROR, INFO,LLEST,FESTA}
         public Missatge(Window pare, String missatge, String titol, Tipus tipo){
             super(pare, titol,Dialog.ModalityType.APPLICATION_MODAL);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
