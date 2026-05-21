@@ -100,14 +100,7 @@ public class Adaptador implements Serializable{
     /**
      * Recuperar préstecs. Retorna un ArrayList de String amb tots els exemplars
      */
-    public ArrayList<String> recuperaExemplars() {
-        Iterator<Exemplar> it=dades.recuperaExemplars().iterator();
-        ArrayList<String> llista=new ArrayList<>();
-        while(it.hasNext()){
-            llista.add(it.next().toString());
-        }
-        return llista;
-    }
+    public ArrayList<String> recuperaExemplars() {return toArrayString(dades.recuperaExemplars()); }
 
     /**
      * Afegeix usuari. Llança excepció si l'email ja existeix
@@ -124,24 +117,17 @@ public class Adaptador implements Serializable{
     /**
      * Recuperar usuaris. Retorna un ArrayList de String amb tots els usuaris
      */
-    public ArrayList<String> recuperaUsuaris() {
-        Iterator<Usuari> it=dades.recuperaUsuaris().iterator();
-        ArrayList<String> llista=new ArrayList<>();
-        while(it.hasNext()){
-            llista.add(it.next().toString());
-        }
-        return llista;
-    }
+    public ArrayList<String> recuperaUsuaris() {return toArrayString(dades.recuperaUsuaris());}
 
-    /**
-     * Afegeix préstec. Ha de fer diferents comprovacions que poden llançar excepcions.
-     * Quan s'afegeix el préstec, s'han de tenir en compte les posicions d'exemplar
-     * i usuari dins dels seus ArrayLists
-     *
-     * @param exemplarPos
-     * @param usuariPos
-     * @param esLlarg
-     */
+        /**
+         * Afegeix préstec. Ha de fer diferents comprovacions que poden llançar excepcions.
+         * Quan s'afegeix el préstec, s'han de tenir en compte les posicions d'exemplar
+         * i usuari dins dels seus ArrayLists
+         *
+         * @param exemplarPos
+         * @param usuariPos
+         * @param esLlarg
+         */
     public void afegirPrestec(int exemplarPos, int usuariPos, boolean esLlarg) throws BiblioException {
         dades.afegirPrestec(exemplarPos, usuariPos, esLlarg);
     }
@@ -159,26 +145,13 @@ public class Adaptador implements Serializable{
     /**
      * Recuperar préstecs. Retorna un ArrayList de String amb tots els préstecs
      */
-    public ArrayList<String> recuperaPrestecs() {
-        Iterator<Prestec> it=dades.recuperaPrestecs().iterator();
-        ArrayList<String> llista=new ArrayList<>();
-        while(it.hasNext()){
-            llista.add(it.next().toString());
-        }
-        return llista;
+    public ArrayList<String> recuperaPrestecs() {return toArrayString(dades.recuperaPrestecs());
     }
 
     /**
      * Recuperar préstecs. Retorna un ArrayList de String amb els préstecs no retornats
      */
-    public ArrayList<String> recuperaPrestecsNoRetornats() {
-        Iterator<Prestec> it=dades.recuperaPrestecsNoRetornats().iterator();
-        ArrayList<String> llista=new ArrayList<>();
-        while(it.hasNext()){
-            llista.add(it.next().toString());
-        }
-        return llista;
-    }
+    public ArrayList<String> recuperaPrestecsNoRetornats() {return toArrayString(dades.recuperaPrestecsNoRetornats()); }
 
     public void retornarPrestecTots(int position) throws BiblioException {
         try{
@@ -197,4 +170,14 @@ public class Adaptador implements Serializable{
         }
     }
 
+
+
+    private<T> ArrayList<String> toArrayString(ArrayList<T> llistaObj){
+        Iterator<T> it=llistaObj.iterator();
+        ArrayList<String> llista=new ArrayList<>();
+        while(it.hasNext()){
+            llista.add(it.next().toString());
+        }
+        return llista;
+    }
 }
