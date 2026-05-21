@@ -34,9 +34,11 @@ public class OmplirExemplar extends Finestra {
             boolean admetLlarg=llargCheckBox.isSelected();
 
             try{
+                if (id.isBlank() || autor.isBlank() || id.isBlank())
+                    throw new Exception("No pots deixar camps buits");
                 adaptador.afegirExemplar(id,titol,autor,admetLlarg);
                 tancar();
-            }catch(BiblioException exc){
+            }catch(Exception exc){
                 new Missatge(this, exc.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         });

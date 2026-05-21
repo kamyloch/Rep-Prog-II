@@ -33,9 +33,11 @@ public class OmplirUsuari extends Finestra {
             boolean professor=!professorCheckBox.isSelected();
 
             try{
+                if (nom.isBlank() || adreca.isBlank() || email.isBlank())
+                    throw new Exception("No pots deixar camps buits");
                 adaptador.afegirUsuari(email,nom,adreca,professor);
                 tancar();
-            }catch(BiblioException exc){
+            }catch(Exception exc){
                 new Missatge(this,exc.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         });
