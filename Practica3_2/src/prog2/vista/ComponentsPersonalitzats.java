@@ -15,6 +15,7 @@ public class ComponentsPersonalitzats {
     private static Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
     private static Color COLOR_FONS = new Color(0Xb5b5b5);
     private static Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
+    private static Color COLOR_FONS_FOSCOR = new Color(0X545454);
     private static Color COLOR_BOTO = Color.DARK_GRAY;
     private static Color COLOR_LLETRA = Color.white;
     private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
@@ -102,9 +103,9 @@ public class ComponentsPersonalitzats {
         private boolean isEmpty;
         public Llista (){
             setFixedCellHeight(35); //Espai ente Items
-            setSelectionBackground(COLOR_FONS_FOSC);
+            setSelectionBackground(COLOR_FONS_FOSCOR);
             setSelectionForeground(COLOR_LLETRA);
-            setBackground(COLOR_FONS);
+            setBackground(COLOR_FONS_FOSC);
             setForeground(COLOR_LLETRA);
             setFont(FONT_PETITA);
             isEmpty = true;
