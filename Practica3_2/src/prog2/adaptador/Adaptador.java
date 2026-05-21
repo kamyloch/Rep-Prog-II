@@ -98,10 +98,15 @@ public class Adaptador implements Serializable{
     }
 
     /**
-     * Recuperar préstecs. Retorna un ArrayList amb tots els exemplars
+     * Recuperar préstecs. Retorna un ArrayList de String amb tots els exemplars
      */
-    public ArrayList<Exemplar> recuperaExemplars() {
-        return dades.recuperaExemplars();
+    public ArrayList<String> recuperaExemplars() {
+        Iterator<Exemplar> it=dades.recuperaExemplars().iterator();
+        ArrayList<String> llista=new ArrayList<>();
+        while(it.hasNext()){
+            llista.add(it.next().toString());
+        }
+        return llista;
     }
 
     /**
@@ -117,10 +122,15 @@ public class Adaptador implements Serializable{
     }
 
     /**
-     * Recuperar usuaris. Retorna un ArrayList amb tots els usuaris
+     * Recuperar usuaris. Retorna un ArrayList de String amb tots els usuaris
      */
-    public ArrayList<Usuari> recuperaUsuaris() {
-        return dades.recuperaUsuaris();
+    public ArrayList<String> recuperaUsuaris() {
+        Iterator<Usuari> it=dades.recuperaUsuaris().iterator();
+        ArrayList<String> llista=new ArrayList<>();
+        while(it.hasNext()){
+            llista.add(it.next().toString());
+        }
+        return llista;
     }
 
     /**
@@ -147,17 +157,27 @@ public class Adaptador implements Serializable{
     }
 
     /**
-     * Recuperar préstecs. Retorna un ArrayList amb tots els préstecs
+     * Recuperar préstecs. Retorna un ArrayList de String amb tots els préstecs
      */
-    public ArrayList<Prestec> recuperaPrestecs() {
-        return dades.recuperaPrestecs();
+    public ArrayList<String> recuperaPrestecs() {
+        Iterator<Prestec> it=dades.recuperaPrestecs().iterator();
+        ArrayList<String> llista=new ArrayList<>();
+        while(it.hasNext()){
+            llista.add(it.next().toString());
+        }
+        return llista;
     }
 
     /**
-     * Recuperar préstecs. Retorna un ArrayList amb els préstecs no retornats
+     * Recuperar préstecs. Retorna un ArrayList de String amb els préstecs no retornats
      */
-    public ArrayList<Prestec> recuperaPrestecsNoRetornats() {
-        return dades.recuperaPrestecsNoRetornats();
+    public ArrayList<String> recuperaPrestecsNoRetornats() {
+        Iterator<Prestec> it=dades.recuperaPrestecsNoRetornats().iterator();
+        ArrayList<String> llista=new ArrayList<>();
+        while(it.hasNext()){
+            llista.add(it.next().toString());
+        }
+        return llista;
     }
 
     public void retornarPrestecTots(int position) throws BiblioException {
@@ -173,7 +193,7 @@ public class Adaptador implements Serializable{
             }
             dades.retornarPrestec(position2);
         }catch(Exception ex){
-            throw new BiblioException("El prèstec seleccionat ja està retornat");
+            throw new BiblioException("El préstec seleccionat ja s'ha retornat");
         }
     }
 

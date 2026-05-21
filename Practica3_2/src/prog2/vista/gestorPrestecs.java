@@ -24,7 +24,7 @@ public class gestorPrestecs extends Finestra{
     public gestorPrestecs(Adaptador adaptador, Window pare) {
         super(adaptador, pare);//Preset
         setContentPane(panelGrande);//Afegim el contingut
-        setTitle("Usuaris");//s
+        setTitle("Préstecs");//s
         updateLlista();
 
         noRetornatsCheckBox.addActionListener(e -> updateLlista());
@@ -39,7 +39,7 @@ public class gestorPrestecs extends Finestra{
 
             try{
                 if(llista.isSelectionEmpty())
-                    throw new Exception("Si us plau en tria un de la lista");
+                    throw new Exception("Si us plau, tria una opció de la llista");
                 int seleccio = llista.getSelectedIndex();
                 if (noRetornatsCheckBox.isSelected())
                     adaptador.retornarPrestec(seleccio);

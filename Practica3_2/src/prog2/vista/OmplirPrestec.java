@@ -43,9 +43,9 @@ public class OmplirPrestec extends Finestra {
     public void updateLlistas (){
         usuariComboBox.removeAll();
         exemplarComboBox.removeAll();
-        for (Usuari u : adaptador.recuperaUsuaris())
+        for (String u : adaptador.recuperaUsuaris())
             usuariComboBox.addItem(u);
-        for (Exemplar e : adaptador.recuperaExemplars())
+        for (String e : adaptador.recuperaExemplars())
             exemplarComboBox.addItem(e);
 
     }

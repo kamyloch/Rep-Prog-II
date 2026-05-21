@@ -34,7 +34,7 @@
         </constraints>
         <properties>
           <icon value="prog2/vista/imatges/list.png"/>
-          <text value="Prestecs"/>
+          <text value="Préstecs"/>
         </properties>
       </component>
       <component id="4b08c" class="javax.swing.JButton" binding="botoGuarda" custom-create="true">
