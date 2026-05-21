@@ -2,11 +2,12 @@ package prog2.vista;
 
 
 import prog2.adaptador.Adaptador;
+import prog2.vista.ComponentsPersonalitzats.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class OmplirExemplar extends ComponentsPersonalitzats.Finestra {
+public class OmplirExemplar extends Finestra {
     private JTextField titolTextField;
     private JTextField autoTextField;
     private JTextField IdTextField;
@@ -36,30 +37,30 @@ public class OmplirExemplar extends ComponentsPersonalitzats.Finestra {
                 adaptador.afegirExemplar(id,titol,autor,admetLlarg);
                 tancar();
             }catch(BiblioException exc){
-                new ComponentsPersonalitzats.Missatge(this, exc.getMessage());
+                new Missatge(this, exc.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         });
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        botoTornar = new ComponentsPersonalitzats.Boto();
-        botoAfegir = new ComponentsPersonalitzats.Boto();
-        llargCheckBox = new ComponentsPersonalitzats.Check();
+        botoTornar = new Boto();
+        botoAfegir = new Boto();
+        llargCheckBox = new Check();
 
         //Camps de Text
-        titolTextField = new ComponentsPersonalitzats.CampText();
-        autoTextField = new ComponentsPersonalitzats.CampText();
-        IdTextField = new ComponentsPersonalitzats.CampText();
+        titolTextField = new CampText();
+        autoTextField = new CampText();
+        IdTextField = new CampText();
 
         //Panells
-        panelGrande = new ComponentsPersonalitzats.Panell();
-        panelInferior = new ComponentsPersonalitzats.Panell();
-        panelSuperior = new ComponentsPersonalitzats.Panell();
+        panelGrande = new Panell();
+        panelInferior = new Panell();
+        panelSuperior = new Panell();
 
         //Labels
-        autorLabel = new ComponentsPersonalitzats.Etiqueta();
-        idLabel = new ComponentsPersonalitzats.Etiqueta();
-        titolLabel = new ComponentsPersonalitzats.Etiqueta();
+        autorLabel = new Etiqueta();
+        idLabel = new Etiqueta();
+        titolLabel = new Etiqueta();
     }
 }

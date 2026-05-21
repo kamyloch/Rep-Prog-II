@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.MissingFormatArgumentException;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -186,30 +185,41 @@ public class ComponentsPersonalitzats {
         //Alternativa a hacer esto:
         //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
         private static final Dimension dim = new Dimension(400,150);
-        private static final ImageIcon WARNING = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
-        private static final ImageIcon HAPPY = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
-        protected Etiqueta txt;
-        public Missatge(Window pare, String missatge){
-            super(pare, "Error",Dialog.ModalityType.APPLICATION_MODAL);
+        private static final ImageIcon WARNING_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
+        private static final ImageIcon HAPPY_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
+        private static final ImageIcon INFO_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/info.png"));
+        private static final ImageIcon FESTA_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/party.png"));
+        private static final ImageIcon CHECK_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check.png"));
+
+        enum Tipus {ERROR, INFO,LLEST,FESTA}
+        public Missatge(Window pare, String missatge, String titol, Tipus tipo){
+            super(pare, titol,Dialog.ModalityType.APPLICATION_MODAL);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setResizable(false);
             setMinimumSize(dim);
             Panell contingut  = new Panell();
             Panell panelInf = new Panell(); //Como usare BorderLayout, añado un panel Inf para que el boton quede centrado en este panel pero no llene todoa el panel
             Panell panelSup  = new Panell();
+            panelInf.setBackground(COLOR_FONS_FOSC);
+            panelSup.setBackground(COLOR_FONS_FOSC);
             contingut.setLayout(new BorderLayout());
 
 
             //Missatge
-            txt = new Etiqueta(missatge);
+
+            Etiqueta txt = new Etiqueta(missatge);
             txt.setFont(FONT_PETITA);
-            txt.setIcon(WARNING);
-            txt.setBackground(COLOR_FONS_FOSC);
+            switch (tipo){
+                case ERROR-> txt.setIcon(WARNING_PNG);
+                case INFO-> txt.setIcon(INFO_PNG);
+                case FESTA -> txt.setIcon(FESTA_PNG);
+                case LLEST -> txt.setIcon(CHECK_PNG);
+            }
 
             //Boto
             Boto boto =  new Boto();
             boto.setText("D'acord!");
-            boto.setIcon(HAPPY);
+            boto.setIcon(HAPPY_PNG);
             boto.setFont(FONT_PETITA);
             boto.addActionListener(e->dispose());
 

@@ -36,7 +36,7 @@ public class OmplirUsuari extends Finestra {
                 adaptador.afegirUsuari(email,nom,adreca,professor);
                 tancar();
             }catch(BiblioException exc){
-                new Missatge(this,exc.getMessage());
+                new Missatge(this,exc.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         });
     }

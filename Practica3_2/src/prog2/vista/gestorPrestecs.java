@@ -48,7 +48,7 @@ public class gestorPrestecs extends Finestra{
 
                 updateLlista();
             }catch (Exception exew){
-                new Missatge(this, exew.getMessage());
+                new Missatge(this, exew.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         });
 

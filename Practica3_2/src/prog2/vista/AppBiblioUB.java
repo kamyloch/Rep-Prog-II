@@ -64,9 +64,9 @@ public class AppBiblioUB extends JFrame {
         if (cami != null) {
             try {
                 this.adaptador.carregaDades(cami);
-                new Missatge(this,"Dades Carregades!");
+                new Missatge(this,"Dades Carregades!",  "Tot a punt!",Missatge.Tipus.LLEST);
             } catch (BiblioException ex) {
-                new Missatge(this, ex.getMessage());
+                new Missatge(this, ex.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
         }
     }
@@ -75,8 +75,9 @@ public class AppBiblioUB extends JFrame {
         if (cami != null) {
             try {
                 this.adaptador.guardaDades(cami);
+                new Missatge(this,"Dades guardades amb exit",  "BiblioUB",Missatge.Tipus.FESTA);
             } catch (BiblioException ex) {
-                new Missatge(this, ex.getMessage());
+                new Missatge(this, ex.getMessage(), "Error", Missatge.Tipus.ERROR);
             }
         }
     }

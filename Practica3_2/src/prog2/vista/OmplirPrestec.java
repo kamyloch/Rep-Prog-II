@@ -32,7 +32,7 @@ public class OmplirPrestec extends Finestra {
                 adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
                 tancar();
             }catch(BiblioException exepcionnnn){
-                new Missatge(this,exepcionnnn.getMessage());
+                new Missatge(this,exepcionnnn.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
             });
         updateLlistas();
