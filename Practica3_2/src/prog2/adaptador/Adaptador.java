@@ -5,6 +5,7 @@ import prog2.vista.BiblioException;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**Classe adaptadora que permet la interacció entre els elements del paquet vista i el paquet model
