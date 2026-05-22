@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -84,11 +86,19 @@ public class ComponentsPersonalitzats {
             this.adaptador = adaptador;
             this.pare = pare;
             glass = new Vidre();
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Por el vidrio la x no puede cerrar sin mas
             setMinimumSize(DIM_MIN);
             setLocationRelativeTo(null);  //Aparece en el medio
             setBackground(COLOR_FONS);
             setGlassPane(glass);
+
+            //De lo contrario cuando hacemos X no se desactiva el vidre
+            this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    tancar();
+                }
+            });
         }
 
         /**
