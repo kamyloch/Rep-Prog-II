@@ -180,4 +180,39 @@ public class Adaptador implements Serializable{
         }
         return llista;
     }
+
+    /**
+     * Retorna un preset de adapador per provar la UB
+     * @return Adaptador
+     */
+    public static Adaptador adaptadorDefault(){
+        Adaptador a = new Adaptador();
+        try {
+            // --- 6 EXEMPLARS (id, titol, autor, admetPrestecLlarg) ---
+            a.afegirExemplar("L-01", "La plaça del Diamant", "Mercè Rodoreda", true);
+            a.afegirExemplar("L-02", "Mecanoscrit", "Manuel de Pedrolo", true);
+            a.afegirExemplar("L-03", "Canto jo i la muntanya", "Irene Solà", false);
+            a.afegirExemplar("L-04", "Mirall trencat", "Mercè Rodoreda", true);
+            a.afegirExemplar("L-05", "El quadern gris", "Josep Pla", false);
+            a.afegirExemplar("L-06", "Camí de sirga", "Jesús Moncada", true);
+
+            // --- 6 USUARIS (email, nom, adreca, esEstudiant) ---
+            a.afegirUsuari("jordi@email.cat", "Jordi Puig", "Carrer Major 15", true);
+            a.afegirUsuari("marta@email.cat", "Marta Soler", "Av. Diagonal 420", false);
+            a.afegirUsuari("arnau@email.cat", "Arnau Vives", "Carrer Riba 8", true);
+            a.afegirUsuari("laia@email.cat", "Laia Gómez", "Plaça Nova 3", false);
+            a.afegirUsuari("oriol@email.cat", "Oriol Martí", "Carrer Unió 24", true);
+            a.afegirUsuari("silvia@email.cat", "Sílvia Roca", "Rambla 57", false);
+
+            // --- 4 PRESTECS (exemplarPos, usuariPos, esLlarg) ---
+            a.afegirPrestec(0, 0, true);
+            a.afegirPrestec(1, 2, false);
+            a.afegirPrestec(3, 1, true);
+            a.afegirPrestec(4, 4, false);
+        }
+        catch (Exception e){
+            System.err.println("Error inesperat:" + e.getMessage());
+        }
+        return a;
+    }
 }

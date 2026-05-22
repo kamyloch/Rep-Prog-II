@@ -4,9 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Objects;
-
-import static java.util.Objects.*;
+import java.awt.event.MouseAdapter;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
@@ -53,12 +51,29 @@ public class ComponentsPersonalitzats {
     }
 
     /**
+     * JPanel personalitzat amb la estética
+     * Aquest vidre no bloqueja perquè ja ho fa el APPLICATION_MODAL dels JDialog
+     */
+    public static class Vidre extends JPanel{
+        private final Etiqueta txt = new Etiqueta("Carregant...");
+        private static final Color transparent = new Color(0, 0, 0, 150);
+
+        public Vidre(){
+                setOpaque(true);
+                setBackground(transparent);
+                setLayout(new java.awt.GridBagLayout());
+                add(txt);
+        }
+    }
+
+    /**
      * JDialog personalitzat amb la estética
      */
     public abstract static class Finestra extends JDialog{
         protected Adaptador adaptador;
         private final Window pare;
-
+        private Vidre glass;
+        private static final Dimension DIM_MIN = new Dimension(700, 500);
         /**
          * Constructor de Finestra
          * @param adaptador Dades de la biblioUB
@@ -68,11 +83,12 @@ public class ComponentsPersonalitzats {
             super(pare, Dialog.ModalityType.APPLICATION_MODAL);
             this.adaptador = adaptador;
             this.pare = pare;
+            glass = new Vidre();
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
-            setMinimumSize(new Dimension(700, 500));
+            setMinimumSize(DIM_MIN);
             setLocationRelativeTo(null);  //Aparece en el medio
             setBackground(COLOR_FONS);
-            //setIconImage(LOGO);
+            setGlassPane(glass);
         }
 
         /**
@@ -80,16 +96,26 @@ public class ComponentsPersonalitzats {
          */
         public void obrir (){
             if (pare != null){
-                setVisible(true);
+                if (pare instanceof Finestra)
+                    ((Finestra)pare).getGlassPane().setVisible(true);
+                if (pare instanceof AppBiblioUB)
+                    ((AppBiblioUB)pare).getGlassPane().setVisible(true);
             }
+
+            setVisible(true);
         }
 
         /**
          * Tanca la finestra amb dispose y sobreposa la finestra pare
          */
         public void tancar (){
+            glass.setVisible(false);
             if (pare != null){
                 pare.setVisible(true);//aunque siempre es visible, lo sobrepone si esta en el fondo
+                if (pare instanceof Finestra)
+                    ((Finestra)pare).getGlassPane().setVisible(false);
+                if (pare instanceof AppBiblioUB)
+                    ((AppBiblioUB)pare).getGlassPane().setVisible(false);
             }
             dispose();
         }
@@ -208,7 +234,7 @@ public class ComponentsPersonalitzats {
     public static class Missatge extends JDialog{
         //Alternativa a hacer esto:
         //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
-        private static final Dimension dim = new Dimension(400,200);
+        private static final Dimension dim = new Dimension(400,150);
         private static final ImageIcon WARNING_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
         private static final ImageIcon HAPPY_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
         private static final ImageIcon INFO_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/info.png"));

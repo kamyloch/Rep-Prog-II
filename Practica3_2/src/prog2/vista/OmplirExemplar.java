@@ -7,6 +7,9 @@ import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Finestra que permet afegir Exemplars
+ */
 public class OmplirExemplar extends Finestra {
     private JTextField titolTextField;
     private JTextField autoTextField;
@@ -21,6 +24,11 @@ public class OmplirExemplar extends Finestra {
     private JPanel panelInferior;
     private JPanel panelGrande;
 
+    /**
+     * Constructor que llença la finestra segons les dades
+     * @param adaptador Dades de la Biblio UB
+     * @param pare Finestra que crida al formulari
+     */
     public OmplirExemplar(Adaptador adaptador, Window pare) {
         super(adaptador, pare);
         setContentPane(panelGrande);
@@ -44,6 +52,9 @@ public class OmplirExemplar extends Finestra {
         });
     }
 
+    /**
+     * New de cada component de la UI
+     */
     private void createUIComponents() {
         // TODO: place custom component creation code here
         botoTornar = new Boto();

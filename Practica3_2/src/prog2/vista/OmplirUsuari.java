@@ -5,6 +5,9 @@ import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Finestra que permet afegir Usuaris
+ */
 public class OmplirUsuari extends Finestra {
 
     private JTextField nomTextField;
@@ -20,6 +23,11 @@ public class OmplirUsuari extends Finestra {
     private JLabel adrecaLabel;
     private JLabel emailLabel;
 
+    /**
+     * Constructor que llença la finestra segons les dades
+     * @param adaptador Dades de la Biblio UB
+     * @param pare Finestra que crida al formulari
+     */
     public OmplirUsuari(Adaptador adaptador, Window pare) {
         super(adaptador, pare);
         setContentPane(PanellOmplirUs);
@@ -43,7 +51,9 @@ public class OmplirUsuari extends Finestra {
         });
     }
 
-
+    /**
+     * New de cada component de la UI
+     */
     private void createUIComponents() {
         // TODO: place custom component creation code here
         //Botones

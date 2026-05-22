@@ -7,6 +7,9 @@ import prog2.vista.ComponentsPersonalitzats.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Finestra de gestió d'usuaris
+ */
 public class gestorUsuaris extends Finestra {
     private JPanel PanelUsuaris;
     private JButton botoAfegir;
@@ -16,6 +19,11 @@ public class gestorUsuaris extends Finestra {
     private JScrollPane PanelLlista;
     private Finestra finestraomplir;
 
+    /**
+     * Constructor que activa la finestra de gestió d'usuaris
+     * @param adaptador dades de la BiblioUB
+     * @param pare Finestra que crida al gestor
+     */
     public gestorUsuaris(Adaptador adaptador, Window pare) {
         super(adaptador, pare);//Preset
         setContentPane(PanelUsuaris);//Afegim el contingut
@@ -30,11 +38,16 @@ public class gestorUsuaris extends Finestra {
         });
 
     }
-
+    /**
+     * Actualitza la informació de la llista segons l'adaptador
+     */
     public void updateLlista(){
         llista.setListData(adaptador.recuperaUsuaris().toArray());
     }
 
+    /**
+     * New de cada component de la UI
+     */
     private void createUIComponents() {
         PanelUsuaris = new Panell();
         PanelBotons = new Panell();
