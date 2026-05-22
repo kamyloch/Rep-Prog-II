@@ -7,6 +7,9 @@ import prog2.vista.ComponentsPersonalitzats.*;
 
 import java.awt.*;
 
+/**
+ * Finestra de gestió d'exemplars
+ */
 public class gestorExemplars extends Finestra {
     private JButton botoAfegir;
     private JButton botoTornar;
@@ -16,7 +19,11 @@ public class gestorExemplars extends Finestra {
     private JPanel panelBotons;
     private OmplirExemplar afegirFinestra;
 
-
+    /**
+     * Constructor que activa la finestra de gestió d'exemplars
+     * @param adaptador dades de la BiblioUB
+     * @param pare Finestra que crida al gestor
+     */
     public gestorExemplars(Adaptador adaptador, Window pare) {
         super(adaptador, pare);//Preset
         setContentPane(PanelExemplars);//Afegim el contingut
@@ -32,10 +39,16 @@ public class gestorExemplars extends Finestra {
 
     }
 
+    /**
+     * Actualitza la informació de la llista segons l'adaptador
+     */
     public void updateLlista() {
         llista.setListData(adaptador.recuperaExemplars().toArray());
     }
 
+    /**
+     * New de cada component de la UI
+     */
     private void createUIComponents() {//ss
         PanelExemplars = new Panell();
         botoAfegir = new Boto();

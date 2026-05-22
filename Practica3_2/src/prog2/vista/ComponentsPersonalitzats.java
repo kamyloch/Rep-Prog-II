@@ -4,21 +4,24 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.MissingFormatArgumentException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Clase on es defineixen els components personalitzats que mantenen la estética de la UI
  */
 public class ComponentsPersonalitzats {
-    private static Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
-    private static Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
-    private static Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
-    private static Color COLOR_FONS = new Color(0Xb5b5b5);
-    private static Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
-    private static Color COLOR_BOTO = Color.DARK_GRAY;
-    private static Color COLOR_LLETRA = Color.white;
-    private static Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
-    private static Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
+    private static final Font FONT= new Font("Comfortaa", Font.PLAIN, 30);
+    private static final Font FONT_PETITA= new Font("Comfortaa", Font.PLAIN, 20);
+    private static final Font FONT_PETITONA= new Font("Comfortaa", Font.PLAIN, 15);
+    private static final Color COLOR_FONS = new Color(0Xb5b5b5);
+    private static final Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
+    private static final Color COLOR_FONS_FOSCOR = new Color(0X545454);
+    private static final Color COLOR_BOTO = new Color(0X545454);
+    private static final Color COLOR_LLETRA = Color.white;
+    private static final Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
+    private static final Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
 
     /**
      * JButton personalitzat amb la estética
@@ -50,12 +53,29 @@ public class ComponentsPersonalitzats {
     }
 
     /**
+     * JPanel personalitzat amb la estética
+     * Aquest vidre no bloqueja perquè ja ho fa el APPLICATION_MODAL dels JDialog
+     */
+    public static class Vidre extends JPanel{
+        private final Etiqueta txt = new Etiqueta("Carregant...");
+        private static final Color transparent = new Color(0, 0, 0, 150);
+
+        public Vidre(){
+                setOpaque(true);
+                setBackground(transparent);
+                setLayout(new java.awt.GridBagLayout());
+                add(txt);
+        }
+    }
+
+    /**
      * JDialog personalitzat amb la estética
      */
     public abstract static class Finestra extends JDialog{
         protected Adaptador adaptador;
-        private Window pare;
-
+        private final Window pare;
+        private Vidre glass;
+        private static final Dimension DIM_MIN = new Dimension(700, 500);
         /**
          * Constructor de Finestra
          * @param adaptador Dades de la biblioUB
@@ -65,11 +85,20 @@ public class ComponentsPersonalitzats {
             super(pare, Dialog.ModalityType.APPLICATION_MODAL);
             this.adaptador = adaptador;
             this.pare = pare;
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Para gestionar el pare
-            setMinimumSize(new Dimension(700, 500));
+            glass = new Vidre();
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Por el vidrio la x no puede cerrar sin mas
+            setMinimumSize(DIM_MIN);
             setLocationRelativeTo(null);  //Aparece en el medio
             setBackground(COLOR_FONS);
-            //setIconImage(LOGO);
+            setGlassPane(glass);
+
+            //De lo contrario cuando hacemos X no se desactiva el vidre
+            this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    tancar();
+                }
+            });
         }
 
         /**
@@ -77,20 +106,34 @@ public class ComponentsPersonalitzats {
          */
         public void obrir (){
             if (pare != null){
-                setVisible(true);
+                if (pare instanceof Finestra)
+                    ((Finestra)pare).getGlassPane().setVisible(true);
+                if (pare instanceof AppBiblioUB)
+                    ((AppBiblioUB)pare).getGlassPane().setVisible(true);
             }
+
+            setVisible(true);
         }
 
         /**
          * Tanca la finestra amb dispose y sobreposa la finestra pare
          */
         public void tancar (){
+            glass.setVisible(false);
             if (pare != null){
                 pare.setVisible(true);//aunque siempre es visible, lo sobrepone si esta en el fondo
+                if (pare instanceof Finestra)
+                    ((Finestra)pare).getGlassPane().setVisible(false);
+                if (pare instanceof AppBiblioUB)
+                    ((AppBiblioUB)pare).getGlassPane().setVisible(false);
             }
             dispose();
         }
     }
+
+    /**
+     * JPanel personalitzat amb la estética
+     */
     public static class Panell extends JPanel{
         public Panell(){
         super();
@@ -98,13 +141,13 @@ public class ComponentsPersonalitzats {
         }
     }
     public static class Llista extends JList{
-        private static String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
+        private static final String[] llistaFantsama = new String[] {"No hi ha elements a la llista"};
         private boolean isEmpty;
         public Llista (){
             setFixedCellHeight(35); //Espai ente Items
-            setSelectionBackground(COLOR_FONS_FOSC);
+            setSelectionBackground(COLOR_FONS_FOSCOR);
             setSelectionForeground(COLOR_LLETRA);
-            setBackground(COLOR_FONS);
+            setBackground(COLOR_FONS_FOSC);
             setForeground(COLOR_LLETRA);
             setFont(FONT_PETITA);
             isEmpty = true;
@@ -130,6 +173,9 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * JCheckBox personalitzat amb la estética
+     */
     public static class Check extends JCheckBox{
         private static final ImageIcon CHECK_ON = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_on.png"));
         private static final ImageIcon CHECK_OFF = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_off.png"));
@@ -145,6 +191,10 @@ public class ComponentsPersonalitzats {
 
         }
     }
+
+    /**
+     * JTextField personalitzat amb la estética
+     */
     public static class CampText extends JTextField{
         public CampText(){
             super();
@@ -154,6 +204,10 @@ public class ComponentsPersonalitzats {
             setForeground(COLOR_LLETRA);
         }
     }
+
+    /**
+     * JLabel personalitzat amb la estética
+     */
     public static class Etiqueta extends JLabel{
         public Etiqueta (){
             super();
@@ -171,6 +225,9 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * JComboBox personalitzat amb la estética
+     */
     public static class ComboCaixa extends JComboBox{
         public ComboCaixa(){
             super();
@@ -181,34 +238,48 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * Classe que substitueix a JOptionPane per mostrar missatges personalitzats amb la estética
+     */
     public static class Missatge extends JDialog{
         //Alternativa a hacer esto:
         //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
         private static final Dimension dim = new Dimension(400,150);
-        private static final ImageIcon WARNING = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
-        private static final ImageIcon HAPPY = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
-        protected Etiqueta txt;
-        public Missatge(Window pare, String missatge){
-            super(pare, "Error",Dialog.ModalityType.APPLICATION_MODAL);
+        private static final ImageIcon WARNING_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
+        private static final ImageIcon HAPPY_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
+        private static final ImageIcon INFO_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/info.png"));
+        private static final ImageIcon FESTA_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/party.png"));
+        private static final ImageIcon CHECK_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check.png"));
+
+        public enum Tipus {ERROR, INFO,LLEST,FESTA}
+        public Missatge(Window pare, String missatge, String titol, Tipus tipo){
+            super(pare, titol,Dialog.ModalityType.APPLICATION_MODAL);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setResizable(false);
             setMinimumSize(dim);
             Panell contingut  = new Panell();
             Panell panelInf = new Panell(); //Como usare BorderLayout, añado un panel Inf para que el boton quede centrado en este panel pero no llene todoa el panel
             Panell panelSup  = new Panell();
+            panelInf.setBackground(COLOR_FONS_FOSC);
+            panelSup.setBackground(COLOR_FONS_FOSC);
             contingut.setLayout(new BorderLayout());
 
 
             //Missatge
-            txt = new Etiqueta(missatge);
+
+            Etiqueta txt = new Etiqueta(missatge);
             txt.setFont(FONT_PETITA);
-            txt.setIcon(WARNING);
-            txt.setBackground(COLOR_FONS_FOSC);
+            switch (tipo){
+                case ERROR-> txt.setIcon(WARNING_PNG);
+                case INFO-> txt.setIcon(INFO_PNG);
+                case FESTA -> txt.setIcon(FESTA_PNG);
+                case LLEST -> txt.setIcon(CHECK_PNG);
+            }
 
             //Boto
             Boto boto =  new Boto();
             boto.setText("D'acord!");
-            boto.setIcon(HAPPY);
+            boto.setIcon(HAPPY_PNG);
             boto.setFont(FONT_PETITA);
             boto.addActionListener(e->dispose());
 
@@ -226,6 +297,10 @@ public class ComponentsPersonalitzats {
             setVisible(true);
         }
     }
+
+    /**
+     * JMenuBar personalitzat amb la estética
+     */
     public static class MenuPare extends JMenuBar {
         private MenuFill last_Fill;
         public MenuPare (){
@@ -244,6 +319,9 @@ public class ComponentsPersonalitzats {
         }
 
     }
+    /**
+     * JMenu personalitzat amb la estética
+     */
     public static class MenuFill extends JMenu{
         public MenuFill(String nom){
             super(nom);
@@ -252,6 +330,9 @@ public class ComponentsPersonalitzats {
             setBackground(COLOR_FONS_FOSC);
         }
     }
+    /**
+     * JMenuItem personalitzat amb la estética
+     */
     public static class MenuNet extends JMenuItem{
         public MenuNet(String nom){
             super(nom);

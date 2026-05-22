@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Finestra que permet afegir Préstecs
+ */
 public class OmplirPrestec extends Finestra {
     private JPanel panelGrande;
     private JComboBox usuariComboBox;
@@ -19,6 +22,11 @@ public class OmplirPrestec extends Finestra {
     private JPanel panelSuperior;
     private JPanel panelInferior;
 
+    /**
+     * Constructor que llença la finestra segons les dades
+     * @param ad Dades de la Biblio UB
+     * @param pare Finestra que crida al formulari
+     */
     public OmplirPrestec(Adaptador ad, Window pare){
         super(ad, pare);
         setMinimumSize(new Dimension(1000, 500));
@@ -32,7 +40,7 @@ public class OmplirPrestec extends Finestra {
                 adaptador.afegirPrestec(numExemplar,numUsuari,llarg);
                 tancar();
             }catch(BiblioException exepcionnnn){
-                new Missatge(this,exepcionnnn.getMessage());
+                new Missatge(this,exepcionnnn.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
             });
         updateLlistas();
@@ -43,14 +51,16 @@ public class OmplirPrestec extends Finestra {
     public void updateLlistas (){
         usuariComboBox.removeAll();
         exemplarComboBox.removeAll();
-        for (Usuari u : adaptador.recuperaUsuaris())
+        for (String u : adaptador.recuperaUsuaris())
             usuariComboBox.addItem(u);
-        for (Exemplar e : adaptador.recuperaExemplars())
+        for (String e : adaptador.recuperaExemplars())
             exemplarComboBox.addItem(e);
 
     }
 
-
+    /**
+     * New de cada component de la UI
+     */
     private void createUIComponents() {
         // TODO: place custom component creation code here
         //Paneles
