@@ -94,6 +94,10 @@ public class ComponentsPersonalitzats {
             dispose();
         }
     }
+
+    /**
+     * JPanel personalitzat amb la estética
+     */
     public static class Panell extends JPanel{
         public Panell(){
         super();
@@ -133,6 +137,9 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * JCheckBox personalitzat amb la estética
+     */
     public static class Check extends JCheckBox{
         private static final ImageIcon CHECK_ON = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_on.png"));
         private static final ImageIcon CHECK_OFF = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/check_off.png"));
@@ -148,6 +155,10 @@ public class ComponentsPersonalitzats {
 
         }
     }
+
+    /**
+     * JTextField personalitzat amb la estética
+     */
     public static class CampText extends JTextField{
         public CampText(){
             super();
@@ -157,6 +168,10 @@ public class ComponentsPersonalitzats {
             setForeground(COLOR_LLETRA);
         }
     }
+
+    /**
+     * JLabel personalitzat amb la estética
+     */
     public static class Etiqueta extends JLabel{
         public Etiqueta (){
             super();
@@ -174,6 +189,9 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * JComboBox personalitzat amb la estética
+     */
     public static class ComboCaixa extends JComboBox{
         public ComboCaixa(){
             super();
@@ -184,6 +202,9 @@ public class ComponentsPersonalitzats {
         }
     }
 
+    /**
+     * Classe que substitueix a JOptionPane per mostrar missatges personalitzats amb la estética
+     */
     public static class Missatge extends JDialog{
         //Alternativa a hacer esto:
         //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
@@ -240,6 +261,10 @@ public class ComponentsPersonalitzats {
             setVisible(true);
         }
     }
+
+    /**
+     * JMenuBar personalitzat amb la estética
+     */
     public static class MenuPare extends JMenuBar {
         private MenuFill last_Fill;
         public MenuPare (){
@@ -258,6 +283,9 @@ public class ComponentsPersonalitzats {
         }
 
     }
+    /**
+     * JMenu personalitzat amb la estética
+     */
     public static class MenuFill extends JMenu{
         public MenuFill(String nom){
             super(nom);
@@ -266,6 +294,9 @@ public class ComponentsPersonalitzats {
             setBackground(COLOR_FONS_FOSC);
         }
     }
+    /**
+     * JMenuItem personalitzat amb la estética
+     */
     public static class MenuNet extends JMenuItem{
         public MenuNet(String nom){
             super(nom);
