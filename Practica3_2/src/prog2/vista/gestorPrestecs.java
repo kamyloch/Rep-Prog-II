@@ -34,9 +34,12 @@ public class gestorPrestecs extends Finestra{
             updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
         botoTornar.addActionListener(e -> tancar());
-        botoRetornarPrestec.addActionListener(e -> {
+        botoRetornarPrestec.addActionListener(e ->retornar());
 
+    }
 
+    private void retornar(){
+        {
             try{
                 if(llista.isSelectionEmpty())
                     throw new Exception("Si us plau, tria una opció de la llista");
@@ -46,12 +49,12 @@ public class gestorPrestecs extends Finestra{
                 else
                     adaptador.retornarPrestecTots(seleccio);
 
+                new Missatge(this,"Has retornat el préstec","Moltes gràcies!", Missatge.Tipus.FESTA);
                 updateLlista();
             }catch (Exception exew){
                 new Missatge(this, exew.getMessage(), "Error",Missatge.Tipus.ERROR);
             }
-        });
-
+        }
     }
 
     public void updateLlista(){

@@ -18,7 +18,7 @@ public class ComponentsPersonalitzats {
     private static final Color COLOR_FONS = new Color(0Xb5b5b5);
     private static final Color COLOR_FONS_FOSC = new Color(0X7c7c7c);
     private static final Color COLOR_FONS_FOSCOR = new Color(0X545454);
-    private static final Color COLOR_BOTO = Color.DARK_GRAY;
+    private static final Color COLOR_BOTO = new Color(0X545454);
     private static final Color COLOR_LLETRA = Color.white;
     private static final Border BORDE_PETIT = BorderFactory.createEmptyBorder(5,10,5,10);
     private static final Border BORDE_GRAN =BorderFactory.createEmptyBorder(10,20,10,20);
@@ -187,7 +187,7 @@ public class ComponentsPersonalitzats {
     public static class Missatge extends JDialog{
         //Alternativa a hacer esto:
         //JOptionPane.showMessageDialog(pare,txt ,"Error",JOptionPane.ERROR_MESSAGE); //<- NATIVA DE JAVA
-        private static final Dimension dim = new Dimension(400,150);
+        private static final Dimension dim = new Dimension(400,200);
         private static final ImageIcon WARNING_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/warning.png"));
         private static final ImageIcon HAPPY_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/happy.png"));
         private static final ImageIcon INFO_PNG = new ImageIcon(Check.class.getClassLoader().getResource("prog2/vista/imatges/info.png"));
