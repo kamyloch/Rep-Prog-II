@@ -40,7 +40,7 @@ public class gestorPrestecs extends Finestra{
             updateLlista(); //Espera que se cierre (No hace falta actualizar con el boton tornar del dialogo)
         });
         botoTornar.addActionListener(e -> tancar());
-        botoRetornarPrestec.addActionListener(e ->retornar());
+        botoRetornarPrestec.addActionListener(e -> retornar());
 
     }
 
@@ -51,7 +51,7 @@ public class gestorPrestecs extends Finestra{
         {
             try{
                 if(llista.isSelectionEmpty())
-                    throw new Exception("Si us plau, tria una opció de la llista");
+                    throw new BiblioException("Si us plau, tria una opció de la llista");
                 int seleccio = llista.getSelectedIndex();
                 if (noRetornatsCheckBox.isSelected())
                     adaptador.retornarPrestec(seleccio);

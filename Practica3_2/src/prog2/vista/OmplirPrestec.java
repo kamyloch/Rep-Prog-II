@@ -31,6 +31,8 @@ public class OmplirPrestec extends Finestra {
         super(ad, pare);
         setMinimumSize(new Dimension(1000, 500));
         setContentPane(panelGrande);
+        setTitle("Afegir préstec");
+
         botoTornar.addActionListener(e->tancar());
         botoAfegir.addActionListener(e->{
             int numUsuari=usuariComboBox.getSelectedIndex();

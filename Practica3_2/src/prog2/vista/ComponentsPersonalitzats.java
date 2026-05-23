@@ -168,7 +168,7 @@ public class ComponentsPersonalitzats {
         @Override
         public boolean isSelectionEmpty(){ //por la fantasma
             if (isEmpty)
-                return false;
+                return true;
             return super.isSelectionEmpty();
         }
     }

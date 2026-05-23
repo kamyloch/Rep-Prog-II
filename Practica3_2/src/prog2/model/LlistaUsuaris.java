@@ -14,7 +14,7 @@ public class LlistaUsuaris extends Llista<Usuari>{
     @Override
     public void afegir(Usuari user) throws BiblioException {
         if (llista.contains(user))
-            throw new BiblioException("Ja hi ha un exemplar amb el mateix nom : " + user.getNom());
+            throw new BiblioException("Ja hi ha un usuari amb el mateix email : " + user.getEmail());
         else
             llista.add(user);
     }
